@@ -7,9 +7,10 @@ Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas represen
 - [x] Matriz das seis perguntas e regras iniciais documentadas no [README](README.md).
 - [x] Documentação e inspeção inicial realizadas: cabeçalhos e primeiras 10 mil linhas de RESULTADOS inspecionados.
 - [x] Stack inicial escolhida e plano de continuidade registrado aqui.
-- [ ] Perfil completo dos dados, ETL, notebook e instalação do ambiente ainda não validados.
+- [x] Ambiente `.venv` preparado com Python 3.13.15 (64 bits), pip e kernel `ENEM 2025 (.venv)`; imports, dependências, consulta DuckDB e execução no kernel validados.
+- [ ] Perfil completo dos dados, ETL e notebook analítico ainda não validados.
 
-**Ponto de retomada:** começar pela fase 1, fechando o contrato analítico de desempenho por área e suas regras de presença. Em seguida, preparar e verificar o ambiente. Ainda não há resultados populacionais calculados. Este documento atualiza a definição de ferramentas que estava pendente no README.
+**Ponto de retomada:** começar pela fase 1, fechando o contrato analítico de desempenho por área e suas regras de presença. O ambiente já está preparado; após o contrato, definir os parâmetros de recursos e iniciar a POC pequena. Ainda não há resultados populacionais calculados. Este documento atualiza a definição de ferramentas que estava pendente no README.
 
 ## Decisões tomadas
 
@@ -20,9 +21,9 @@ Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas represen
 | Ferramenta | Papel no projeto |
 | --- | --- |
 | Python + Jupyter no VS Code | Conduzir exploração, registrar decisões e executar o notebook. |
-| DuckDB | Banco/motor SQL analítico embutido para processamento local. Será instalado como pacote no ambiente Python do projeto e executado dentro do processo, sem servidor, interface web ou extensão de DuckDB para VS Code obrigatória. Pode consultar arquivos; um banco persistente `.duckdb` é opcional, não uma camada adicional obrigatória. Consulte a [API Python oficial](https://duckdb.org/docs/current/clients/python/overview). |
+| DuckDB | Banco/motor SQL analítico embutido para processamento local. Instalado como pacote no ambiente Python do projeto e executado dentro do processo, sem servidor, interface web ou extensão de DuckDB para VS Code obrigatória. Pode consultar arquivos; um banco persistente `.duckdb` é opcional, não uma camada adicional obrigatória. Consulte a [API Python oficial](https://duckdb.org/docs/current/clients/python/overview). |
 | Parquet | Formato dos dados tratados; DuckDB pode consultar e gravar esses arquivos. Consulte a [documentação oficial de Parquet](https://duckdb.org/docs/current/data/parquet/overview). |
-| Pandas + biblioteca de gráficos | Pandas é uma biblioteca de DataFrames; será usada com resultados reduzidos para organizar tabelas e alimentar gráficos. A biblioteca de visualização será escolhida na POC. |
+| Pandas + biblioteca de gráficos | Pandas é uma biblioteca de DataFrames; será usada com resultados reduzidos para organizar tabelas e alimentar gráficos. Matplotlib foi instalado para os gráficos da POC. |
 | Spark | Motor com capacidade de processamento distribuído, reservado a necessidade demonstrada ou objetivo explícito de aprendizado. Não faz parte da implementação inicial. |
 
 **Camadas iniciais:** `raw` preservada → `trusted` com campos pertinentes, tipos e tratamento explícito de categorias/ausências em Parquet → `analitica` com indicadores para tabelas e gráficos. São nomes iniciais simples; nenhuma pasta será renomeada agora. As duas bases permanecem separadas nas camadas. A apresentação consome os indicadores.
@@ -39,9 +40,10 @@ Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas represen
 
 ### 2. Preparar e verificar o ambiente
 
-- [ ] Medir RAM disponível e espaço em disco, incluindo margem para temporários e Parquet; registrar características da máquina.
-- [ ] Preparar ambiente Python do projeto, dependências e kernel Jupyter no VS Code; registrar versões.
-- [ ] Validar importação do DuckDB e uma consulta pequena; definir limites de memória, paralelismo e diretório temporário conforme medições.
+- [x] Medir recursos: Windows 64 bits, aproximadamente 7,87 GiB de RAM total, 1,60 GiB livre e 457,84 GiB livres no disco C na inspeção de 16/09/2026. Valores livres variam; medir novamente antes da carga.
+- [x] Preparar ambiente Python do projeto, dependências e kernel Jupyter; versões fixadas em `requirements.txt` e instruções no README. Extensões Python e Jupyter disponíveis no VS Code; seleção visual do kernel ainda cabe ao usuário.
+- [x] Validar imports, `pip check`, consulta `SELECT 1 + 1` e inicialização/execução do kernel.
+- [ ] Definir limites de memória, paralelismo e diretório temporário antes da leitura completa.
 
 **Entregável/saída:** ambiente reproduzível e consulta mínima funcionando. O tamanho dos CSVs, sozinho, não garante tempo de execução nem consumo de memória.
 
@@ -82,4 +84,4 @@ Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas represen
 
 ## Decisões ainda pendentes
 
-Filtros finais e denominadores das análises de desempenho; tratamento das inconsistências de presença por dia; elegibilidade por status da redação; tipos e categorias efetivos no contrato; parâmetros de memória/paralelismo e temporários; biblioteca de gráficos e organização física final. Resolver cada ponto na fase correspondente e atualizar este arquivo com o último passo validado e a próxima ação.
+Filtros finais e denominadores das análises de desempenho; tratamento das inconsistências de presença por dia; elegibilidade por status da redação; tipos e categorias efetivos no contrato; parâmetros de memória/paralelismo e temporários; organização física final. Resolver cada ponto na fase correspondente e atualizar este arquivo com o último passo validado e a próxima ação.

@@ -4,7 +4,7 @@ Documento de trabalho · 16/09/2026
 
 ## Objetivo e escopo
 
-Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A etapa atual é a visão de negócio; arquitetura, ferramentas e implementação ainda serão definidas.
+Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A etapa atual é a definição do contrato analítico; a stack inicial e o ambiente estão preparados, e a implementação analítica ainda será iniciada.
 
 O desafio original contempla análise temporal retrocedendo até 2010 e a relação entre renda familiar e desempenho. A prova de conceito (POC) fica limitada à edição de 2025, começando por presença e desempenho por área e contemplando seis perguntas. A leitura econômica será independente das notas. As métricas abaixo são propostas, não resultados calculados.
 
@@ -54,4 +54,34 @@ Plano detalhado, stack escolhida e ponto de retomada: [ROADMAP.md](ROADMAP.md).
 6. Preparar apresentação com resultados, hipóteses e limitações.
 7. Expandir a série temporal até 2010 somente após avaliar compatibilidade de questionários, cobertura e disponibilidade de renda e notas associáveis.
 
-Camadas lógicas propostas: `raw` → padronizados → analíticos → apresentação. Os originais serão preservados; nomenclatura física e ferramentas ainda não foram decididas.
+Camadas lógicas propostas: `raw` → padronizados → analíticos → apresentação. Os originais serão preservados; a stack inicial e as camadas propostas estão detalhadas no ROADMAP.
+
+## Ambiente de desenvolvimento
+
+Preparado em 16/09/2026 com **Python 3.13.15 de 64 bits**, `venv` padrão e pip. Pacotes principais: DuckDB 1.5.5, Pandas 3.0.5, Matplotlib 3.11.2 e ipykernel 7.3.0. O [requirements.txt](requirements.txt) fixa também as dependências transitivas desta instalação Windows/Python 3.13.
+
+O Python 3.13 foi instalado para o usuário em `%LOCALAPPDATA%\Programs\Python\Python313`, preservando o Python 3.14 de 32 bits existente, sem adicioná-lo ao PATH. `.venv` já estava ignorada pelo Git. O kernel **ENEM 2025 (.venv)** foi registrado no próprio ambiente e no escopo do usuário, sem configuração de sistema. As extensões Python e Jupyter estão disponíveis no VS Code.
+
+No PowerShell, abra a pasta e ative o ambiente:
+
+```powershell
+Set-Location 'C:\Users\SamuelCaetanoPacheco\Desktop\ENEM-Data-Analysis'
+.\.venv\Scripts\Activate.ps1
+python --version
+```
+
+Se a ativação for bloqueada, use diretamente `.\.venv\Scripts\python.exe`, sem alterar a política de execução. Para sair de um ambiente ativado, execute `deactivate`.
+
+No VS Code, abra essa pasta. Ao criar ou abrir um notebook, clique em **Select Kernel / Selecionar Kernel → Select Another Kernel / Selecionar Outro Kernel → Jupyter Kernel → ENEM 2025 (.venv)**. Se a lista ainda não atualizar, recarregue a janela; a alternativa é **Python Environments / Ambientes Python** e selecionar `.venv\Scripts\python.exe` deste projeto. Para scripts, use **Python: Select Interpreter** na paleta de comandos e escolha esse mesmo executável.
+
+Para recriar o ambiente, com Python 3.13 de 64 bits disponível e sem um `.venv` existente:
+
+```powershell
+& "$env:LOCALAPPDATA\Programs\Python\Python313\python.exe" -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m ipykernel install --sys-prefix --name python3 --display-name 'ENEM 2025 (.venv)'
+.\.venv\Scripts\python.exe -m ipykernel install --user --name enem-2025 --display-name 'ENEM 2025 (.venv)'
+.\.venv\Scripts\python.exe -m pip check
+```
+
+Validação realizada: imports dos quatro pacotes, versões, dependências sem conflitos, consulta DuckDB trivial e execução no kernel. A seleção pela interface do VS Code ainda deve ser feita ao abrir o notebook. Nenhum CSV foi processado nesta preparação; filtros e contratos analíticos continuam pendentes.
