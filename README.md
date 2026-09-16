@@ -4,21 +4,21 @@ Documento de trabalho · 16/09/2026
 
 ## Objetivo e escopo
 
-Investigar participação e desempenho no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A etapa atual é a visão de negócio; arquitetura, ferramentas e implementação ainda serão definidas.
+Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A etapa atual é a visão de negócio; arquitetura, ferramentas e implementação ainda serão definidas.
 
-O desafio original contempla análise temporal retrocedendo até 2010 e a relação entre renda familiar e desempenho. A prova de conceito (POC) fica limitada à edição de 2025, começando por presença e desempenho por área. As métricas abaixo são propostas, não resultados calculados.
+O desafio original contempla análise temporal retrocedendo até 2010 e a relação entre renda familiar e desempenho. A prova de conceito (POC) fica limitada à edição de 2025, começando por presença e desempenho por área e contemplando seis perguntas. A leitura econômica será independente das notas. As métricas abaixo são propostas, não resultados calculados.
 
 ## Dados disponíveis
 
 Materiais em `raw/microdados_enem_2025/microdados_enem_2025/`: `DADOS`, `DICIONÁRIO`, `INPUTS` e `LEIA-ME E DOCUMENTOS TÉCNICOS`.
 
 - `RESULTADOS_2025.csv`: 70 colunas, aproximadamente 2,12 GB; base das cinco perguntas iniciais.
-- `PARTICIPANTES_2025.csv`: aproximadamente 513 MB; contém informações dos participantes e o questionário socioeconômico.
+- `PARTICIPANTES_2025.csv`: aproximadamente 513 MB; contém informações dos participantes e o questionário socioeconômico; base da sexta pergunta, sobre o perfil dos inscritos divulgados, sem pressupor comparecimento.
 - A inspeção anterior cobriu apenas as primeiras 10 mil linhas; não produz estatísticas populacionais.
 
 Conforme o leia-me (página 7), PARTICIPANTES e RESULTADOS não possuem chave comum. O dicionário distingue `NU_SEQUENCIAL` de `NU_INSCRICAO`. A renda familiar (`Q007`) está somente em PARTICIPANTES: não é possível prometer seu cruzamento individual com notas, nem associar registros pela posição. A pergunta renda × desempenho permanece no escopo futuro, a investigar em edição compatível, sem mudar o ano da POC agora.
 
-## Cinco perguntas norteadoras
+## Seis perguntas norteadoras
 
 | Pergunta | Campos principais | Métricas iniciais propostas |
 | --- | --- | --- |
@@ -27,6 +27,7 @@ Conforme o leia-me (página 7), PARTICIPANTES e RESULTADOS não possuem chave co
 | 3. Como desempenho e presença variam por local de aplicação? | `CO_MUNICIPIO_PROVA`, `NO_MUNICIPIO_PROVA`, `SG_UF_PROVA`, notas e presenças por área | Volume e taxas de presença por local; cobertura das notas, média, mediana e quartis por área. Região poderá ser derivada de UF com mapeamento explícito. |
 | 4. Como as notas variam por rede escolar, incluindo pública × privada? | `TP_DEPENDENCIA_ADM_ESC`, notas e presenças por área | Contagens e cobertura da informação escolar; média, mediana e quartis por rede e agrupamento público/privado. |
 | 5. Qual o panorama da redação e de suas competências? | `NU_NOTA_REDACAO`, `NU_NOTA_COMP1` a `NU_NOTA_COMP5`, `TP_STATUS_REDACAO` | Contagens e proporções por status; cobertura, média, mediana, quartis e distribuição da nota total e de cada competência. |
+| 6. Como os inscritos divulgados se distribuem por faixa de renda familiar? | `Q007` (principal), `Q006` (complemento); `Q005` para contexto do número de moradores | Quantidades e percentuais por faixa de renda mensal familiar; complemento com percentuais com/sem renda própria. Denominador principal: todos os registros de PARTICIPANTES; se houver percentual entre respostas válidas, identificá-lo separadamente para cada campo. |
 
 Toda proporção deve informar numerador, denominador e recorte. Para notas, apresentar também quantidade elegível e valores ausentes. Moda não é prioridade inicial.
 
@@ -37,15 +38,19 @@ Toda proporção deve informar numerador, denominador e recorte. Para notas, apr
 - **Elegibilidade:** definir por área e status quais notas entram em cada métrica; manter zeros válidos, distinguir ausências de valores faltantes e publicar exclusões. Na redação, explicitar o tratamento de cada status e validar a relação entre total e competências conforme documentação.
 - **Rede escolar:** `TP_DEPENDENCIA_ADM_ESC`: `1` federal, `2` estadual, `3` municipal e `4` privada. Públicas = `1`, `2` e `3`. A informação escolar é incompleta/selecionada: informar cobertura sobre a base e o recorte elegível, mantendo não informados separados. Diferenças observadas não demonstram causalidade nem permitem inferir renda.
 - **Geografia:** local de prova não equivale à residência. `TP_LOCALIZACAO_ESC` indica escola urbana/rural, não urbanização ou residência do candidato. Expectativas de desempenho regional ou por rede são hipóteses a testar.
+- **Perfil econômico:** `Q007` informa a faixa de renda mensal familiar, incluindo o respondente e os moradores. `Q006` indica apenas se possui renda própria (`A` = não; `B` = sim), sem valor ou faixa de renda pessoal. `Q005` informa o número de moradores; não permite obter renda per capita exata a partir de faixas. A análise descreve os inscritos divulgados em PARTICIPANTES e não deve ser filtrada por presença: não há ligação com RESULTADOS, e o cruzamento individual renda–nota continua inviável em 2025.
+- **Qualidade econômica:** aplicar categorias e limites de `Q007` conforme o dicionário de 2025, preservando “nenhuma renda” como resposta válida. Separar respostas ausentes e códigos inválidos, com contagens e percentuais sobre todos os registros de PARTICIPANTES. Para cada campo, calcular percentual principal como contagem da categoria dividida pelo total da base; se apresentado, o percentual entre respostas válidas usa somente as respostas válidas daquele campo como denominador. Reconciliar categorias válidas, ausentes e inválidas com o total, admitindo diferenças de arredondamento nos percentuais.
 - **Qualidade:** conferir esquema, tipos, códigos e faixas no dicionário; investigar duplicidades, faltantes e incompatibilidades entre presença, nota e status. Reconciliar totais e denominadores. Validar a POC pequena antes de ampliar para a base completa; registrar filtros e limitações para reprodução.
 
 ## Roadmap
 
-1. Consolidar visão de negócio e as cinco perguntas.
+Plano detalhado, stack escolhida e ponto de retomada: [ROADMAP.md](ROADMAP.md).
+
+1. Consolidar visão de negócio e as seis perguntas.
 2. Definir o contrato analítico: população, unidade de análise, elegibilidade, regras por dia, métricas e denominadores.
 3. Validar uma POC pequena de presença e desempenho por área.
 4. Estruturar tratamento reproduzível após validar as regras.
-5. Desenvolver gradualmente as cinco análises, conferindo cobertura e consistência em cada entrega.
+5. Desenvolver gradualmente as seis análises, incluindo a leitura econômica independente em PARTICIPANTES, conferindo cobertura e consistência em cada entrega.
 6. Preparar apresentação com resultados, hipóteses e limitações.
 7. Expandir a série temporal até 2010 somente após avaliar compatibilidade de questionários, cobertura e disponibilidade de renda e notas associáveis.
 
