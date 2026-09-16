@@ -1,0 +1,356 @@
+{
+  "modo": "completo",
+  "limite": null,
+  "fonte": "raw/microdados_enem_2025/microdados_enem_2025/DADOS/RESULTADOS_2025.csv",
+  "recursos_inicio": {
+    "ram_total_bytes": 8445833216,
+    "ram_disponivel_bytes": 1303592960,
+    "disco_livre_bytes": 490681884672
+  },
+  "duckdb": "1.5.5",
+  "configuracao": {
+    "memory_limit": "256MB",
+    "threads": 1,
+    "max_temp_directory_size": "10GB"
+  },
+  "publicado": true,
+  "sha256_raw_antes": "5df5ebed6395a3e69e3dc3b3c9731930312597318ff4dfc178b136514796803d",
+  "registros_entrada": 4810772,
+  "falhas_conversao": {
+    "NU_ANO": 0,
+    "TP_PRESENCA_CN": 0,
+    "TP_PRESENCA_CH": 0,
+    "TP_PRESENCA_LC": 0,
+    "TP_PRESENCA_MT": 0,
+    "NU_NOTA_CN": 0,
+    "NU_NOTA_CH": 0,
+    "NU_NOTA_LC": 0,
+    "NU_NOTA_MT": 0
+  },
+  "categorias_inesperadas": {
+    "TP_PRESENCA_CN": [],
+    "TP_PRESENCA_CH": [],
+    "TP_PRESENCA_LC": [],
+    "TP_PRESENCA_MT": []
+  },
+  "validacao": {
+    "registros": 4810772,
+    "nulos": {
+      "NU_SEQUENCIAL": 0,
+      "NU_ANO": 0,
+      "TP_PRESENCA_CN": 0,
+      "TP_PRESENCA_CH": 0,
+      "TP_PRESENCA_LC": 0,
+      "TP_PRESENCA_MT": 0,
+      "NU_NOTA_CN": 1550436,
+      "NU_NOTA_CH": 1353217,
+      "NU_NOTA_LC": 1353217,
+      "NU_NOTA_MT": 1550436
+    },
+    "chaves_duplicadas": 0,
+    "linhas_excedentes_chave": 0,
+    "anos": [
+      {
+        "ano": 2025,
+        "quantidade": 4810772
+      }
+    ],
+    "por_area": {
+      "CN": {
+        "presente_sem_nota": 0,
+        "ausente_com_nota": 0,
+        "eliminado_com_nota": 0,
+        "presenca_nula_com_nota": 0,
+        "nota_zero": 775,
+        "nota_negativa": 0,
+        "presencas": [
+          {
+            "codigo": 0,
+            "quantidade": 1548487
+          },
+          {
+            "codigo": 1,
+            "quantidade": 3260336
+          },
+          {
+            "codigo": 2,
+            "quantidade": 1949
+          }
+        ]
+      },
+      "CH": {
+        "presente_sem_nota": 0,
+        "ausente_com_nota": 0,
+        "eliminado_com_nota": 0,
+        "presenca_nula_com_nota": 0,
+        "nota_zero": 9087,
+        "nota_negativa": 0,
+        "presencas": [
+          {
+            "codigo": 0,
+            "quantidade": 1348087
+          },
+          {
+            "codigo": 1,
+            "quantidade": 3457555
+          },
+          {
+            "codigo": 2,
+            "quantidade": 5130
+          }
+        ]
+      },
+      "LC": {
+        "presente_sem_nota": 0,
+        "ausente_com_nota": 0,
+        "eliminado_com_nota": 0,
+        "presenca_nula_com_nota": 0,
+        "nota_zero": 2361,
+        "nota_negativa": 0,
+        "presencas": [
+          {
+            "codigo": 0,
+            "quantidade": 1348087
+          },
+          {
+            "codigo": 1,
+            "quantidade": 3457555
+          },
+          {
+            "codigo": 2,
+            "quantidade": 5130
+          }
+        ]
+      },
+      "MT": {
+        "presente_sem_nota": 0,
+        "ausente_com_nota": 0,
+        "eliminado_com_nota": 0,
+        "presenca_nula_com_nota": 0,
+        "nota_zero": 893,
+        "nota_negativa": 0,
+        "presencas": [
+          {
+            "codigo": 0,
+            "quantidade": 1548487
+          },
+          {
+            "codigo": 1,
+            "quantidade": 3260336
+          },
+          {
+            "codigo": 2,
+            "quantidade": 1949
+          }
+        ]
+      }
+    },
+    "esquema": [
+      [
+        "NU_SEQUENCIAL",
+        "VARCHAR"
+      ],
+      [
+        "NU_ANO",
+        "INTEGER"
+      ],
+      [
+        "TP_PRESENCA_CN",
+        "TINYINT"
+      ],
+      [
+        "TP_PRESENCA_CH",
+        "TINYINT"
+      ],
+      [
+        "TP_PRESENCA_LC",
+        "TINYINT"
+      ],
+      [
+        "TP_PRESENCA_MT",
+        "TINYINT"
+      ],
+      [
+        "NU_NOTA_CN",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_CH",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_LC",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_MT",
+        "DECIMAL(10,1)"
+      ]
+    ]
+  },
+  "releitura": {
+    "registros": 4810772,
+    "nulos": {
+      "NU_SEQUENCIAL": 0,
+      "NU_ANO": 0,
+      "TP_PRESENCA_CN": 0,
+      "TP_PRESENCA_CH": 0,
+      "TP_PRESENCA_LC": 0,
+      "TP_PRESENCA_MT": 0,
+      "NU_NOTA_CN": 1550436,
+      "NU_NOTA_CH": 1353217,
+      "NU_NOTA_LC": 1353217,
+      "NU_NOTA_MT": 1550436
+    },
+    "chaves_duplicadas": 0,
+    "linhas_excedentes_chave": 0,
+    "anos": [
+      {
+        "ano": 2025,
+        "quantidade": 4810772
+      }
+    ],
+    "por_area": {
+      "CN": {
+        "presente_sem_nota": 0,
+        "ausente_com_nota": 0,
+        "eliminado_com_nota": 0,
+        "presenca_nula_com_nota": 0,
+        "nota_zero": 775,
+        "nota_negativa": 0,
+        "presencas": [
+          {
+            "codigo": 0,
+            "quantidade": 1548487
+          },
+          {
+            "codigo": 1,
+            "quantidade": 3260336
+          },
+          {
+            "codigo": 2,
+            "quantidade": 1949
+          }
+        ]
+      },
+      "CH": {
+        "presente_sem_nota": 0,
+        "ausente_com_nota": 0,
+        "eliminado_com_nota": 0,
+        "presenca_nula_com_nota": 0,
+        "nota_zero": 9087,
+        "nota_negativa": 0,
+        "presencas": [
+          {
+            "codigo": 0,
+            "quantidade": 1348087
+          },
+          {
+            "codigo": 1,
+            "quantidade": 3457555
+          },
+          {
+            "codigo": 2,
+            "quantidade": 5130
+          }
+        ]
+      },
+      "LC": {
+        "presente_sem_nota": 0,
+        "ausente_com_nota": 0,
+        "eliminado_com_nota": 0,
+        "presenca_nula_com_nota": 0,
+        "nota_zero": 2361,
+        "nota_negativa": 0,
+        "presencas": [
+          {
+            "codigo": 0,
+            "quantidade": 1348087
+          },
+          {
+            "codigo": 1,
+            "quantidade": 3457555
+          },
+          {
+            "codigo": 2,
+            "quantidade": 5130
+          }
+        ]
+      },
+      "MT": {
+        "presente_sem_nota": 0,
+        "ausente_com_nota": 0,
+        "eliminado_com_nota": 0,
+        "presenca_nula_com_nota": 0,
+        "nota_zero": 893,
+        "nota_negativa": 0,
+        "presencas": [
+          {
+            "codigo": 0,
+            "quantidade": 1548487
+          },
+          {
+            "codigo": 1,
+            "quantidade": 3260336
+          },
+          {
+            "codigo": 2,
+            "quantidade": 1949
+          }
+        ]
+      }
+    },
+    "esquema": [
+      [
+        "NU_SEQUENCIAL",
+        "VARCHAR"
+      ],
+      [
+        "NU_ANO",
+        "INTEGER"
+      ],
+      [
+        "TP_PRESENCA_CN",
+        "TINYINT"
+      ],
+      [
+        "TP_PRESENCA_CH",
+        "TINYINT"
+      ],
+      [
+        "TP_PRESENCA_LC",
+        "TINYINT"
+      ],
+      [
+        "TP_PRESENCA_MT",
+        "TINYINT"
+      ],
+      [
+        "NU_NOTA_CN",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_CH",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_LC",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_MT",
+        "DECIMAL(10,1)"
+      ]
+    ]
+  },
+  "sha256_raw_depois": "5df5ebed6395a3e69e3dc3b3c9731930312597318ff4dfc178b136514796803d",
+  "parquet": "trusted/resultados_2025_base.parquet",
+  "parquet_bytes": 54733745,
+  "sha256_parquet": "e62b1cb8eedb9dac27d457fcc03c8f7479faacf1ec4b4ecb8011be28613981f3",
+  "segundos": 40.767,
+  "recursos_fim": {
+    "ram_total_bytes": 8445833216,
+    "ram_disponivel_bytes": 1425764352,
+    "disco_livre_bytes": 490627067904
+  }
+}

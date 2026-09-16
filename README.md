@@ -4,7 +4,7 @@ Documento de trabalho · 16/09/2026
 
 ## Objetivo e escopo
 
-Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A etapa atual é a definição do contrato analítico; a stack inicial e o ambiente estão preparados, e a implementação analítica ainda será iniciada.
+Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A primeira base trusted de 2025 está implementada e validada. O próximo passo é definir o contrato dos indicadores de presença e desempenho por área.
 
 O desafio original contempla análise temporal retrocedendo até 2010 e a relação entre renda familiar e desempenho. A prova de conceito (POC) fica limitada à edição de 2025, começando por presença e desempenho por área e contemplando seis perguntas. A leitura econômica será independente das notas. As métricas abaixo são propostas, não resultados calculados.
 
@@ -14,7 +14,7 @@ Materiais em `raw/microdados_enem_2025/microdados_enem_2025/`: `DADOS`, `DICION�
 
 - `RESULTADOS_2025.csv`: 70 colunas, aproximadamente 2,12 GB; base das cinco perguntas iniciais.
 - `PARTICIPANTES_2025.csv`: aproximadamente 513 MB; contém informações dos participantes e o questionário socioeconômico; base da sexta pergunta, sobre o perfil dos inscritos divulgados, sem pressupor comparecimento.
-- A inspeção anterior cobriu apenas as primeiras 10 mil linhas; não produz estatísticas populacionais.
+- A inspeção inicial cobriu 10 mil linhas; agora os dez campos do contrato inicial foram validados em todos os 4.810.772 registros de RESULTADOS. Essa validação de qualidade não substitui as análises finais.
 
 Conforme o leia-me (página 7), PARTICIPANTES e RESULTADOS não possuem chave comum. O dicionário distingue `NU_SEQUENCIAL` de `NU_INSCRICAO`. A renda familiar (`Q007`) está somente em PARTICIPANTES: não é possível prometer seu cruzamento individual com notas, nem associar registros pela posição. A pergunta renda × desempenho permanece no escopo futuro, a investigar em edição compatível, sem mudar o ano da POC agora.
 
@@ -44,7 +44,7 @@ Toda proporção deve informar numerador, denominador e recorte. Para notas, apr
 
 ## Roadmap
 
-Plano detalhado, stack escolhida e ponto de retomada: [ROADMAP.md](ROADMAP.md).
+Plano detalhado, stack escolhida e ponto de retomada: [ROADMAP.md](src/ROADMAP.md).
 
 1. Consolidar visão de negócio e as seis perguntas.
 2. Definir o contrato analítico: população, unidade de análise, elegibilidade, regras por dia, métricas e denominadores.
@@ -84,4 +84,31 @@ Para recriar o ambiente, com Python 3.13 de 64 bits disponível e sem um `.venv`
 .\.venv\Scripts\python.exe -m pip check
 ```
 
-Validação realizada: imports dos quatro pacotes, versões, dependências sem conflitos, consulta DuckDB trivial e execução no kernel. A seleção pela interface do VS Code ainda deve ser feita ao abrir o notebook. Nenhum CSV foi processado nesta preparação; filtros e contratos analíticos continuam pendentes.
+Validação realizada: imports dos quatro pacotes, versões, dependências sem conflitos, consulta DuckDB trivial e execução no kernel. O notebook `src/test_ambiente.ipynb` foi criado e executado pelo usuário e permanece preservado. A preparação do ambiente não processou CSVs; o incremento raw → trusted descrito abaixo já foi concluído.
+
+## Primeiro incremento raw → trusted
+
+Contrato em [docs/contrato_resultados_2025.md](docs/contrato_resultados_2025.md), funções em [src/trusted_resultados.py](src/trusted_resultados.py) e notebook executado em [src/01_resultados_trusted.ipynb](src/01_resultados_trusted.ipynb). O notebook funciona a partir da raiz ou de `src/`, com kernel reiniciado.
+
+A saída local `trusted/resultados_2025_base.parquet` contém **4.810.772 registros e dez campos**, sem filtro de presença, com 54.733.745 bytes (aproximadamente 54,73 MB). O CSV original permaneceu intacto por SHA-256. Os [relatórios de validação](reports/validacao_resultados_2025_completo.json) registram tipos, contagens, nulos, coerência, hashes e recursos.
+
+| Área | Notas nulas preservadas | Notas zero preservadas |
+| --- | ---: | ---: |
+| CN | 1.550.436 | 775 |
+| CH | 1.353.217 | 9.087 |
+| LC | 1.353.217 | 2.361 |
+| MT | 1.550.436 | 893 |
+
+Identificador, ano e presenças: nenhum nulo. Nenhuma chave duplicada, falha de conversão, categoria inesperada, ano diferente de 2025, nota negativa ou incoerência presença/nota nas regras verificadas. Isso se refere somente aos dez campos e aos controles do contrato; os demais campos ainda não foram perfilados.
+
+Para reproduzir na raiz do projeto:
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -X utf8 src\trusted_resultados.py --amostra 10000
+.\.venv\Scripts\python.exe -X utf8 src\trusted_resultados.py
+```
+
+Alternativamente, execute todas as células do notebook. O fluxo usa DuckDB com 256 MB e uma thread; staging e spill ficam em `work/`. Só publica após conferir o Parquet temporário; uma falha preserva a saída anterior. `trusted/` e `work/` são ignorados pelo Git. Os seis testes cobrem nulos/zero, conversões, categorias, chave/ano, Latin-1/CSV inválido, reconciliação e reexecução/publicação segura. A execução completa observada levou 40,77 segundos, sem promessa para outras execuções ou máquinas.
+
+Próximo passo: definir filtros e denominadores **por análise** e construir os primeiros indicadores. Ainda não foram produzidos indicadores finais ou gráficos; PARTICIPANTES permanece independente de RESULTADOS.

@@ -4,13 +4,15 @@ Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas represen
 
 ## Onde estamos e como retomar
 
-- [x] Matriz das seis perguntas e regras iniciais documentadas no [README](README.md).
+- [x] Matriz das seis perguntas e regras iniciais documentadas no [README](../README.md).
 - [x] Documentação e inspeção inicial realizadas: cabeçalhos e primeiras 10 mil linhas de RESULTADOS inspecionados.
 - [x] Stack inicial escolhida e plano de continuidade registrado aqui.
 - [x] Ambiente `.venv` preparado com Python 3.13.15 (64 bits), pip e kernel `ENEM 2025 (.venv)`; imports, dependências, consulta DuckDB e execução no kernel validados.
-- [ ] Perfil completo dos dados, ETL e notebook analítico ainda não validados.
+- [x] Contrato inicial de dez campos, funções reutilizáveis, testes e notebook raw → trusted executados em amostra e volume completo.
+- [x] Parquet publicado com 4.810.772 registros, sem exclusões, após reconciliação exata e confirmação da integridade do raw.
+- [ ] Indicadores finais, gráficos e perfil dos demais campos ainda pendentes.
 
-**Ponto de retomada:** começar pela fase 1, fechando o contrato analítico de desempenho por área e suas regras de presença. O ambiente já está preparado; após o contrato, definir os parâmetros de recursos e iniciar a POC pequena. Ainda não há resultados populacionais calculados. Este documento atualiza a definição de ferramentas que estava pendente no README.
+**Ponto de retomada:** definir o contrato dos indicadores de presença/desempenho por área (elegibilidade, filtros e denominadores) usando a trusted validada. A base já mantém ausentes, eliminados, notas nulas e zeros; não aplicar filtro universal de presença. Não é necessário reconstruir o ambiente ou refazer a preparação para iniciar a análise.
 
 ## Decisões tomadas
 
@@ -41,27 +43,28 @@ Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas represen
 ### 2. Preparar e verificar o ambiente
 
 - [x] Medir recursos: Windows 64 bits, aproximadamente 7,87 GiB de RAM total, 1,60 GiB livre e 457,84 GiB livres no disco C na inspeção de 16/09/2026. Valores livres variam; medir novamente antes da carga.
-- [x] Preparar ambiente Python do projeto, dependências e kernel Jupyter; versões fixadas em `requirements.txt` e instruções no README. Extensões Python e Jupyter disponíveis no VS Code; seleção visual do kernel ainda cabe ao usuário.
+- [x] Preparar ambiente Python do projeto, dependências e kernel Jupyter; versões fixadas em `requirements.txt` e instruções no README. Extensões Python e Jupyter disponíveis no VS Code; o usuário já executou `test_ambiente.ipynb` com sucesso; o notebook novo também foi executado integralmente em kernel novo.
 - [x] Validar imports, `pip check`, consulta `SELECT 1 + 1` e inicialização/execução do kernel.
-- [ ] Definir limites de memória, paralelismo e diretório temporário antes da leitura completa.
+- [x] Executar com limite DuckDB de 256 MB, uma thread e até 10 GB para temporários em `work/`; medir recursos antes/depois e remover staging ao terminar.
 
 **Entregável/saída:** ambiente reproduzível e consulta mínima funcionando. O tamanho dos CSVs, sozinho, não garante tempo de execução nem consumo de memória.
 
 ### 3. Validar uma POC pequena
 
 - [ ] Criar notebook de participação e desempenho por área, começando por leitura amostral com separador `;`, codificação Latin-1 e tipos explícitos conforme dicionário.
-- [ ] Validar a estratégia de leitura da codificação no leitor escolhido, acentos, conversões e faltantes; registrar como a amostra foi obtida, sem tratá-la como representativa da população.
-- [ ] Reconciliar contagens de entrada, categorias de presença, notas elegíveis e exclusões; investigar combinações incompatíveis.
+- [x] Validar Latin-1 nativo no DuckDB, acentos em fixture, conversões e faltantes; amostra inicial de 10 mil registros, sem inferência populacional.
+- [x] Reconciliar contagens de entrada/saída, categorias de presença e notas, sem exclusões; verificar combinações incompatíveis. Elegibilidade analítica continua pendente.
 - [ ] Produzir uma tabela por área com contagens, cobertura e estatísticas; dois gráficos iniciais: situação de presença por área e distribuição das notas elegíveis por área.
 
 **Entregável/saída:** notebook executável do início ao fim na amostra, com regras verificadas e tabela/gráficos identificados como amostrais. Qualquer divergência deve estar resolvida ou explicitamente contabilizada.
 
 ### 4. Ampliar e tornar reproduzível
 
-- [ ] Aplicar as regras validadas ao volume completo, medindo tempo, memória e uso de disco.
-- [ ] Gravar os campos pertinentes em `trusted`/Parquet e os indicadores em `analitica`; levar ao Pandas apenas resultados reduzidos.
+- [x] Aplicar o contrato inicial ao volume completo; registrar duração e RAM/disco disponíveis antes/depois (não foi medido o pico de uso).
+- [x] Gravar os dez campos em `trusted/resultados_2025_base.parquet`; Pandas recebe apenas o relatório reduzido no notebook.
+- [ ] Gravar indicadores em `analitica` após fechar o contrato analítico.
 - [ ] Reconciliar novamente totais, presenças, notas, ausências e exclusões; atualizar a tabela e os dois gráficos para a base completa.
-- [ ] Reiniciar o kernel e executar ponta a ponta a partir dos originais, conferindo resultados; extrair funções reutilizáveis somente quando as regras estabilizarem.
+- [x] Executar notebook raw → trusted ponta a ponta em kernel novo; funções reutilizáveis implementam apenas o contrato inicial aprovado.
 
 **Entregável/saída:** primeira análise completa reproduzível, Parquet validado, controles de qualidade e consumo de recursos registrados. Nenhum total da amostra deve ser apresentado como populacional.
 
@@ -84,4 +87,12 @@ Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas represen
 
 ## Decisões ainda pendentes
 
-Filtros finais e denominadores das análises de desempenho; tratamento das inconsistências de presença por dia; elegibilidade por status da redação; tipos e categorias efetivos no contrato; parâmetros de memória/paralelismo e temporários; organização física final. Resolver cada ponto na fase correspondente e atualizar este arquivo com o último passo validado e a próxima ação.
+Filtros finais e denominadores das análises de desempenho; tratamento das inconsistências de presença por dia; elegibilidade por status da redação; campos adicionais para os demais requisitos; revisar parâmetros de recursos se o escopo crescer. Resolver cada ponto na fase correspondente e atualizar este arquivo com o último passo validado e a próxima ação.
+
+## Entrega validada em 16/09/2026
+
+- [Contrato dos dez campos](../docs/contrato_resultados_2025.md), [módulo](trusted_resultados.py), [notebook executado](01_resultados_trusted.ipynb) e [relatório completo](../reports/validacao_resultados_2025_completo.json).
+- Entrada = saída = 4.810.772 registros; todos de 2025. Chave, ano e presenças sem nulos; nenhuma duplicidade, falha de conversão ou categoria inválida. Nenhum achado nas regras de coerência presença/nota verificadas.
+- Nulos de notas preservados: CN/MT 1.550.436 por área; CH/LC 1.353.217 por área. Zeros preservados: CN 775, CH 9.087, LC 2.361, MT 893.
+- Parquet: 54.733.745 bytes; execução completa observada em 40,77 s, limite de 256 MB/uma thread, raw com SHA-256 idêntico antes/depois. Recursos disponíveis variam; não é benchmark nem medição de pico.
+- Seis testes passaram, incluindo falha que preserva o Parquet anterior e comparação exata por chave. `test_ambiente.ipynb` permanece byte a byte igual. Os indicadores/gráficos previstos nas fases 3 e 4 ainda estão abertos.

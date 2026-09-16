@@ -219,3 +219,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Dados derivados e temporarios do fluxo raw -> trusted
+/trusted/
+/work/
