@@ -4,7 +4,7 @@ Documento de trabalho · 16/09/2026
 
 ## Objetivo e escopo
 
-Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A primeira base trusted de 2025 está implementada e validada. O próximo passo é definir o contrato dos indicadores de presença e desempenho por área.
+Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A trusted e os indicadores de desempenho por área de 2025 estão implementados e validados. O próximo requisito é analisar participação entre os dois dias.
 
 O desafio original contempla análise temporal retrocedendo até 2010 e a relação entre renda familiar e desempenho. A prova de conceito (POC) fica limitada à edição de 2025, começando por presença e desempenho por área e contemplando seis perguntas. A leitura econômica será independente das notas. As métricas abaixo são propostas, não resultados calculados.
 
@@ -111,4 +111,23 @@ Para reproduzir na raiz do projeto:
 
 Alternativamente, execute todas as células do notebook. O fluxo usa DuckDB com 256 MB e uma thread; staging e spill ficam em `work/`. Só publica após conferir o Parquet temporário; uma falha preserva a saída anterior. `trusted/` e `work/` são ignorados pelo Git. Os seis testes cobrem nulos/zero, conversões, categorias, chave/ano, Latin-1/CSV inválido, reconciliação e reexecução/publicação segura. A execução completa observada levou 40,77 segundos, sem promessa para outras execuções ou máquinas.
 
-Próximo passo: definir filtros e denominadores **por análise** e construir os primeiros indicadores. Ainda não foram produzidos indicadores finais ou gráficos; PARTICIPANTES permanece independente de RESULTADOS.
+O primeiro incremento foi seguido pelos indicadores de desempenho por área abaixo. PARTICIPANTES permanece independente de RESULTADOS.
+
+## Desempenho por área — concluído em 17/09/2026
+
+[Contrato analítico](docs/contrato_analitico_desempenho_2025.md) · [Notebook 02](src/02_desempenho_por_area.ipynb) · [Resultados e validação](reports/resumo_desempenho_2025.md).
+
+| Área | Elegíveis | Média | Q1 | Mediana | Q3 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| CN | 3.260.336 | 499,97 | 443,5 | 498,2 | 550,9 |
+| CH | 3.457.555 | 511,19 | 446,6 | 513,0 | 574,0 |
+| LC | 3.457.555 | 532,12 | 490,3 | 538,8 | 581,6 |
+| MT | 3.260.336 | 519,98 | 416,5 | 500,0 | 606,8 |
+
+Cada área inclui somente presentes com nota naquela área; zero é válido. Quartis contínuos com interpolação linear descrevem os 50% centrais. Populações diferentes e escalas por área impedem interpretar a tabela como ranking de dificuldade. Não calculamos nota global nem inferimos causalidade.
+
+Código separado por responsabilidade: `src/desempenho.py` contém definições/cálculo/validação; `src/desempenho_execucao.py`, leitura/gravação; `src/desempenho_graficos.py`, apresentação. Sem classes ou framework adicional. CSV compacto em `analitica/`, auditoria e dois PNG em `reports/`. A trusted não foi modificada; raw não foi reprocessado.
+
+Na raiz, rode `.\.venv\Scripts\python.exe -X utf8 -m src.desempenho_execucao` para atualizar os indicadores ou execute o notebook 02 para gerar também os gráficos. Testes: `.\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v` (dez aprovados). O notebook foi executado em kernel novo e os gráficos foram verificados visualmente.
+
+Próximo incremento: contrato e análise de participação entre os dois dias. Os demais requisitos continuam no [roadmap](src/ROADMAP.md).

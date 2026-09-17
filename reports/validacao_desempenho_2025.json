@@ -1,0 +1,233 @@
+{
+  "data_utc": "2026-09-17T14:19:52.872389+00:00",
+  "fonte": "trusted\\resultados_2025_base.parquet",
+  "sha256_fonte_antes": "e62b1cb8eedb9dac27d457fcc03c8f7479faacf1ec4b4ecb8011be28613981f3",
+  "fonte_bytes": 54733745,
+  "duckdb": "1.5.5",
+  "memory_limit": "256MB",
+  "threads": 1,
+  "ram_disponivel_inicio_bytes": 1297190912,
+  "filtros": {
+    "CN": "TP_PRESENCA_CN = 1 AND NU_NOTA_CN IS NOT NULL",
+    "CH": "TP_PRESENCA_CH = 1 AND NU_NOTA_CH IS NOT NULL",
+    "LC": "TP_PRESENCA_LC = 1 AND NU_NOTA_LC IS NOT NULL",
+    "MT": "TP_PRESENCA_MT = 1 AND NU_NOTA_MT IS NOT NULL"
+  },
+  "quantil": "quantile_cont sobre DOUBLE; tipo 7, h=(n-1)*p e interpolação linear",
+  "esquema": [
+    [
+      "NU_SEQUENCIAL",
+      "VARCHAR"
+    ],
+    [
+      "NU_ANO",
+      "INTEGER"
+    ],
+    [
+      "TP_PRESENCA_CN",
+      "TINYINT"
+    ],
+    [
+      "TP_PRESENCA_CH",
+      "TINYINT"
+    ],
+    [
+      "TP_PRESENCA_LC",
+      "TINYINT"
+    ],
+    [
+      "TP_PRESENCA_MT",
+      "TINYINT"
+    ],
+    [
+      "NU_NOTA_CN",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_CH",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_LC",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_MT",
+      "DECIMAL(10,1)"
+    ]
+  ],
+  "controles": [
+    {
+      "area": "CN",
+      "elegiveis_recontados": 3260336,
+      "verificacoes": {
+        "categorias_total": true,
+        "notas_total": true,
+        "presentes_completude": true,
+        "notas_reconciliadas": true,
+        "elegiveis_recontados": true,
+        "zeros_preservados": true,
+        "medidas_validas": true
+      }
+    },
+    {
+      "area": "CH",
+      "elegiveis_recontados": 3457555,
+      "verificacoes": {
+        "categorias_total": true,
+        "notas_total": true,
+        "presentes_completude": true,
+        "notas_reconciliadas": true,
+        "elegiveis_recontados": true,
+        "zeros_preservados": true,
+        "medidas_validas": true
+      }
+    },
+    {
+      "area": "LC",
+      "elegiveis_recontados": 3457555,
+      "verificacoes": {
+        "categorias_total": true,
+        "notas_total": true,
+        "presentes_completude": true,
+        "notas_reconciliadas": true,
+        "elegiveis_recontados": true,
+        "zeros_preservados": true,
+        "medidas_validas": true
+      }
+    },
+    {
+      "area": "MT",
+      "elegiveis_recontados": 3260336,
+      "verificacoes": {
+        "categorias_total": true,
+        "notas_total": true,
+        "presentes_completude": true,
+        "notas_reconciliadas": true,
+        "elegiveis_recontados": true,
+        "zeros_preservados": true,
+        "medidas_validas": true
+      }
+    }
+  ],
+  "indicadores": [
+    {
+      "total_base": 4810772,
+      "presentes": 3260336,
+      "ausentes": 1548487,
+      "eliminados": 1949,
+      "presenca_nula": 0,
+      "presenca_invalida": 0,
+      "notas_disponiveis": 3260336,
+      "notas_nulas": 1550436,
+      "presentes_sem_nota": 0,
+      "notas_fora_presentes": 0,
+      "elegiveis": 3260336,
+      "zeros_elegiveis": 775,
+      "media": 499.97423133689136,
+      "area": "CN",
+      "nome_area": "Ciências da Natureza",
+      "q1": 443.5,
+      "mediana": 498.2,
+      "q3": 550.9,
+      "pct_presentes_base": 67.77157595496108,
+      "pct_ausentes_base": 32.187910796853394,
+      "pct_eliminados_base": 0.04051324818553031,
+      "pct_presenca_nula_base": 0.0,
+      "pct_presenca_invalida_base": 0.0,
+      "pct_elegiveis_base": 67.77157595496108,
+      "pct_completude_base": 67.77157595496108,
+      "pct_completude_presentes": 100.0
+    },
+    {
+      "total_base": 4810772,
+      "presentes": 3457555,
+      "ausentes": 1348087,
+      "eliminados": 5130,
+      "presenca_nula": 0,
+      "presenca_invalida": 0,
+      "notas_disponiveis": 3457555,
+      "notas_nulas": 1353217,
+      "presentes_sem_nota": 0,
+      "notas_fora_presentes": 0,
+      "elegiveis": 3457555,
+      "zeros_elegiveis": 9087,
+      "media": 511.18903739779194,
+      "area": "CH",
+      "nome_area": "Ciências Humanas",
+      "q1": 446.6,
+      "mediana": 513.0,
+      "q3": 574.0,
+      "pct_presentes_base": 71.87110509498268,
+      "pct_ausentes_base": 28.022259213282194,
+      "pct_eliminados_base": 0.10663569173513107,
+      "pct_presenca_nula_base": 0.0,
+      "pct_presenca_invalida_base": 0.0,
+      "pct_elegiveis_base": 71.87110509498268,
+      "pct_completude_base": 71.87110509498268,
+      "pct_completude_presentes": 100.0
+    },
+    {
+      "total_base": 4810772,
+      "presentes": 3457555,
+      "ausentes": 1348087,
+      "eliminados": 5130,
+      "presenca_nula": 0,
+      "presenca_invalida": 0,
+      "notas_disponiveis": 3457555,
+      "notas_nulas": 1353217,
+      "presentes_sem_nota": 0,
+      "notas_fora_presentes": 0,
+      "elegiveis": 3457555,
+      "zeros_elegiveis": 2361,
+      "media": 532.1225631118106,
+      "area": "LC",
+      "nome_area": "Linguagens e Códigos",
+      "q1": 490.3,
+      "mediana": 538.8,
+      "q3": 581.6,
+      "pct_presentes_base": 71.87110509498268,
+      "pct_ausentes_base": 28.022259213282194,
+      "pct_eliminados_base": 0.10663569173513107,
+      "pct_presenca_nula_base": 0.0,
+      "pct_presenca_invalida_base": 0.0,
+      "pct_elegiveis_base": 71.87110509498268,
+      "pct_completude_base": 71.87110509498268,
+      "pct_completude_presentes": 100.0
+    },
+    {
+      "total_base": 4810772,
+      "presentes": 3260336,
+      "ausentes": 1548487,
+      "eliminados": 1949,
+      "presenca_nula": 0,
+      "presenca_invalida": 0,
+      "notas_disponiveis": 3260336,
+      "notas_nulas": 1550436,
+      "presentes_sem_nota": 0,
+      "notas_fora_presentes": 0,
+      "elegiveis": 3260336,
+      "zeros_elegiveis": 893,
+      "media": 519.9818640164765,
+      "area": "MT",
+      "nome_area": "Matemática",
+      "q1": 416.5,
+      "mediana": 500.0,
+      "q3": 606.8,
+      "pct_presentes_base": 67.77157595496108,
+      "pct_ausentes_base": 32.187910796853394,
+      "pct_eliminados_base": 0.04051324818553031,
+      "pct_presenca_nula_base": 0.0,
+      "pct_presenca_invalida_base": 0.0,
+      "pct_elegiveis_base": 67.77157595496108,
+      "pct_completude_base": 67.77157595496108,
+      "pct_completude_presentes": 100.0
+    }
+  ],
+  "sha256_fonte_depois": "e62b1cb8eedb9dac27d457fcc03c8f7479faacf1ec4b4ecb8011be28613981f3",
+  "segundos": 2.908,
+  "ram_disponivel_fim_bytes": 1298108416,
+  "validacao": "aprovada",
+  "total_base": 4810772,
+  "sha256_indicadores_csv": "32fb4624d737c3bdef7e5b0e6d095103fe8843a3fe87e2191eca2cd39cf21272"
+}

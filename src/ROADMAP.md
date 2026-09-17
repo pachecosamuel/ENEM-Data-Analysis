@@ -1,6 +1,6 @@
 # Roadmap — ENEM 2025
 
-Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas representam trabalho futuro.
+Atualizado em 17/09/2026. Plano de trabalho incremental; caixas abertas representam trabalho futuro.
 
 ## Onde estamos e como retomar
 
@@ -10,9 +10,10 @@ Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas represen
 - [x] Ambiente `.venv` preparado com Python 3.13.15 (64 bits), pip e kernel `ENEM 2025 (.venv)`; imports, dependências, consulta DuckDB e execução no kernel validados.
 - [x] Contrato inicial de dez campos, funções reutilizáveis, testes e notebook raw → trusted executados em amostra e volume completo.
 - [x] Parquet publicado com 4.810.772 registros, sem exclusões, após reconciliação exata e confirmação da integridade do raw.
-- [ ] Indicadores finais, gráficos e perfil dos demais campos ainda pendentes.
+- [x] Indicadores de desempenho por área, tabela e dois gráficos validados a partir da trusted.
+- [ ] Demais requisitos e perfil dos demais campos ainda pendentes.
 
-**Ponto de retomada:** definir o contrato dos indicadores de presença/desempenho por área (elegibilidade, filtros e denominadores) usando a trusted validada. A base já mantém ausentes, eliminados, notas nulas e zeros; não aplicar filtro universal de presença. Não é necessário reconstruir o ambiente ou refazer a preparação para iniciar a análise.
+**Ponto de retomada:** definir o contrato da participação entre os dois dias e tratar combinações divergentes. O requisito de desempenho por área foi concluído; consultar o notebook 02 e o resumo em `reports/`. Não reprocessar raw para esta próxima análise de presença.
 
 ## Decisões tomadas
 
@@ -34,9 +35,9 @@ Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas represen
 
 ### 1. Fechar o primeiro contrato analítico
 
-- [ ] Definir unidade de análise, campos `NU_NOTA_CN/CH/LC/MT` e `TP_PRESENCA_CN/CH/LC/MT`, filtros e denominadores.
-- [ ] Explicitar presença (`0` ausente, `1` presente, `2` eliminado), zeros válidos, notas faltantes e inconsistências; manter as regras por dia como decisão a validar.
-- [ ] Definir contagens, cobertura, média e mediana complementares, quartis e distribuição por área, sem criar nota global oficial.
+- [x] Definir unidade de análise, campos `NU_NOTA_CN/CH/LC/MT` e `TP_PRESENCA_CN/CH/LC/MT`, filtros e denominadores.
+- [x] Explicitar presença (`0` ausente, `1` presente, `2` eliminado), zeros válidos, notas faltantes e inconsistências; manter as regras por dia como decisão a validar.
+- [x] Definir contagens, cobertura, média e mediana complementares, quartis e distribuição por área, sem criar nota global oficial.
 
 **Entregável/saída:** contrato curto com cada métrica, população elegível, numerador/denominador e exclusões definidos, suficiente para reproduzir a primeira análise.
 
@@ -51,10 +52,10 @@ Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas represen
 
 ### 3. Validar uma POC pequena
 
-- [ ] Criar notebook de participação e desempenho por área, começando por leitura amostral com separador `;`, codificação Latin-1 e tipos explícitos conforme dicionário.
+- [x] Criar notebook 02 de desempenho/participação por área sobre a trusted; a leitura raw amostral já foi validada no incremento anterior.
 - [x] Validar Latin-1 nativo no DuckDB, acentos em fixture, conversões e faltantes; amostra inicial de 10 mil registros, sem inferência populacional.
-- [x] Reconciliar contagens de entrada/saída, categorias de presença e notas, sem exclusões; verificar combinações incompatíveis. Elegibilidade analítica continua pendente.
-- [ ] Produzir uma tabela por área com contagens, cobertura e estatísticas; dois gráficos iniciais: situação de presença por área e distribuição das notas elegíveis por área.
+- [x] Reconciliar contagens de entrada/saída, categorias de presença e notas, sem exclusões; verificar combinações incompatíveis. Elegibilidade por área validada: presença=1 e nota não nula, incluindo zero.
+- [x] Produzir uma tabela por área com contagens, cobertura e estatísticas; dois gráficos iniciais: situação de presença por área e distribuição das notas elegíveis por área.
 
 **Entregável/saída:** notebook executável do início ao fim na amostra, com regras verificadas e tabela/gráficos identificados como amostrais. Qualquer divergência deve estar resolvida ou explicitamente contabilizada.
 
@@ -62,8 +63,8 @@ Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas represen
 
 - [x] Aplicar o contrato inicial ao volume completo; registrar duração e RAM/disco disponíveis antes/depois (não foi medido o pico de uso).
 - [x] Gravar os dez campos em `trusted/resultados_2025_base.parquet`; Pandas recebe apenas o relatório reduzido no notebook.
-- [ ] Gravar indicadores em `analitica` após fechar o contrato analítico.
-- [ ] Reconciliar novamente totais, presenças, notas, ausências e exclusões; atualizar a tabela e os dois gráficos para a base completa.
+- [x] Gravar quatro linhas de indicadores em `analitica/desempenho_2025.csv`.
+- [x] Reconciliar novamente totais, presenças, notas, ausências e exclusões; atualizar a tabela e os dois gráficos para a base completa.
 - [x] Executar notebook raw → trusted ponta a ponta em kernel novo; funções reutilizáveis implementam apenas o contrato inicial aprovado.
 
 **Entregável/saída:** primeira análise completa reproduzível, Parquet validado, controles de qualidade e consumo de recursos registrados. Nenhum total da amostra deve ser apresentado como populacional.
@@ -87,7 +88,7 @@ Atualizado em 16/09/2026. Plano de trabalho incremental; caixas abertas represen
 
 ## Decisões ainda pendentes
 
-Filtros finais e denominadores das análises de desempenho; tratamento das inconsistências de presença por dia; elegibilidade por status da redação; campos adicionais para os demais requisitos; revisar parâmetros de recursos se o escopo crescer. Resolver cada ponto na fase correspondente e atualizar este arquivo com o último passo validado e a próxima ação.
+Filtros e denominadores dos demais requisitos; tratamento das inconsistências de presença por dia; elegibilidade por status da redação; campos adicionais para os demais requisitos; revisar parâmetros de recursos se o escopo crescer. Resolver cada ponto na fase correspondente e atualizar este arquivo com o último passo validado e a próxima ação.
 
 ## Entrega validada em 16/09/2026
 
@@ -96,3 +97,9 @@ Filtros finais e denominadores das análises de desempenho; tratamento das incon
 - Nulos de notas preservados: CN/MT 1.550.436 por área; CH/LC 1.353.217 por área. Zeros preservados: CN 775, CH 9.087, LC 2.361, MT 893.
 - Parquet: 54.733.745 bytes; execução completa observada em 40,77 s, limite de 256 MB/uma thread, raw com SHA-256 idêntico antes/depois. Recursos disponíveis variam; não é benchmark nem medição de pico.
 - Seis testes passaram, incluindo falha que preserva o Parquet anterior e comparação exata por chave. `test_ambiente.ipynb` permanece byte a byte igual. Os indicadores/gráficos previstos nas fases 3 e 4 ainda estão abertos.
+
+## Entrega validada em 17/09/2026
+
+[Contrato analítico](../docs/contrato_analitico_desempenho_2025.md), [notebook 02](02_desempenho_por_area.ipynb) e [resumo dos resultados/testes](../reports/resumo_desempenho_2025.md). Cálculo, I/O e gráficos separados em módulos simples, com funções reutilizáveis. Quatro testes novos e seis anteriores passaram. Notebook executado em kernel novo, gráficos inspecionados e hash da trusted preservado.
+
+CN/MT: 3.260.336 elegíveis por área; CH/LC: 3.457.555. Medianas: CN 498,2; CH 513,0; LC 538,8; MT 500,0. CSV mantém precisão; apresentação arredonda. Nenhum ranking entre áreas. A entrega de 16/09 permanece como registro histórico; seus indicadores/gráficos pendentes foram concluídos neste incremento.
