@@ -31,7 +31,7 @@ class DesempenhoTest(unittest.TestCase):
         cn,ch,lc,mt = resultados
         for campo, esperado in {'elegiveis':4,'presentes':5,'presentes_sem_nota':1,
                                 'zeros_elegiveis':1,'media':15,'q1':7.5,'mediana':15,'q3':22.5,
-                                'notas_fora_presentes':2}.items():
+                                'notas_fora_presentes':2,'minimo_observado':0,'maximo_observado':30}.items():
             self.assertEqual(cn[campo],esperado)
         for campo, esperado in {'elegiveis':4,'media':37.5,'q1':17.5,'mediana':30,'q3':50}.items():
             self.assertEqual(ch[campo],esperado)
@@ -39,6 +39,8 @@ class DesempenhoTest(unittest.TestCase):
         self.assertEqual(lc['mediana'],12.5)
         self.assertEqual(mt['elegiveis'],1)
         self.assertEqual(mt['q3'],1001)
+        self.assertEqual(mt['minimo_observado'],1001)
+        self.assertEqual(mt['maximo_observado'],1001)
         self.assertAlmostEqual(cn['pct_completude_presentes'],80)
         self.assertAlmostEqual(cn['pct_elegiveis_base'],400/7)
 
@@ -57,6 +59,8 @@ class DesempenhoTest(unittest.TestCase):
                 self.assertEqual(r['elegiveis'],0)
                 self.assertIsNone(r['media'])
                 self.assertIsNone(r['mediana'])
+                self.assertIsNone(r['minimo_observado'])
+                self.assertIsNone(r['maximo_observado'])
             if not linhas:
                 self.assertIsNone(resultados[0]['pct_completude_base'])
 

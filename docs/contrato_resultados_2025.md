@@ -26,6 +26,6 @@ Falhas de conversão/categoria, chave, ano, reconciliação ou mudança da fonte
 
 ## Execução e limites
 
-Funções em `src/trusted_resultados.py`; acompanhamento em `src/01_resultados_trusted.ipynb`. DuckDB processa em SQL com staging em disco: nenhuma leitura integral em Pandas. Padrão conservador de **256 MB, uma thread e até 10 GB de temporários**, diante de aproximadamente 8 GiB de RAM total. O limite DuckDB não limita toda a memória do processo; o relatório registra RAM/disco disponíveis antes/depois, não pico de uso. Medir novamente e ajustar explicitamente se necessário.
+Funções em `src/trusted_resultados.py`; acompanhamento em `notebooks/01_resultados_trusted.ipynb`. DuckDB processa em SQL com staging em disco: nenhuma leitura integral em Pandas. Padrão conservador de **256 MB, uma thread e até 10 GB de temporários**, diante de aproximadamente 8 GiB de RAM total. O limite DuckDB não limita toda a memória do processo; o relatório registra RAM/disco disponíveis antes/depois, não pico de uso. Medir novamente e ajustar explicitamente se necessário.
 
 Próximo incremento: definir filtros, denominadores e indicadores de presença/desempenho sobre esta trusted. Para novos anos, adaptar o esquema da edição ao modelo comum após verificar compatibilidade; nenhum outro ano ou framework genérico é implementado agora.

@@ -2,6 +2,25 @@
 
 Documento de trabalho · 16/09/2026
 
+
+## Por onde começar
+
+Para ler os resultados, abra [a apresentação](apresentacao/visao_geral_2025.ipynb). Para acompanhar o cálculo, abra [o notebook 02](notebooks/02_desempenho_por_area.ipynb). O [roadmap](docs/ROADMAP.md) registra a próxima decisão.
+
+| Diretório | Responsabilidade |
+| --- | --- |
+| `src/` | Funções reutilizáveis: transformação, cálculo, I/O e gráficos em módulos separados. |
+| `notebooks/` | Acompanhamento do processamento; 01 gera trusted, 02 calcula agregados. |
+| `apresentacao/` | Narrativa para leitura e PNG separados em `graficos/`. |
+| `docs/` | Contratos e roadmap. |
+| `reports/` | Auditorias e relatos de validação. |
+| `raw/`, `trusted/`, `analitica/` | Originais, base padronizada e indicadores compactos, respectivamente. |
+| `tests/` | Testes pequenos e integração com dados artificiais. |
+| `scripts/` | Executor de notebooks; aceita o caminho como argumento. |
+| `work/` | Temporários ignorados pelo Git. |
+
+O Git existente foi mantido. `src/__init__.py` identifica o pacote de funções; pastas de dados e documentos não são pacotes Python. Evolução em incrementos pequenos: contrato → cálculo verificado → narrativa factual → revisão.
+
 ## Objetivo e escopo
 
 Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A trusted e os indicadores de desempenho por área de 2025 estão implementados e validados. O próximo requisito é analisar participação entre os dois dias.
@@ -44,7 +63,7 @@ Toda proporção deve informar numerador, denominador e recorte. Para notas, apr
 
 ## Roadmap
 
-Plano detalhado, stack escolhida e ponto de retomada: [ROADMAP.md](src/ROADMAP.md).
+Plano detalhado, stack escolhida e ponto de retomada: [ROADMAP.md](docs/ROADMAP.md).
 
 1. Consolidar visão de negócio e as seis perguntas.
 2. Definir o contrato analítico: população, unidade de análise, elegibilidade, regras por dia, métricas e denominadores.
@@ -84,11 +103,11 @@ Para recriar o ambiente, com Python 3.13 de 64 bits disponível e sem um `.venv`
 .\.venv\Scripts\python.exe -m pip check
 ```
 
-Validação realizada: imports dos quatro pacotes, versões, dependências sem conflitos, consulta DuckDB trivial e execução no kernel. O notebook `src/test_ambiente.ipynb` foi criado e executado pelo usuário e permanece preservado. A preparação do ambiente não processou CSVs; o incremento raw → trusted descrito abaixo já foi concluído.
+Validação realizada: imports dos quatro pacotes, versões, dependências sem conflitos, consulta DuckDB trivial e execução no kernel. O teste inicial de ambiente foi executado pelo usuário; a organização atual preserva o estado versionado por ele. A preparação do ambiente não processou CSVs; o incremento raw → trusted descrito abaixo já foi concluído.
 
 ## Primeiro incremento raw → trusted
 
-Contrato em [docs/contrato_resultados_2025.md](docs/contrato_resultados_2025.md), funções em [src/trusted_resultados.py](src/trusted_resultados.py) e notebook executado em [src/01_resultados_trusted.ipynb](src/01_resultados_trusted.ipynb). O notebook funciona a partir da raiz ou de `src/`, com kernel reiniciado.
+Contrato em [docs/contrato_resultados_2025.md](docs/contrato_resultados_2025.md), funções em [src/trusted_resultados.py](src/trusted_resultados.py) e notebook executado em [notebooks/01_resultados_trusted.ipynb](notebooks/01_resultados_trusted.ipynb). O notebook funciona a partir da raiz ou de `notebooks/`, com kernel reiniciado.
 
 A saída local `trusted/resultados_2025_base.parquet` contém **4.810.772 registros e dez campos**, sem filtro de presença, com 54.733.745 bytes (aproximadamente 54,73 MB). O CSV original permaneceu intacto por SHA-256. Os [relatórios de validação](reports/validacao_resultados_2025_completo.json) registram tipos, contagens, nulos, coerência, hashes e recursos.
 
@@ -115,7 +134,7 @@ O primeiro incremento foi seguido pelos indicadores de desempenho por área abai
 
 ## Desempenho por área — concluído em 17/09/2026
 
-[Contrato analítico](docs/contrato_analitico_desempenho_2025.md) · [Notebook 02](src/02_desempenho_por_area.ipynb) · [Resultados e validação](reports/resumo_desempenho_2025.md).
+[Contrato analítico](docs/contrato_analitico_desempenho_2025.md) · [Notebook 02](notebooks/02_desempenho_por_area.ipynb) · [Resultados e validação](reports/resumo_desempenho_2025.md).
 
 | Área | Elegíveis | Média | Q1 | Mediana | Q3 |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -126,8 +145,14 @@ O primeiro incremento foi seguido pelos indicadores de desempenho por área abai
 
 Cada área inclui somente presentes com nota naquela área; zero é válido. Quartis contínuos com interpolação linear descrevem os 50% centrais. Populações diferentes e escalas por área impedem interpretar a tabela como ranking de dificuldade. Não calculamos nota global nem inferimos causalidade.
 
-Código separado por responsabilidade: `src/desempenho.py` contém definições/cálculo/validação; `src/desempenho_execucao.py`, leitura/gravação; `src/desempenho_graficos.py`, apresentação. Sem classes ou framework adicional. CSV compacto em `analitica/`, auditoria e dois PNG em `reports/`. A trusted não foi modificada; raw não foi reprocessado.
+Código separado por responsabilidade: `src/desempenho.py` contém definições/cálculo/validação; `src/desempenho_execucao.py`, leitura/gravação; `src/desempenho_graficos.py`, apresentação. Sem classes ou framework adicional. CSV compacto em `analitica/`, auditoria em `reports/` e PNG em `apresentacao/graficos/`. A trusted não foi modificada; raw não foi reprocessado.
 
-Na raiz, rode `.\.venv\Scripts\python.exe -X utf8 -m src.desempenho_execucao` para atualizar os indicadores ou execute o notebook 02 para gerar também os gráficos. Testes: `.\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v` (dez aprovados). O notebook foi executado em kernel novo e os gráficos foram verificados visualmente.
+Na raiz, rode `.\.venv\Scripts\python.exe -X utf8 -m src.desempenho_execucao` para atualizar os indicadores ou execute o notebook de apresentação para gerar também os gráficos. Testes: `.\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v` (dez aprovados). O notebook foi executado em kernel novo e os gráficos foram verificados visualmente.
 
-Próximo incremento: contrato e análise de participação entre os dois dias. Os demais requisitos continuam no [roadmap](src/ROADMAP.md).
+Próximo incremento: contrato e análise de participação entre os dois dias. Os demais requisitos continuam no [roadmap](docs/ROADMAP.md).
+
+### Apresentação revisada
+
+O gráfico usa áreas por extenso e escala comum com mínimos/máximos **observados**: Natureza 0–858,7; Humanas 0–856,4; Linguagens 0–794,5; Matemática 0–980,3. A linha fina mostra a amplitude, a faixa colorida os 50% centrais e o ponto a mediana. Contagens e detalhes ficam na tabela do notebook narrativo. Esses extremos não são limites teóricos da TRI.
+
+Reexecutar somente a apresentação: `.\.venv\Scripts\python.exe -X utf8 scripts\executar_notebook.py apresentacao\visao_geral_2025.ipynb`. O fluxo consulta trusted; não refaz raw → trusted. [Relato da reorganização](reports/revisao_apresentacao_2025.md).

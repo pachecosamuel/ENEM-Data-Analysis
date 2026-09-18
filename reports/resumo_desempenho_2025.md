@@ -25,8 +25,12 @@ Os 50% centrais de CN vão de 443,5 a 550,9; em CH, de 446,6 a 574,0; em LC, de 
 ## Artefatos
 
 - [Tabela completa de quatro linhas](../analitica/desempenho_2025.csv), com denominadores, completude e auditoria.
-- [Notebook executado](../src/02_desempenho_por_area.ipynb).
-- [Participação por área](graficos/participacao_por_area_2025.png).
-- [Intervalo interquartil e mediana](graficos/quartis_por_area_2025.png).
+- [Notebook executado](../notebooks/02_desempenho_por_area.ipynb).
+- [Participação por área](../apresentacao/graficos/participacao_por_area_2025.png).
+- [Intervalo interquartil e mediana](../apresentacao/graficos/quartis_por_area_2025.png).
 
 Próximo passo: participação entre os dois dias, definindo regras próprias para combinações de presença. Local de prova, rede escolar, redação, perfil econômico e expansão temporal continuam pendentes.
+
+## Revisão visual e estrutural
+
+Ver [relato da revisão](revisao_apresentacao_2025.md). A apresentação canônica está em [apresentacao/visao_geral_2025.ipynb](../apresentacao/visao_geral_2025.ipynb), com PNG separados e extremos observados. Onze testes passaram após esta revisão; as referências anteriores a dez testes registram a entrega anterior.

@@ -30,6 +30,8 @@ def calcular_area(conexao, area):
         count(*) FILTER (WHERE {elegivel}) elegiveis,
         count(*) FILTER (WHERE {elegivel} AND {nota}=0) zeros_elegiveis,
         avg(CAST({nota} AS DOUBLE)) FILTER (WHERE {elegivel}) media,
+        min(CAST({nota} AS DOUBLE)) FILTER (WHERE {elegivel}) minimo_observado,
+        max(CAST({nota} AS DOUBLE)) FILTER (WHERE {elegivel}) maximo_observado,
         quantile_cont(CAST({nota} AS DOUBLE), [0.25,0.5,0.75]) FILTER (WHERE {elegivel}) quantis
         FROM base'''
     cursor = conexao.execute(sql)
@@ -61,9 +63,11 @@ def validar_indicadores(conexao, resultados):
             'elegiveis_recontados': contagem == r['elegiveis'],
             'zeros_preservados': 0 <= r['zeros_elegiveis'] <= r['elegiveis'],
         }
-        medidas = [r[c] for c in ('media', 'q1', 'mediana', 'q3')]
+        medidas = [r[c] for c in ('media', 'q1', 'mediana', 'q3', 'minimo_observado', 'maximo_observado')]
         verificacoes['medidas_validas'] = (all(x is None for x in medidas) if not r['elegiveis'] else
-            all(x is not None and math.isfinite(x) for x in medidas) and r['q1'] <= r['mediana'] <= r['q3'])
+            all(x is not None and math.isfinite(x) for x in medidas) and
+            r['minimo_observado'] <= r['q1'] <= r['mediana'] <= r['q3'] <= r['maximo_observado'] and
+            r['minimo_observado'] <= r['media'] <= r['maximo_observado'])
         if not all(verificacoes.values()):
             raise ValueError(f"Reconciliação falhou em {r['area']}: {verificacoes}")
         controles.append({'area': r['area'], 'elegiveis_recontados': contagem, 'verificacoes': verificacoes})

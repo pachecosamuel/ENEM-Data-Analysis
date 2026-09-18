@@ -92,7 +92,7 @@ Filtros e denominadores dos demais requisitos; tratamento das inconsistências d
 
 ## Entrega validada em 16/09/2026
 
-- [Contrato dos dez campos](../docs/contrato_resultados_2025.md), [módulo](trusted_resultados.py), [notebook executado](01_resultados_trusted.ipynb) e [relatório completo](../reports/validacao_resultados_2025_completo.json).
+- [Contrato dos dez campos](../docs/contrato_resultados_2025.md), [módulo](../src/trusted_resultados.py), [notebook executado](../notebooks/01_resultados_trusted.ipynb) e [relatório completo](../reports/validacao_resultados_2025_completo.json).
 - Entrada = saída = 4.810.772 registros; todos de 2025. Chave, ano e presenças sem nulos; nenhuma duplicidade, falha de conversão ou categoria inválida. Nenhum achado nas regras de coerência presença/nota verificadas.
 - Nulos de notas preservados: CN/MT 1.550.436 por área; CH/LC 1.353.217 por área. Zeros preservados: CN 775, CH 9.087, LC 2.361, MT 893.
 - Parquet: 54.733.745 bytes; execução completa observada em 40,77 s, limite de 256 MB/uma thread, raw com SHA-256 idêntico antes/depois. Recursos disponíveis variam; não é benchmark nem medição de pico.
@@ -100,6 +100,20 @@ Filtros e denominadores dos demais requisitos; tratamento das inconsistências d
 
 ## Entrega validada em 17/09/2026
 
-[Contrato analítico](../docs/contrato_analitico_desempenho_2025.md), [notebook 02](02_desempenho_por_area.ipynb) e [resumo dos resultados/testes](../reports/resumo_desempenho_2025.md). Cálculo, I/O e gráficos separados em módulos simples, com funções reutilizáveis. Quatro testes novos e seis anteriores passaram. Notebook executado em kernel novo, gráficos inspecionados e hash da trusted preservado.
+[Contrato analítico](../docs/contrato_analitico_desempenho_2025.md), [notebook 02](../notebooks/02_desempenho_por_area.ipynb) e [resumo dos resultados/testes](../reports/resumo_desempenho_2025.md). Cálculo, I/O e gráficos separados em módulos simples, com funções reutilizáveis. Quatro testes novos e seis anteriores passaram. Notebook executado em kernel novo, gráficos inspecionados e hash da trusted preservado.
 
 CN/MT: 3.260.336 elegíveis por área; CH/LC: 3.457.555. Medianas: CN 498,2; CH 513,0; LC 538,8; MT 500,0. CSV mantém precisão; apresentação arredonda. Nenhum ranking entre áreas. A entrega de 16/09 permanece como registro histórico; seus indicadores/gráficos pendentes foram concluídos neste incremento.
+
+## Organização e apresentação — revisão de 17/09/2026
+
+Código em `src/`, processamento em `notebooks/`, narrativa e PNG em `apresentacao/`, contratos/roadmap em `docs/`, auditorias em `reports/`. Dados e ambiente permanecem onde estavam. Funções pequenas e responsabilidades explícitas; sem framework adicional ou reinicialização do Git. Toda nova entrega deve apresentar fatos, narrativa curta e evidências visuais proporcionais ao escopo.
+
+### Próximo contrato: participação entre dias (esboço, ainda não executado)
+
+Unidade candidata: registro de RESULTADOS. Primeiro dia usa LC/CH; segundo, CN/MT. Definir como presença no dia exige os dois códigos 1 e como reportar divergências, eliminações e nulos antes de classificar ambos/só primeiro/só segundo/nenhum. Denominador principal proposto: todos os registros, com situações não classificáveis explícitas. Não usar nota zero como ausência. Validar matriz de combinações antes de publicar taxas.
+
+### Backlog além da próxima etapa
+
+- Presença e notas por região de aplicação: ampliar trusted com UF/local, documentar mapeamento e cobertura. Antes de um top 3 de maior/menor presença, decidir se a comparação usa taxa ou contagem e exibir denominadores. Aplicação não é residência.
+- Renda familiar: perfil independente em PARTICIPANTES. Renda × nota individual continua inviável em 2025 sem chave comum; investigar edição compatível futuramente.
+- Rede escolar, redação e expansão temporal permanecem pendentes. Nenhuma análise geográfica ou entre dias foi implementada nesta revisão.
