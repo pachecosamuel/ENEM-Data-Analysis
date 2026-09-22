@@ -23,7 +23,7 @@ O Git existente foi mantido. `src/__init__.py` identifica o pacote de funções;
 
 ## Objetivo e escopo
 
-Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A trusted e os indicadores de desempenho por área de 2025 estão implementados e validados. O próximo requisito é analisar participação entre os dois dias.
+Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A trusted e os indicadores de desempenho por área de 2025 estão implementados e validados. A participação entre os dois dias também foi concluída; o próximo recorte é local de aplicação/região.
 
 O desafio original contempla análise temporal retrocedendo até 2010 e a relação entre renda familiar e desempenho. A prova de conceito (POC) fica limitada à edição de 2025, começando por presença e desempenho por área e contemplando seis perguntas. A leitura econômica será independente das notas. As métricas abaixo são propostas, não resultados calculados.
 
@@ -134,7 +134,7 @@ O primeiro incremento foi seguido pelos indicadores de desempenho por área abai
 
 ## Desempenho por área — concluído em 17/09/2026
 
-[Contrato analítico](docs/contrato_analitico_desempenho_2025.md) · [Notebook 02](notebooks/02_desempenho_por_area.ipynb) · [Resultados e validação](reports/resumo_desempenho_2025.md).
+[Contrato analítico](docs/contrato_analitico_desempenho_por_area_2025.md) · [Notebook 02](notebooks/02_desempenho_por_area.ipynb) · [Resultados e validação](reports/resumo_desempenho_2025.md).
 
 | Área | Elegíveis | Média | Q1 | Mediana | Q3 |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -149,10 +149,20 @@ Código separado por responsabilidade: `src/desempenho.py` contém definições/
 
 Na raiz, rode `.\.venv\Scripts\python.exe -X utf8 -m src.desempenho_execucao` para atualizar os indicadores ou execute o notebook de apresentação para gerar também os gráficos. Testes: `.\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v` (dez aprovados). O notebook foi executado em kernel novo e os gráficos foram verificados visualmente.
 
-Próximo incremento: contrato e análise de participação entre os dois dias. Os demais requisitos continuam no [roadmap](docs/ROADMAP.md).
+Participação entre dias concluída; próximo incremento: contrato de local de aplicação/região. Os demais requisitos continuam no [roadmap](docs/ROADMAP.md).
 
 ### Apresentação revisada
 
 O gráfico usa áreas por extenso e escala comum com mínimos/máximos **observados**: Natureza 0–858,7; Humanas 0–856,4; Linguagens 0–794,5; Matemática 0–980,3. A linha fina mostra a amplitude, a faixa colorida os 50% centrais e o ponto a mediana. Contagens e detalhes ficam na tabela do notebook narrativo. Esses extremos não são limites teóricos da TRI.
 
 Reexecutar somente a apresentação: `.\.venv\Scripts\python.exe -X utf8 scripts\executar_notebook.py apresentacao\visao_geral_2025.ipynb`. O fluxo consulta trusted; não refaz raw → trusted. [Relato da reorganização](reports/revisao_apresentacao_2025.md).
+
+## Participação entre dias — concluído em 18/09/2026
+
+[Contrato](docs/contrato_analitico_participacao_2025.md) · [Notebook 03](notebooks/03_participacao_entre_dias.ipynb) · [Resumo e auditoria](reports/resumo_participacao_2025.md).
+
+Os pares LC/CH e CN/MT foram conferidos em todos os registros: sem mistos, nulos ou códigos inesperados. Houve 3.457.555 presenças completas no primeiro dia e 3.260.336 no segundo. **3.244.348 registros estiveram presentes nos dois: retenção de 93,83% entre os presentes do primeiro.**
+
+Presença no primeiro e ausência no segundo somam 211.292; o caminho inverso soma 15.146. Eliminações ficam separadas. A diferença líquida de −197.219 não é número de faltas após o primeiro dia. Veja as nove transições observadas na apresentação e as 36 células possíveis no CSV.
+
+Funções em `src/participacao.py`, I/O em `src/participacao_execucao.py` e gráficos em `src/participacao_graficos.py`. Execute `.\.venv\Scripts\python.exe -X utf8 -m src.participacao_execucao` ou o notebook 03 para atualizar agregados; a apresentação gera também os dois PNG novos. Dezesseis testes aprovados. Trusted preservada; nenhum raw foi reprocessado.

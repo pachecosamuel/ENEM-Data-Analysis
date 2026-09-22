@@ -1,6 +1,6 @@
 # Roadmap — ENEM 2025
 
-Atualizado em 17/09/2026. Plano de trabalho incremental; caixas abertas representam trabalho futuro.
+Atualizado em 18/09/2026. Plano de trabalho incremental; caixas abertas representam trabalho futuro.
 
 ## Onde estamos e como retomar
 
@@ -13,7 +13,7 @@ Atualizado em 17/09/2026. Plano de trabalho incremental; caixas abertas represen
 - [x] Indicadores de desempenho por área, tabela e dois gráficos validados a partir da trusted.
 - [ ] Demais requisitos e perfil dos demais campos ainda pendentes.
 
-**Ponto de retomada:** definir o contrato da participação entre os dois dias e tratar combinações divergentes. O requisito de desempenho por área foi concluído; consultar o notebook 02 e o resumo em `reports/`. Não reprocessar raw para esta próxima análise de presença.
+**Ponto de retomada:** definir contrato de presença/desempenho por local de aplicação e região, incluindo ampliação mínima da trusted. As perguntas 1 (desempenho por área) e 2 (participação entre dias) estão concluídas. Consultar o capítulo novo na apresentação e o notebook 03.
 
 ## Decisões tomadas
 
@@ -71,7 +71,7 @@ Atualizado em 17/09/2026. Plano de trabalho incremental; caixas abertas represen
 
 ### 5. Desenvolver os demais requisitos gradualmente
 
-- [ ] Participação entre dias: validar combinações LC/CH no primeiro e CN/MT no segundo, tratando eliminações e divergências separadamente.
+- [x] Participação entre dias: contrato, pares, matriz, retenção e saldo validados; eliminações e divergências separadas.
 - [ ] Local de prova: analisar presença e desempenho; documentar mapeamento UF–região, sem confundir aplicação com residência.
 - [ ] Rede escolar: explicitar cobertura e não informados; públicas = federal, estadual e municipal; evitar inferência causal.
 - [ ] Redação: definir elegibilidade por status e conferir nota total e competências.
@@ -88,7 +88,7 @@ Atualizado em 17/09/2026. Plano de trabalho incremental; caixas abertas represen
 
 ## Decisões ainda pendentes
 
-Filtros e denominadores dos demais requisitos; tratamento das inconsistências de presença por dia; elegibilidade por status da redação; campos adicionais para os demais requisitos; revisar parâmetros de recursos se o escopo crescer. Resolver cada ponto na fase correspondente e atualizar este arquivo com o último passo validado e a próxima ação.
+Filtros e denominadores dos próximos requisitos; elegibilidade por status da redação; campos adicionais para os demais requisitos; revisar parâmetros de recursos se o escopo crescer. Resolver cada ponto na fase correspondente e atualizar este arquivo com o último passo validado e a próxima ação.
 
 ## Entrega validada em 16/09/2026
 
@@ -100,7 +100,7 @@ Filtros e denominadores dos demais requisitos; tratamento das inconsistências d
 
 ## Entrega validada em 17/09/2026
 
-[Contrato analítico](../docs/contrato_analitico_desempenho_2025.md), [notebook 02](../notebooks/02_desempenho_por_area.ipynb) e [resumo dos resultados/testes](../reports/resumo_desempenho_2025.md). Cálculo, I/O e gráficos separados em módulos simples, com funções reutilizáveis. Quatro testes novos e seis anteriores passaram. Notebook executado em kernel novo, gráficos inspecionados e hash da trusted preservado.
+[Contrato analítico](../docs/contrato_analitico_desempenho_por_area_2025.md), [notebook 02](../notebooks/02_desempenho_por_area.ipynb) e [resumo dos resultados/testes](../reports/resumo_desempenho_2025.md). Cálculo, I/O e gráficos separados em módulos simples, com funções reutilizáveis. Quatro testes novos e seis anteriores passaram. Notebook executado em kernel novo, gráficos inspecionados e hash da trusted preservado.
 
 CN/MT: 3.260.336 elegíveis por área; CH/LC: 3.457.555. Medianas: CN 498,2; CH 513,0; LC 538,8; MT 500,0. CSV mantém precisão; apresentação arredonda. Nenhum ranking entre áreas. A entrega de 16/09 permanece como registro histórico; seus indicadores/gráficos pendentes foram concluídos neste incremento.
 
@@ -108,7 +108,7 @@ CN/MT: 3.260.336 elegíveis por área; CH/LC: 3.457.555. Medianas: CN 498,2; CH 
 
 Código em `src/`, processamento em `notebooks/`, narrativa e PNG em `apresentacao/`, contratos/roadmap em `docs/`, auditorias em `reports/`. Dados e ambiente permanecem onde estavam. Funções pequenas e responsabilidades explícitas; sem framework adicional ou reinicialização do Git. Toda nova entrega deve apresentar fatos, narrativa curta e evidências visuais proporcionais ao escopo.
 
-### Próximo contrato: participação entre dias (esboço, ainda não executado)
+### Esboço histórico de participação entre dias (implementado em 18/09/2026)
 
 Unidade candidata: registro de RESULTADOS. Primeiro dia usa LC/CH; segundo, CN/MT. Definir como presença no dia exige os dois códigos 1 e como reportar divergências, eliminações e nulos antes de classificar ambos/só primeiro/só segundo/nenhum. Denominador principal proposto: todos os registros, com situações não classificáveis explícitas. Não usar nota zero como ausência. Validar matriz de combinações antes de publicar taxas.
 
@@ -117,3 +117,9 @@ Unidade candidata: registro de RESULTADOS. Primeiro dia usa LC/CH; segundo, CN/M
 - Presença e notas por região de aplicação: ampliar trusted com UF/local, documentar mapeamento e cobertura. Antes de um top 3 de maior/menor presença, decidir se a comparação usa taxa ou contagem e exibir denominadores. Aplicação não é residência.
 - Renda familiar: perfil independente em PARTICIPANTES. Renda × nota individual continua inviável em 2025 sem chave comum; investigar edição compatível futuramente.
 - Rede escolar, redação e expansão temporal permanecem pendentes. Nenhuma análise geográfica ou entre dias foi implementada nesta revisão.
+
+## Segunda pergunta concluída — 18/09/2026
+
+[Contrato](contrato_analitico_participacao_2025.md), [notebook 03](../notebooks/03_participacao_entre_dias.ipynb) e [resumo](../reports/resumo_participacao_2025.md). Pares LC/CH e CN/MT coincidentes em toda a base, sem nulos/inválidos; classificação conserva mistos e problemas se surgirem. Matriz completa, retenção e diferença líquida reconciliadas. Cinco testes novos (16 no total), notebook e apresentação executados em kernel novo, PNGs inspecionados.
+
+Retenção de 93,83% = 3.244.348 / 3.457.555. Presente→ausente: 211.292, diferente do saldo −197.219. Zero correções ou descartes de registros; trusted intacta. Próximos requisitos: local de aplicação/região, rede, redação e perfil econômico independente. Não houve nova análise geográfica nesta entrega.
