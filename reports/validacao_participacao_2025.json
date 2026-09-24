@@ -1,8 +1,8 @@
 {
-  "data_utc": "2026-09-18T13:54:59.159860+00:00",
+  "data_utc": "2026-09-22T21:48:18.395574+00:00",
   "fonte": "trusted/resultados_2025_base.parquet",
-  "sha256_antes": "e62b1cb8eedb9dac27d457fcc03c8f7479faacf1ec4b4ecb8011be28613981f3",
-  "sha256_depois": "e62b1cb8eedb9dac27d457fcc03c8f7479faacf1ec4b4ecb8011be28613981f3",
+  "sha256_antes": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
+  "sha256_depois": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
   "esquema": [
     [
       "NU_SEQUENCIAL",
@@ -42,6 +42,34 @@
     ],
     [
       "NU_NOTA_MT",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "TP_STATUS_REDACAO",
+      "TINYINT"
+    ],
+    [
+      "NU_NOTA_REDACAO",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP1",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP2",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP3",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP4",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP5",
       "DECIMAL(10,1)"
     ]
   ],
@@ -729,5 +757,5 @@
     "participacao_2025_combinacoes_conjuntas.csv": "599d35fcbb869484b12cbcdf5b71f93eca269cc483f1d6a4c58a91c482c87ace",
     "participacao_2025_resumo.csv": "ef4c026b141ce48d2ff6155f7ee6b62deccf0440a85cb8c8d961227e04949a68"
   },
-  "segundos": 2.17
+  "segundos": 1.714
 }

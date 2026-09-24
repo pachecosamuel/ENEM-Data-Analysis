@@ -23,7 +23,7 @@ O Git existente foi mantido. `src/__init__.py` identifica o pacote de funções;
 
 ## Objetivo e escopo
 
-Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A trusted e os indicadores de desempenho por área de 2025 estão implementados e validados. A participação entre os dois dias também foi concluída; o próximo recorte é local de aplicação/região.
+Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A trusted e os indicadores de desempenho por área de 2025 estão implementados e validados. A participação entre os dois dias foi concluída; a primeira POC de redação e a abertura sobre inscritos estão disponíveis para revisão antes de ampliar o escopo.
 
 O desafio original contempla análise temporal retrocedendo até 2010 e a relação entre renda familiar e desempenho. A prova de conceito (POC) fica limitada à edição de 2025, começando por presença e desempenho por área e contemplando seis perguntas. A leitura econômica será independente das notas. As métricas abaixo são propostas, não resultados calculados.
 
@@ -33,7 +33,7 @@ Materiais em `raw/microdados_enem_2025/microdados_enem_2025/`: `DADOS`, `DICION�
 
 - `RESULTADOS_2025.csv`: 70 colunas, aproximadamente 2,12 GB; base das cinco perguntas iniciais.
 - `PARTICIPANTES_2025.csv`: aproximadamente 513 MB; contém informações dos participantes e o questionário socioeconômico; base da sexta pergunta, sobre o perfil dos inscritos divulgados, sem pressupor comparecimento.
-- A inspeção inicial cobriu 10 mil linhas; agora os dez campos do contrato inicial foram validados em todos os 4.810.772 registros de RESULTADOS. Essa validação de qualidade não substitui as análises finais.
+- A inspeção inicial cobriu 10 mil linhas; agora os 17 campos do contrato v2 (dez legados e sete de redação) foram validados em todos os 4.810.772 registros de RESULTADOS. Essa validação de qualidade não substitui as análises finais.
 
 Conforme o leia-me (página 7), PARTICIPANTES e RESULTADOS não possuem chave comum. O dicionário distingue `NU_SEQUENCIAL` de `NU_INSCRICAO`. A renda familiar (`Q007`) está somente em PARTICIPANTES: não é possível prometer seu cruzamento individual com notas, nem associar registros pela posição. A pergunta renda × desempenho permanece no escopo futuro, a investigar em edição compatível, sem mudar o ano da POC agora.
 
@@ -166,3 +166,10 @@ Os pares LC/CH e CN/MT foram conferidos em todos os registros: sem mistos, nulos
 Presença no primeiro e ausência no segundo somam 211.292; o caminho inverso soma 15.146. Eliminações ficam separadas. A diferença líquida de −197.219 não é número de faltas após o primeiro dia. Veja as nove transições observadas na apresentação e as 36 células possíveis no CSV.
 
 Funções em `src/participacao.py`, I/O em `src/participacao_execucao.py` e gráficos em `src/participacao_graficos.py`. Execute `.\.venv\Scripts\python.exe -X utf8 -m src.participacao_execucao` ou o notebook 03 para atualizar agregados; a apresentação gera também os dois PNG novos. Dezesseis testes aprovados. Trusted preservada; nenhum raw foi reprocessado.
+
+
+## Primeira POC de redação e inscritos — 22/09/2026
+
+Execute `notebooks/04_redacao.ipynb` para a auditoria independente de inscritos e os agregados de redação. A trusted compartilhada tem 17 campos; `01` reconstrói a base com validação exata, `02` e `03` renovam indicadores/auditorias existentes. A apresentação lê essas saídas e verifica integridade, sem executar pipelines. Consulte [o contrato de redação](docs/contrato_analitico_redacao_2025.md) e [os resultados, testes e limites](reports/resumo_redacao_2025.md).
+
+O total oficial confirmado e os universos divulgados aparecem separadamente. Nota final inclui zeros; status usa toda a base; competências usam um recorte comum explicitado. Não houve join PARTICIPANTES–RESULTADOS, análise de avaliadores, região, rede ou renda neste incremento.

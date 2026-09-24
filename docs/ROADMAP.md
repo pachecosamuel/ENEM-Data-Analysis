@@ -1,6 +1,6 @@
 # Roadmap — ENEM 2025
 
-Atualizado em 18/09/2026. Plano de trabalho incremental; caixas abertas representam trabalho futuro.
+Atualizado em 22/09/2026. Plano de trabalho incremental; caixas abertas representam trabalho futuro.
 
 ## Onde estamos e como retomar
 
@@ -13,7 +13,7 @@ Atualizado em 18/09/2026. Plano de trabalho incremental; caixas abertas represen
 - [x] Indicadores de desempenho por área, tabela e dois gráficos validados a partir da trusted.
 - [ ] Demais requisitos e perfil dos demais campos ainda pendentes.
 
-**Ponto de retomada:** definir contrato de presença/desempenho por local de aplicação e região, incluindo ampliação mínima da trusted. As perguntas 1 (desempenho por área) e 2 (participação entre dias) estão concluídas. Consultar o capítulo novo na apresentação e o notebook 03.
+**Ponto de retomada:** revisar a primeira POC de redação e a abertura sobre inscritos na apresentação. Perguntas 1 e 2 concluídas; pergunta 5 tem primeira POC validada no notebook 04. Após revisão, definir próximo incremento sem antecipar região, rede ou perfil econômico.
 
 ## Decisões tomadas
 
@@ -74,7 +74,7 @@ Atualizado em 18/09/2026. Plano de trabalho incremental; caixas abertas represen
 - [x] Participação entre dias: contrato, pares, matriz, retenção e saldo validados; eliminações e divergências separadas.
 - [ ] Local de prova: analisar presença e desempenho; documentar mapeamento UF–região, sem confundir aplicação com residência.
 - [ ] Rede escolar: explicitar cobertura e não informados; públicas = federal, estadual e municipal; evitar inferência causal.
-- [ ] Redação: definir elegibilidade por status e conferir nota total e competências.
+- [x] Redação: primeira POC com contrato de elegibilidade, status, nota final e competências; revisão do usuário antes de ampliar.
 - [ ] Perfil econômico independente: quantidades e percentuais por `Q007`, complemento com/sem renda em `Q006`; preservar “nenhuma renda”, separar ausentes/inválidos e explicitar base total e, se usado, denominador de respostas válidas. Não estimar renda pessoal ou renda per capita exata de faixas.
 
 **Entregável/saída por requisito:** contrato, tabela, visualização e controles de qualidade revisados antes de avançar; ao final, apresentação das seis análises com filtros, cobertura e limitações.
@@ -88,7 +88,7 @@ Atualizado em 18/09/2026. Plano de trabalho incremental; caixas abertas represen
 
 ## Decisões ainda pendentes
 
-Filtros e denominadores dos próximos requisitos; elegibilidade por status da redação; campos adicionais para os demais requisitos; revisar parâmetros de recursos se o escopo crescer. Resolver cada ponto na fase correspondente e atualizar este arquivo com o último passo validado e a próxima ação.
+Filtros e denominadores dos próximos requisitos; revisão da primeira POC de redação; campos adicionais para os demais requisitos; revisar parâmetros de recursos se o escopo crescer. Resolver cada ponto na fase correspondente e atualizar este arquivo com o último passo validado e a próxima ação.
 
 ## Entrega validada em 16/09/2026
 
@@ -123,3 +123,14 @@ Unidade candidata: registro de RESULTADOS. Primeiro dia usa LC/CH; segundo, CN/M
 [Contrato](contrato_analitico_participacao_2025.md), [notebook 03](../notebooks/03_participacao_entre_dias.ipynb) e [resumo](../reports/resumo_participacao_2025.md). Pares LC/CH e CN/MT coincidentes em toda a base, sem nulos/inválidos; classificação conserva mistos e problemas se surgirem. Matriz completa, retenção e diferença líquida reconciliadas. Cinco testes novos (16 no total), notebook e apresentação executados em kernel novo, PNGs inspecionados.
 
 Retenção de 93,83% = 3.244.348 / 3.457.555. Presente→ausente: 211.292, diferente do saldo −197.219. Zero correções ou descartes de registros; trusted intacta. Próximos requisitos: local de aplicação/região, rede, redação e perfil econômico independente. Não houve nova análise geográfica nesta entrega.
+
+
+## Inscritos e primeira POC de redação — 22/09/2026
+
+Abertura distingue 4.811.338 inscrições confirmadas (Inep, balanço 09/11/2025; limitação de acesso direto registrada) dos 4.810.772 registros de cada arquivo divulgado. PARTICIPANTES contado estritamente, com chave/ano válidos; diferença de 566 sem causa estabelecida. Nenhum join entre as bases.
+
+Trusted v2: sete campos de redação adicionados aos dez legados, sem excluir registros; comparação exata por chave com v1 aprovada e backup preservado. Contratos técnico/analítico e leitores atualizados. Auditorias dependentes renovadas; seis CSVs e quatro PNGs anteriores byte a byte iguais.
+
+Redação: 3.457.555 notas registradas, inclusive 211.859 zeros; média 580,80, mediana 600, Q1–Q3 480–720, observados 0–1000. Sem nota: 1.353.217. Competências: recorte comum de 3.245.696 redações Sem problemas com notas completas, mantendo zeros; todas as medianas 120. Soma das competências coincide com a final em todos os registros comparáveis.
+
+[Contrato](contrato_analitico_redacao_2025.md), [notebook 04](../notebooks/04_redacao.ipynb), [resumo e limites](../reports/resumo_redacao_2025.md). Dois gráficos novos; apresentação consome agregados auditados. 25 testes passaram; notebooks necessários executados em kernels novos; PNGs inspecionados. Os registros anteriores deste roadmap são históricos.

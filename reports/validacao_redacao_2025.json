@@ -1,0 +1,522 @@
+{
+  "data_utc": "2026-09-22T21:52:36.944806+00:00",
+  "fonte": "trusted/resultados_2025_base.parquet",
+  "sha256_antes": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
+  "sha256_depois": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
+  "esquema": [
+    [
+      "NU_SEQUENCIAL",
+      "VARCHAR"
+    ],
+    [
+      "NU_ANO",
+      "INTEGER"
+    ],
+    [
+      "TP_PRESENCA_CN",
+      "TINYINT"
+    ],
+    [
+      "TP_PRESENCA_CH",
+      "TINYINT"
+    ],
+    [
+      "TP_PRESENCA_LC",
+      "TINYINT"
+    ],
+    [
+      "TP_PRESENCA_MT",
+      "TINYINT"
+    ],
+    [
+      "NU_NOTA_CN",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_CH",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_LC",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_MT",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "TP_STATUS_REDACAO",
+      "TINYINT"
+    ],
+    [
+      "NU_NOTA_REDACAO",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP1",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP2",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP3",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP4",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP5",
+      "DECIMAL(10,1)"
+    ]
+  ],
+  "duckdb": "1.5.5",
+  "memory_limit": "256MB",
+  "threads": 1,
+  "contrato": "docs/contrato_analitico_redacao_2025.md",
+  "filtros": {
+    "final": "NU_NOTA_REDACAO IS NOT NULL",
+    "competencias": "TP_STATUS_REDACAO=1 AND NU_NOTA_REDACAO IS NOT NULL AND NU_NOTA_COMP1 IS NOT NULL AND NU_NOTA_COMP2 IS NOT NULL AND NU_NOTA_COMP3 IS NOT NULL AND NU_NOTA_COMP4 IS NOT NULL AND NU_NOTA_COMP5 IS NOT NULL"
+  },
+  "quantil": "quantile_cont DOUBLE, tipo 7",
+  "controles": {
+    "sem_problemas": 3245696,
+    "incompletas_sem_problemas": 0,
+    "recorte_competencias": 3245696,
+    "soma_comparavel": 3457555,
+    "soma_divergente": 0,
+    "soma_divergente_recorte": 0,
+    "nota_sem_status": 0,
+    "status_sem_nota": 0,
+    "positivas_status_problematico": 0,
+    "final_fora_escala": 0,
+    "competencias_fora_escala": 0,
+    "nulos_campos": {
+      "TP_STATUS_REDACAO": 1353217,
+      "NU_NOTA_REDACAO": 1353217,
+      "NU_NOTA_COMP1": 1353217,
+      "NU_NOTA_COMP2": 1353217,
+      "NU_NOTA_COMP3": 1353217,
+      "NU_NOTA_COMP4": 1353217,
+      "NU_NOTA_COMP5": 1353217
+    },
+    "reconciliacoes": {
+      "status_total": true,
+      "status_notas": true,
+      "status_zeros": true,
+      "distribuicao_notas": true,
+      "distribuicao_zeros": true,
+      "competencias_denominador": true,
+      "competencias_exclusoes": true,
+      "presencas_total": true
+    }
+  },
+  "alertas": {},
+  "validacao": "aprovada",
+  "hashes_csv": {
+    "redacao_2025_final.csv": "f68f8909de1348304d22a322634ba9a0a849b051175e3be4bbe9c2dbe18fa3c6",
+    "redacao_2025_status.csv": "b7d4002d65b650f523eca312969d6472d2ebd2b6cbfa66315a044e3ebe86a26f",
+    "redacao_2025_competencias.csv": "f70ce8a8d11d830d5d16e5d1d3436730e8ea5b02e7ea1adf6ff7571e6f703a73",
+    "redacao_2025_distribuicao.csv": "ece4fab3267645ef2854cdb2af1bff3a1e38bd34aa6aac66f5ecc4069cf4ee8c",
+    "redacao_2025_presencas.csv": "6f35caa400e0c6fd8fd8350b7e6b2d1951f54d643c0ac6655c40b8092675bd38"
+  },
+  "resultado": {
+    "final": [
+      {
+        "n": 3457555,
+        "zeros": 211859,
+        "media": 580.8038165698015,
+        "minimo_observado": 0.0,
+        "maximo_observado": 1000.0,
+        "q1": 480.0,
+        "mediana": 600.0,
+        "q3": 720.0,
+        "total_base": 4810772,
+        "sem_nota": 1353217,
+        "pct_com_nota_base": 71.87110509498268
+      }
+    ],
+    "status": [
+      {
+        "codigo": 1,
+        "quantidade": 3245696,
+        "com_nota": 3245696,
+        "sem_nota": 0,
+        "zeros": 0,
+        "positivas": 3245696,
+        "situacao": "Sem problemas",
+        "percentual_base": 67.46725889316725
+      },
+      {
+        "codigo": 2,
+        "quantidade": 3070,
+        "com_nota": 3070,
+        "sem_nota": 0,
+        "zeros": 3070,
+        "positivas": 0,
+        "situacao": "Anulada",
+        "percentual_base": 0.06381512156468858
+      },
+      {
+        "codigo": 3,
+        "quantidade": 54840,
+        "com_nota": 54840,
+        "sem_nota": 0,
+        "zeros": 54840,
+        "positivas": 0,
+        "situacao": "Cópia Texto Motivador",
+        "percentual_base": 1.1399417806539158
+      },
+      {
+        "codigo": 4,
+        "quantidade": 114329,
+        "com_nota": 114329,
+        "sem_nota": 0,
+        "zeros": 114329,
+        "positivas": 0,
+        "situacao": "Em Branco",
+        "percentual_base": 2.37652085777501
+      },
+      {
+        "codigo": 6,
+        "quantidade": 13576,
+        "com_nota": 13576,
+        "sem_nota": 0,
+        "zeros": 13576,
+        "positivas": 0,
+        "situacao": "Fuga ao tema",
+        "percentual_base": 0.28220002943394534
+      },
+      {
+        "codigo": 7,
+        "quantidade": 5661,
+        "com_nota": 5661,
+        "sem_nota": 0,
+        "zeros": 5661,
+        "positivas": 0,
+        "situacao": "Não atendimento ao tipo textual",
+        "percentual_base": 0.11767342123052184
+      },
+      {
+        "codigo": 8,
+        "quantidade": 16975,
+        "com_nota": 16975,
+        "sem_nota": 0,
+        "zeros": 16975,
+        "positivas": 0,
+        "situacao": "Texto insuficiente",
+        "percentual_base": 0.35285397021517545
+      },
+      {
+        "codigo": 9,
+        "quantidade": 3408,
+        "com_nota": 3408,
+        "sem_nota": 0,
+        "zeros": 3408,
+        "positivas": 0,
+        "situacao": "Parte desconectada",
+        "percentual_base": 0.07084102094216894
+      },
+      {
+        "codigo": null,
+        "quantidade": 1353217,
+        "com_nota": 0,
+        "sem_nota": 1353217,
+        "zeros": 0,
+        "positivas": 0,
+        "situacao": "Sem status registrado",
+        "percentual_base": 28.128894905017322
+      }
+    ],
+    "competencias": [
+      {
+        "campo": "NU_NOTA_COMP1",
+        "competencia": "Domínio da escrita formal",
+        "n": 3245696,
+        "zeros": 589,
+        "media": 120.62077902551563,
+        "minimo_observado": 0.0,
+        "maximo_observado": 200.0,
+        "q1": 100.0,
+        "mediana": 120.0,
+        "q3": 140.0
+      },
+      {
+        "campo": "NU_NOTA_COMP2",
+        "competencia": "Tema e tipo textual",
+        "n": 3245696,
+        "zeros": 0,
+        "media": 136.97046796742518,
+        "minimo_observado": 40.0,
+        "maximo_observado": 200.0,
+        "q1": 120.0,
+        "mediana": 120.0,
+        "q3": 160.0
+      },
+      {
+        "campo": "NU_NOTA_COMP3",
+        "competencia": "Defesa de um ponto de vista",
+        "n": 3245696,
+        "zeros": 1072,
+        "media": 119.63185708088496,
+        "minimo_observado": 0.0,
+        "maximo_observado": 200.0,
+        "q1": 100.0,
+        "mediana": 120.0,
+        "q3": 140.0
+      },
+      {
+        "campo": "NU_NOTA_COMP4",
+        "competencia": "Mecanismos da argumentação",
+        "n": 3245696,
+        "zeros": 1199,
+        "media": 127.34593135031747,
+        "minimo_observado": 0.0,
+        "maximo_observado": 200.0,
+        "q1": 100.0,
+        "mediana": 120.0,
+        "q3": 160.0
+      },
+      {
+        "campo": "NU_NOTA_COMP5",
+        "competencia": "Proposta de intervenção",
+        "n": 3245696,
+        "zeros": 305510,
+        "media": 114.14606913278385,
+        "minimo_observado": 0.0,
+        "maximo_observado": 200.0,
+        "q1": 80.0,
+        "mediana": 120.0,
+        "q3": 160.0
+      }
+    ],
+    "distribuicao": [
+      {
+        "nota": 0.0,
+        "quantidade": 211859
+      },
+      {
+        "nota": 40.0,
+        "quantidade": 425
+      },
+      {
+        "nota": 60.0,
+        "quantidade": 242
+      },
+      {
+        "nota": 80.0,
+        "quantidade": 294
+      },
+      {
+        "nota": 100.0,
+        "quantidade": 113
+      },
+      {
+        "nota": 120.0,
+        "quantidade": 263
+      },
+      {
+        "nota": 140.0,
+        "quantidade": 199
+      },
+      {
+        "nota": 160.0,
+        "quantidade": 663
+      },
+      {
+        "nota": 180.0,
+        "quantidade": 876
+      },
+      {
+        "nota": 200.0,
+        "quantidade": 2229
+      },
+      {
+        "nota": 220.0,
+        "quantidade": 2456
+      },
+      {
+        "nota": 240.0,
+        "quantidade": 5629
+      },
+      {
+        "nota": 260.0,
+        "quantidade": 5858
+      },
+      {
+        "nota": 280.0,
+        "quantidade": 13389
+      },
+      {
+        "nota": 300.0,
+        "quantidade": 13887
+      },
+      {
+        "nota": 320.0,
+        "quantidade": 31322
+      },
+      {
+        "nota": 340.0,
+        "quantidade": 32995
+      },
+      {
+        "nota": 360.0,
+        "quantidade": 58190
+      },
+      {
+        "nota": 380.0,
+        "quantidade": 52878
+      },
+      {
+        "nota": 400.0,
+        "quantidade": 80962
+      },
+      {
+        "nota": 420.0,
+        "quantidade": 69547
+      },
+      {
+        "nota": 440.0,
+        "quantidade": 110379
+      },
+      {
+        "nota": 460.0,
+        "quantidade": 95742
+      },
+      {
+        "nota": 480.0,
+        "quantidade": 135637
+      },
+      {
+        "nota": 500.0,
+        "quantidade": 110265
+      },
+      {
+        "nota": 520.0,
+        "quantidade": 156643
+      },
+      {
+        "nota": 540.0,
+        "quantidade": 132011
+      },
+      {
+        "nota": 560.0,
+        "quantidade": 186741
+      },
+      {
+        "nota": 580.0,
+        "quantidade": 157665
+      },
+      {
+        "nota": 600.0,
+        "quantidade": 195801
+      },
+      {
+        "nota": 620.0,
+        "quantidade": 149748
+      },
+      {
+        "nota": 640.0,
+        "quantidade": 170997
+      },
+      {
+        "nota": 660.0,
+        "quantidade": 118552
+      },
+      {
+        "nota": 680.0,
+        "quantidade": 138114
+      },
+      {
+        "nota": 700.0,
+        "quantidade": 94817
+      },
+      {
+        "nota": 720.0,
+        "quantidade": 115204
+      },
+      {
+        "nota": 740.0,
+        "quantidade": 80034
+      },
+      {
+        "nota": 760.0,
+        "quantidade": 100320
+      },
+      {
+        "nota": 780.0,
+        "quantidade": 72687
+      },
+      {
+        "nota": 800.0,
+        "quantidade": 90831
+      },
+      {
+        "nota": 820.0,
+        "quantidade": 66426
+      },
+      {
+        "nota": 840.0,
+        "quantidade": 83235
+      },
+      {
+        "nota": 860.0,
+        "quantidade": 61060
+      },
+      {
+        "nota": 880.0,
+        "quantidade": 76827
+      },
+      {
+        "nota": 900.0,
+        "quantidade": 58458
+      },
+      {
+        "nota": 920.0,
+        "quantidade": 60038
+      },
+      {
+        "nota": 940.0,
+        "quantidade": 38821
+      },
+      {
+        "nota": 960.0,
+        "quantidade": 15376
+      },
+      {
+        "nota": 980.0,
+        "quantidade": 840
+      },
+      {
+        "nota": 1000.0,
+        "quantidade": 10
+      }
+    ],
+    "presencas": [
+      {
+        "presenca_lc": 0,
+        "presenca_ch": 0,
+        "quantidade": 1348087,
+        "com_nota": 0,
+        "com_status": 0
+      },
+      {
+        "presenca_lc": 1,
+        "presenca_ch": 1,
+        "quantidade": 3457555,
+        "com_nota": 3457555,
+        "com_status": 3457555
+      },
+      {
+        "presenca_lc": 2,
+        "presenca_ch": 2,
+        "quantidade": 5130,
+        "com_nota": 0,
+        "com_status": 0
+      }
+    ]
+  }
+}

@@ -1,12 +1,12 @@
 {
-  "data_utc": "2026-09-17T20:11:38.358264+00:00",
+  "data_utc": "2026-09-22T21:47:34.208978+00:00",
   "fonte": "trusted\\resultados_2025_base.parquet",
-  "sha256_fonte_antes": "e62b1cb8eedb9dac27d457fcc03c8f7479faacf1ec4b4ecb8011be28613981f3",
-  "fonte_bytes": 54733745,
+  "sha256_fonte_antes": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
+  "fonte_bytes": 69145333,
   "duckdb": "1.5.5",
   "memory_limit": "256MB",
   "threads": 1,
-  "ram_disponivel_inicio_bytes": 1581998080,
+  "ram_disponivel_inicio_bytes": 345710592,
   "filtros": {
     "CN": "TP_PRESENCA_CN = 1 AND NU_NOTA_CN IS NOT NULL",
     "CH": "TP_PRESENCA_CH = 1 AND NU_NOTA_CH IS NOT NULL",
@@ -53,6 +53,34 @@
     ],
     [
       "NU_NOTA_MT",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "TP_STATUS_REDACAO",
+      "TINYINT"
+    ],
+    [
+      "NU_NOTA_REDACAO",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP1",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP2",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP3",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP4",
+      "DECIMAL(10,1)"
+    ],
+    [
+      "NU_NOTA_COMP5",
       "DECIMAL(10,1)"
     ]
   ],
@@ -232,9 +260,9 @@
       "pct_completude_presentes": 100.0
     }
   ],
-  "sha256_fonte_depois": "e62b1cb8eedb9dac27d457fcc03c8f7479faacf1ec4b4ecb8011be28613981f3",
-  "segundos": 3.197,
-  "ram_disponivel_fim_bytes": 1566445568,
+  "sha256_fonte_depois": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
+  "segundos": 4.209,
+  "ram_disponivel_fim_bytes": 331546624,
   "validacao": "aprovada",
   "total_base": 4810772,
   "sha256_indicadores_csv": "afd713081ab322f8e9f27fc810316a9ef496e01bb64f5c6d68f28e9e4f16e027"

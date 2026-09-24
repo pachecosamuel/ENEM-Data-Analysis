@@ -4,4 +4,6 @@
 - `02_desempenho_por_area.ipynb`: cálculo e auditoria de desempenho sobre a trusted.
 - `03_participacao_entre_dias.ipynb`: pares de presença, matriz de transições e retenção sobre a trusted.
 
+- `04_redacao.ipynb`: contagem independente de inscritos, nota final, status e perfil de competências; gera dois PNGs.
+
 As regras estão em `src/`, não duplicadas nas células. Use o kernel ENEM 2025 (.venv). Para leitura dos resultados, prefira [a apresentação](../apresentacao/visao_geral_2025.ipynb).

@@ -1,0 +1,38 @@
+{
+  "data_utc": "2026-09-22T21:52:31.530512+00:00",
+  "fonte": "raw/microdados_enem_2025/microdados_enem_2025/DADOS/PARTICIPANTES_2025.csv",
+  "sha256_antes": "3c06b33d9a618175c4736b464e9f9d278154ff97a3729ee64c19c71e078d1586",
+  "sha256_depois": "3c06b33d9a618175c4736b464e9f9d278154ff97a3729ee64c19c71e078d1586",
+  "oficial": {
+    "inscricoes_confirmadas": 4811338,
+    "instituicao": "Inep",
+    "documento": "Balanço da aplicação do 1º dia — 09/11/2025",
+    "data_documento": "2025-11-09",
+    "url": "https://download.inep.gov.br/enem/outros_documentos/enem_balanco_da_aplicacao_09_11_2025.pdf",
+    "consulta": "2026-09-22",
+    "observacao": "Tabela Inscrições confirmadas. Presença/ausência do balanço são preliminares e não são utilizadas aqui.",
+    "acesso": "Conteúdo da tabela recuperado pelo índice de busca; abertura/download direto indisponível na consulta.",
+    "corroboracao": {
+      "instituicao": "Ministério das Mulheres, com informações do MEC",
+      "data": "2025-08-11",
+      "url": "https://www.gov.br/mulheres/pt-br/central-de-conteudos/noticias/2025/agosto/mulheres-lideram-inscricoes-no-enem-2025-e-somam-60-dos-participantes",
+      "acesso": "Texto oficial acessível na consulta; confirma explicitamente inscrições confirmadas."
+    }
+  },
+  "participantes": {
+    "registros": 4810772,
+    "chaves_nulas": 0,
+    "chaves_duplicadas": 0,
+    "anos_invalidos": 0,
+    "ano": 2025
+  },
+  "registros_resultados": 4810772,
+  "sha256_resultados": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
+  "diferenca_oficial_participantes": 566,
+  "diferenca_participantes_resultados": 0,
+  "interpretacao": "Universos distintos; diferença sem causa estabelecida. Nenhum join entre bases.",
+  "duckdb": "1.5.5",
+  "memory_limit": "256MB",
+  "threads": 1,
+  "validacao": "aprovada"
+}

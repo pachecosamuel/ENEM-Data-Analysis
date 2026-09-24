@@ -1,0 +1,117 @@
+{
+  "registros_entrada": 4810772,
+  "regressao_legado": {
+    "campos": [
+      "NU_SEQUENCIAL",
+      "NU_ANO",
+      "TP_PRESENCA_CN",
+      "TP_PRESENCA_CH",
+      "TP_PRESENCA_LC",
+      "TP_PRESENCA_MT",
+      "NU_NOTA_CN",
+      "NU_NOTA_CH",
+      "NU_NOTA_LC",
+      "NU_NOTA_MT"
+    ],
+    "divergencias": 0,
+    "sha256_anterior": "e62b1cb8eedb9dac27d457fcc03c8f7479faacf1ec4b4ecb8011be28613981f3",
+    "esquema_anterior": [
+      [
+        "NU_SEQUENCIAL",
+        "VARCHAR"
+      ],
+      [
+        "NU_ANO",
+        "INTEGER"
+      ],
+      [
+        "TP_PRESENCA_CN",
+        "TINYINT"
+      ],
+      [
+        "TP_PRESENCA_CH",
+        "TINYINT"
+      ],
+      [
+        "TP_PRESENCA_LC",
+        "TINYINT"
+      ],
+      [
+        "TP_PRESENCA_MT",
+        "TINYINT"
+      ],
+      [
+        "NU_NOTA_CN",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_CH",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_LC",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_MT",
+        "DECIMAL(10,1)"
+      ]
+    ]
+  },
+  "sha256_raw_antes": "5df5ebed6395a3e69e3dc3b3c9731930312597318ff4dfc178b136514796803d",
+  "sha256_raw_depois": "5df5ebed6395a3e69e3dc3b3c9731930312597318ff4dfc178b136514796803d",
+  "sha256_parquet": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
+  "parquet_bytes": 69145333,
+  "data": "2026-09-22",
+  "contrato": "v1 -> v2",
+  "backup": "work/pre_redacao_2025/",
+  "validacao": "migração exata por chave, antes da publicação",
+  "publicado": true,
+  "verificacao_final": {
+    "registros": 4810772,
+    "divergencias_legadas_por_chave": 0,
+    "sha256_trusted_atual": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
+    "raw_resultados_inalterado": true,
+    "raw_participantes_inalterado": true,
+    "hashes_artefatos_anteriores_inalterados": {
+      "analitica/desempenho_2025.csv": "afd713081ab322f8e9f27fc810316a9ef496e01bb64f5c6d68f28e9e4f16e027",
+      "analitica/participacao_2025_combinacoes_conjuntas.csv": "599d35fcbb869484b12cbcdf5b71f93eca269cc483f1d6a4c58a91c482c87ace",
+      "analitica/participacao_2025_dias.csv": "c6b73db28905daa37d9c118fa3913bdaaade7bf9b8b441f0672e948dfa08f287",
+      "analitica/participacao_2025_pares.csv": "580d3aa49b464b50953252cb9a63bf6561f83e7424e6954ff8f997cc3cad2a43",
+      "analitica/participacao_2025_resumo.csv": "ef4c026b141ce48d2ff6155f7ee6b62deccf0440a85cb8c8d961227e04949a68",
+      "analitica/participacao_2025_transicoes.csv": "c72046ebefe23dab4f6685d65227dbe631eace61d2a15ebe3911568a1055891b",
+      "apresentacao/graficos/participacao_por_area_2025.png": "11895b81b454478c8d3f00e84b1e09d00a41710165372aaae069bdaa109fee95",
+      "apresentacao/graficos/participacao_por_dia_2025.png": "51e704a413280d7d8fb64c5ffc84a0a95a239b5d1d2b68e88cb69190638c551f",
+      "apresentacao/graficos/quartis_por_area_2025.png": "b78797b044c7ec51073339dac54664e37ad02a31bf2580026e33ede5ac4cf95f",
+      "apresentacao/graficos/transicoes_entre_dias_2025.png": "b9897a89c97e10c1d0bae5bda5bd06155c715cde88d28a909f821aaa48f21382"
+    },
+    "resultados_anteriores_iguais": true,
+    "notebooks": {
+      "notebooks/01_resultados_trusted.ipynb": {
+        "celulas_executadas": 4,
+        "erros": 0
+      },
+      "notebooks/02_desempenho_por_area.ipynb": {
+        "celulas_executadas": 3,
+        "erros": 0
+      },
+      "notebooks/03_participacao_entre_dias.ipynb": {
+        "celulas_executadas": 4,
+        "erros": 0
+      },
+      "notebooks/04_redacao.ipynb": {
+        "celulas_executadas": 4,
+        "erros": 0
+      },
+      "apresentacao/visao_geral_2025.ipynb": {
+        "celulas_executadas": 10,
+        "erros": 0
+      }
+    },
+    "testes_aprovados": 25,
+    "graficos_novos_inspecionados": [
+      "redacao_distribuicao_2025.png",
+      "redacao_competencias_2025.png"
+    ]
+  }
+}

@@ -20,7 +20,7 @@ class ContratoTest(unittest.TestCase):
         return con
 
     def linha(self, identificador='0001', ano='2025', presenca='1', nota='0.0'):
-        return [identificador, ano, *([presenca] * 4), *([nota] * 4)]
+        return [identificador, ano, *([presenca] * 4), *([nota] * 4), '1', *(['0'] * 6)]
 
     def test_nulos_zero_texto_e_coerencia_sem_exclusao(self):
         con = self.carregar([self.linha(), self.linha('0002', presenca='0', nota=''),

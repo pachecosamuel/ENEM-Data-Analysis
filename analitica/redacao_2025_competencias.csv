@@ -1,0 +1,6 @@
+campo,competencia,n,zeros,media,minimo_observado,maximo_observado,q1,mediana,q3
+NU_NOTA_COMP1,Domínio da escrita formal,3245696,589,120.62077902551563,0.0,200.0,100.0,120.0,140.0
+NU_NOTA_COMP2,Tema e tipo textual,3245696,0,136.97046796742518,40.0,200.0,120.0,120.0,160.0
+NU_NOTA_COMP3,Defesa de um ponto de vista,3245696,1072,119.63185708088496,0.0,200.0,100.0,120.0,140.0
+NU_NOTA_COMP4,Mecanismos da argumentação,3245696,1199,127.34593135031747,0.0,200.0,100.0,120.0,160.0
+NU_NOTA_COMP5,Proposta de intervenção,3245696,305510,114.14606913278385,0.0,200.0,80.0,120.0,160.0

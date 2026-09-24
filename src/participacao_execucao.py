@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 
 import duckdb
 from src.desempenho_execucao import raiz_projeto, hash_arquivo
-from src.trusted_resultados import TIPOS
+from src.trusted_resultados import conferir_esquema
 from src.participacao import calcular_participacao
 
 
@@ -28,8 +28,7 @@ def executar_participacao(raiz=None):
                                     'max_temp_directory_size':'2GB'}) as con:
             con.read_parquet(str(fonte)).create_view('base')
             esquema = [list(x[:2]) for x in con.execute('DESCRIBE base').fetchall()]
-            if esquema != [list(x) for x in TIPOS.items()]:
-                raise ValueError('Esquema incompatível com a trusted contratada.')
+            conferir_esquema(esquema)
             total, nulos, ano_invalido = con.execute('''SELECT count(*),
                 count(*) FILTER(WHERE NU_SEQUENCIAL IS NULL OR trim(NU_SEQUENCIAL)=''),
                 count(*) FILTER(WHERE NU_ANO IS DISTINCT FROM 2025) FROM base''').fetchone()

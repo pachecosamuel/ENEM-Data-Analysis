@@ -12,6 +12,7 @@ import duckdb
 import psutil
 
 from src.desempenho import AREAS, FILTRO, METODO_QUANTIL, calcular_desempenho
+from src.trusted_resultados import conferir_esquema
 
 
 def raiz_projeto(inicio=None):
@@ -44,11 +45,7 @@ def executar_desempenho(raiz=None):
                                     'temp_directory': str(pasta/'spill'), 'max_temp_directory_size': '2GB'}) as con:
             con.read_parquet(str(fonte)).create_view('base')
             esquema = [list(row[:2]) for row in con.execute('DESCRIBE base').fetchall()]
-            esperado = [['NU_SEQUENCIAL', 'VARCHAR'], ['NU_ANO', 'INTEGER']]
-            esperado += [[f'TP_PRESENCA_{a}', 'TINYINT'] for a in AREAS]
-            esperado += [[f'NU_NOTA_{a}', 'DECIMAL(10,1)'] for a in AREAS]
-            if esquema != esperado:
-                raise ValueError(f'Esquema da trusted diverge do contrato: {esquema}')
+            conferir_esquema(esquema)
             if con.execute('SELECT count(*) FROM base WHERE NU_ANO IS DISTINCT FROM 2025').fetchone()[0]:
                 raise ValueError('Ano inválido na fonte.')
             resultados, controles = calcular_desempenho(con)

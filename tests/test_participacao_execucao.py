@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 import duckdb
-from src.trusted_resultados import TIPOS
+from src.trusted_resultados import TIPOS_LEGADOS as TIPOS
 from src.participacao_execucao import executar_participacao
 from src.desempenho_execucao import hash_arquivo
 
