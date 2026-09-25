@@ -151,3 +151,15 @@ Implementada a comparação das quatro áreas por Federal, Estadual, Municipal e
 Trusted v4 adiciona somente TP_DEPENDENCIA_ADM_ESC; os 21 campos v3 foram preservados por chave, com backup. Quinze CSVs e oito PNGs anteriores idênticos. [Notebook 06](../notebooks/06_rede_escolar.ipynb), [contrato](contrato_analitico_rede_escolar_2025.md) e [resumo](../reports/resumo_rede_escolar_2025.md); um PNG e dois CSVs novos. Trinta e quatro testes aprovados (três novos essenciais); notebooks e apresentação executados em kernels novos, gráfico inspecionado.
 
 **Próxima etapa: perfil de renda em PARTICIPANTES, independente das notas de RESULTADOS.** Sem join individual. Redação por rede, municípios e expansão temporal ficam no backlog. Entradas anteriores registram o histórico.
+
+## Perfil econômico — 25/09/2026 · requisitos da primeira visão concluídos
+
+Implementado após rede escolar, usando PARTICIPANTES de forma independente: Q007 renda mensal familiar (A–Q) e Q006 declaração de possuir renda (Não/Sim), conforme dicionário 2025. Base de 4.810.772 registros; 100% de respostas válidas nas duas perguntas. Ausências separadas; denominador principal é toda a base divulgada, não as 4.811.338 inscrições confirmadas.
+
+Nenhuma renda familiar ou até R$ 1.518: 2.124.525 (44,16%). Não possuem renda própria: 3.454.810 (71,81%). Categorias mantêm ordem do dicionário; não estimamos renda média/per capita, emprego ou relação renda-nota.
+
+[Notebook 07 e regras](../notebooks/07_perfil_economico.ipynb), um CSV, dois PNGs e capítulo final na apresentação. Verificação operacional: execução em kernels novos, reconciliação de totais e inspeção visual. Conforme solicitado, sem novos testes ou reports. Trusted e artefatos anteriores preservados; sem join, dependências novas ou commit/push. Aprofundamentos municipais, redação por local/rede e outras edições permanecem no backlog, fora desta entrega. Registros anteriores deste roadmap são históricos.
+
+## Revisão visual e narrativa — 25/09/2026
+
+Apresentação reorganizada em inscrições → dias/Sankey → áreas → redação/competências → notas regionais → rede/cobertura → economia independente. Removido o visual de presença regional e seu bloco gerador, mantendo cálculo, agregados e tabelas no notebook 05. Gráficos de notas regionais e redes sem n nos rótulos; denominadores nas tabelas. Renda familiar destaca o acumulado A–D: 3.424.548 de 4.810.772 inscritos (71,18%) até R$ 3.036 mensais, incluindo nenhuma renda. Sem mudança das regras ou dos dados; sem novos testes/reports. Mapa técnico e sequência de execução atualizados no README. As entregas descritas anteriormente são históricas.

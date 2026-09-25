@@ -5,21 +5,29 @@ Documento de trabalho · 16/09/2026
 
 ## Por onde começar
 
-Para ler os resultados, abra [a apresentação](apresentacao/visao_geral_2025.ipynb). Para acompanhar o cálculo, abra [o notebook 02](notebooks/02_desempenho_por_area.ipynb). O [roadmap](docs/ROADMAP.md) registra a próxima decisão.
+Leia [a apresentação](apresentacao/visao_geral_2025.ipynb). Para alterar um cálculo, localize o assunto em `src/` e seu notebook numerado. O mapa abaixo descreve a estrutura atual, sem exigir uma nova camada de execução.
 
-| Diretório | Responsabilidade |
+| Pasta / arquivo-chave | Responsabilidade |
 | --- | --- |
-| `src/` | Funções reutilizáveis: transformação, cálculo, I/O e gráficos em módulos separados. |
-| `notebooks/` | Acompanhamento do processamento; 01 gera trusted; 02–05 calculam e auditam agregados. |
-| `apresentacao/` | Narrativa para leitura e PNG separados em `graficos/`. |
-| `docs/` | Contratos e roadmap. |
-| `reports/` | Auditorias e relatos de validação. |
-| `raw/`, `trusted/`, `analitica/` | Originais, base padronizada e indicadores compactos, respectivamente. |
-| `tests/` | Testes pequenos e integração com dados artificiais. |
-| `scripts/` | Executor de notebooks; aceita o caminho como argumento. |
-| `work/` | Temporários ignorados pelo Git. |
+| `raw/microdados_enem_2025/microdados_enem_2025/` | CSVs originais, dicionário e Leia_Me; fontes preservadas. |
+| `src/trusted_resultados.py` → `trusted/resultados_2025_base.parquet` | Carga de RESULTADOS e contrato v4 de 22 campos, sem filtros analíticos. |
+| `src/desempenho.py`, `participacao.py`, `redacao.py`, `local_prova.py`, `rede_escolar.py`, `perfil_economico.py` | Regras e cálculos por assunto. Perfil econômico lê PARTICIPANTES independentemente. |
+| `src/*_execucao.py` | Leitura e publicação de agregados; `inscritos_execucao.py` confere o universo divulgado. |
+| `src/*_graficos.py` | Renderização dos agregados em PNG, sem recalcular microdados. |
+| `analitica/` | CSVs compactos consumidos na apresentação. |
+| `notebooks/01` a `07` | 01 trusted; 02 áreas; 03 dias; 04 redação/inscritos; 05 local; 06 rede; 07 economia. |
+| `apresentacao/visao_geral_2025.ipynb` e `apresentacao/graficos/` | Narrativa executada e imagens; a apresentação consome saídas existentes. |
+| `docs/` e `reports/` | Contratos, referência IBGE e roadmap; auditorias históricas dos cálculos. Economia tem regras no notebook 07. |
+| `scripts/executar_notebook.py` | Executa o notebook indicado em kernel novo e salva suas saídas. |
+| `.venv/`, `requirements.txt`, `tests/`, `work/` | Ambiente/dependências existentes, testes existentes e temporários/backups. |
 
-O Git existente foi mantido. `src/__init__.py` identifica o pacote de funções; pastas de dados e documentos não são pacotes Python. Evolução em incrementos pequenos: contrato → cálculo verificado → narrativa factual → revisão.
+**Para atualizar apenas a apresentação e os gráficos:**
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 scripts\executar_notebook.py apresentacao\visao_geral_2025.ipynb
+```
+
+**Para reconstruir tudo:** execute os notebooks **01 → 02 → 03 → 04 → 05 → 06 → 07 → apresentação**, usando o mesmo comando com cada caminho. O 01 só é necessário quando a trusted precisa ser reconstruída; 02–06 dependem dela. O 07 usa PARTICIPANTES e pode rodar independentemente. Uma mudança visual não exige reexecutar cargas ou cálculos.
 
 ## Objetivo e escopo
 
@@ -33,7 +41,7 @@ Materiais em `raw/microdados_enem_2025/microdados_enem_2025/`: `DADOS`, `DICION�
 
 - `RESULTADOS_2025.csv`: 70 colunas, aproximadamente 2,12 GB; base das cinco perguntas iniciais.
 - `PARTICIPANTES_2025.csv`: aproximadamente 513 MB; contém informações dos participantes e o questionário socioeconômico; base da sexta pergunta, sobre o perfil dos inscritos divulgados, sem pressupor comparecimento.
-- A inspeção inicial cobriu 10 mil linhas; agora os 21 campos do contrato v3 (17 anteriores e quatro de local de prova) foram validados em todos os 4.810.772 registros de RESULTADOS. Essa validação de qualidade não substitui as análises finais.
+- A inspeção inicial cobriu 10 mil linhas; agora os 22 campos do contrato v4 (incluindo local de prova e rede escolar) foram validados em todos os 4.810.772 registros de RESULTADOS. Essa validação de qualidade não substitui as análises finais.
 
 Conforme o leia-me (página 7), PARTICIPANTES e RESULTADOS não possuem chave comum. O dicionário distingue `NU_SEQUENCIAL` de `NU_INSCRICAO`. A renda familiar (`Q007`) está somente em PARTICIPANTES: não é possível prometer seu cruzamento individual com notas, nem associar registros pela posição. A pergunta renda × desempenho permanece no escopo futuro, a investigar em edição compatível, sem mudar o ano da POC agora.
 
@@ -177,7 +185,7 @@ O total oficial confirmado e os universos divulgados aparecem separadamente. Not
 
 ## Local de prova — primeira visão de 24/09/2026
 
-A [apresentação](apresentacao/visao_geral_2025.ipynb) inclui presença, permanência e desempenho nas quatro áreas por região/UF de aplicação. O [notebook 05](notebooks/05_local_prova.ipynb) processa a trusted v3, com quatro campos territoriais adicionais e todos os 17 anteriores preservados por chave. Dois PNGs regionais e tabelas completas de UFs; top 3 pela taxa de presença do dia 2, com denominadores.
+A [apresentação](apresentacao/visao_geral_2025.ipynb) mostra notas por região; o notebook 05 mantém também presença, permanência e tabelas de UFs. O [notebook 05](notebooks/05_local_prova.ipynb) processa a trusted v3, com quatro campos territoriais adicionais e todos os 17 anteriores preservados por chave. Um PNG de notas regionais e tabelas completas de UFs no notebook 05; top 3 pela taxa de presença do dia 2, com denominadores.
 
 Fonte regional IBGE congelada em `docs/uf_regiao_ibge.json`; [contrato territorial](docs/contrato_analitico_local_prova_2025.md) e [resumo validado](reports/resumo_local_prova_2025.md). Aplicação não é residência ou rede escolar. Desempenho municipal e redação por local ficam para próximo incremento; renda continua sem join com RESULTADOS. Ordem de reconstrução: 01 → 02 → 03 → 04 → 05 → apresentação. O histórico acima registra os incrementos anteriores.
 
@@ -186,3 +194,11 @@ Fonte regional IBGE congelada em `docs/uf_regiao_ibge.json`; [contrato territori
 A apresentação agora segue local de prova → rede escolar, começando pela cobertura: **36,15% da base tem rede informada**. Compara Federal, Estadual, Municipal e Privada nas quatro áreas, com quartis, medianas e n; zeros mantidos. Subpopulação de possíveis concluintes via Censo Escolar, com bases muito diferentes; sem interpretação causal ou de qualidade.
 
 [Notebook 06](notebooks/06_rede_escolar.ipynb) · [Contrato](docs/contrato_analitico_rede_escolar_2025.md) · [Resumo e validação](reports/resumo_rede_escolar_2025.md). Trusted atual v4, 22 campos; todos os 21 anteriores preservados. Um PNG novo, dois CSVs, 34 testes aprovados e artefatos anteriores idênticos. Reconstrução: 01 → 02 → 03 → 04 → 05 → 06 → apresentação. Próximo passo: renda em PARTICIPANTES, independente das notas. Histórico acima preservado.
+
+## Perfil econômico — concluído em 25/09/2026
+
+O último capítulo da [apresentação](apresentacao/visao_geral_2025.ipynb) usa exclusivamente os **4.810.772 registros divulgados de PARTICIPANTES**, distintos do total oficial confirmado. **44,16%** informaram nenhuma renda familiar ou até R$ 1.518 mensais; **71,81%** declararam não possuir renda própria. Q007 é renda familiar; Q006 apenas declara possuir renda, sem valor individual ou situação de emprego. Nenhum join com notas e nenhuma generalização para a população brasileira.
+
+[Notebook 07 e regras](notebooks/07_perfil_economico.ipynb) · [CSV completo](analitica/perfil_economico_2025.csv). Categorias ordenadas conforme dicionário, quantidades e percentuais com base explícita, ausências separadas (zero nesta edição). Cálculo, I/O e gráficos em `src/perfil_economico*.py`; dois PNGs. Execute o notebook 07 e depois a apresentação; os pipelines de RESULTADOS não precisam ser reexecutados.
+
+Processamento e notebooks executados, totais reconciliados e figuras conferidas visualmente. Sem novos testes, reports, dependências ou mudança de trusted. Os requisitos desta primeira visão estão concluídos; aprofundamentos do backlog permanecem opcionais.

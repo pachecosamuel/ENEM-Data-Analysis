@@ -23,13 +23,13 @@ Reutilizar `calcular_desempenho` nacional sobre uma view filtrada por rede: n, z
 - `analitica/rede_escolar_2025_cobertura.csv`: cinco linhas (quatro redes e sem informação), n e percentual da base total.
 - `analitica/rede_escolar_2025_desempenho.csv`: 16 linhas, uma por rede/área, n e estatísticas sem arredondamento editorial.
 - `reports/validacao_rede_escolar_2025.json`: esquema, hash trusted antes/depois, hashes CSV, cobertura, controles e resultados.
-- `apresentacao/graficos/rede_escolar_notas_2025.png`: um gráfico com quatro painéis; Q1–Q3, mediana e n elegível em ordem dos códigos, sem ordenar por nota.
+- `apresentacao/graficos/rede_escolar_notas_2025.png`: um gráfico com quatro painéis; Q1–Q3 e mediana em ordem dos códigos; n elegível na tabela de apoio, sem ordenar por nota.
 - `notebooks/06_rede_escolar.ipynb`: processamento; `apresentacao/visao_geral_2025.ipynb`: capítulo após local, lê saídas auditadas e confere hashes, sem ETL.
 
 Execução limitada a 256 MB/uma thread no DuckDB. Pandas recebe só agregados. A migração compara os 21 campos anteriores por chave em toda a base, preserva backup e renova as auditorias anteriores; CSVs/PNGs antigos devem permanecer idênticos. Três testes novos cobrem nulos/inválidos, zero/ausência, n/quartis manuais e proteção dos 21 campos. A suíte anterior continua obrigatória.
 
 ## Interpretação e próximo passo
 
-Começar pela cobertura. Comparar distribuições descritivamente, com sobreposição dos quartis e tamanhos de base visíveis. A rede municipal tem base muito menor; diferenças não identificam efeito da escola, qualidade, desempenho de uma escola individual ou causas. Rede não é proxy de renda. Não há ajuste de composição, seleção ou participação. Redação por rede e agregação pública/privada ficam fora deste incremento.
+Começar pela cobertura. Comparar distribuições descritivamente, com sobreposição dos quartis e tamanhos de base explícitos nas tabelas. A rede municipal tem base muito menor; diferenças não identificam efeito da escola, qualidade, desempenho de uma escola individual ou causas. Rede não é proxy de renda. Não há ajuste de composição, seleção ou participação. Redação por rede e agregação pública/privada ficam fora deste incremento.
 
 Próximo passo independente: perfil de renda em PARTICIPANTES. Não cruzar renda com notas individuais de RESULTADOS sem chave comum válida.

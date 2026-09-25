@@ -2,7 +2,6 @@
 from pathlib import Path
 import matplotlib.pyplot as plt
 from src.desempenho import AREAS
-from src.participacao_graficos import numero
 
 
 def gerar_grafico_rede_escolar(resultado, pasta):
@@ -22,13 +21,13 @@ def gerar_grafico_rede_escolar(resultado, pasta):
                     ax.scatter(r['mediana'], i, color='#202D3B', s=40, zorder=3)
                     ax.text(r['mediana'], i-.19, f"{r['mediana']:.1f}".replace('.', ','),
                             ha='center', fontsize=10, color='#202D3B')
-            ax.set_yticks(range(4), [f"{r['rede']}\nn = {numero(r['elegiveis'])}" for r in linhas])
+            ax.set_yticks(range(4), [r['rede'] for r in linhas])
             ax.set(xlim=(250, 850), ylim=(3.6, -.6), xlabel='Nota na área', title=AREAS[area])
             ax.grid(axis='x', alpha=.15)
             ax.set_axisbelow(True)
         fig.text(.055, .965, 'Como as notas variam entre as redes informadas?',
                  fontsize=20, weight='bold', color='#202D3B')
-        fig.text(.055, .925, 'Faixa: Q1–Q3 (50% centrais)  •  Ponto: mediana  •  n: presentes com nota na área', fontsize=12)
+        fig.text(.055, .925, 'Faixa: Q1–Q3 (50% centrais)  •  Ponto: mediana', fontsize=12)
         fig.text(.055, .055, f'Rede disponível em {cobertura} da base. Recorte escolar selecionado; não representa todos os participantes.\n'
                  'Zeros incluídos. A rede municipal tem base menor. Diferenças descritivas, sem interpretação causal ou de qualidade.\n'
                  'Fonte: microdados ENEM 2025 / RESULTADOS. Quartis contínuos (tipo 7); a faixa não mostra mínimos e máximos.',
