@@ -1,0 +1,263 @@
+{
+  "data_utc": "2026-09-24T21:51:29.011920+00:00",
+  "validacao": "aprovada",
+  "trusted_sha256": "2c5bb5f9993c5b64e69bda00075427a21a7f5a5d15d106f4ce3ab2d7d119c5f3",
+  "raw_sha256": "5df5ebed6395a3e69e3dc3b3c9731930312597318ff4dfc178b136514796803d",
+  "registros": 4810772,
+  "regressao_21_campos": {
+    "campos": [
+      "NU_SEQUENCIAL",
+      "NU_ANO",
+      "TP_PRESENCA_CN",
+      "TP_PRESENCA_CH",
+      "TP_PRESENCA_LC",
+      "TP_PRESENCA_MT",
+      "NU_NOTA_CN",
+      "NU_NOTA_CH",
+      "NU_NOTA_LC",
+      "NU_NOTA_MT",
+      "TP_STATUS_REDACAO",
+      "NU_NOTA_REDACAO",
+      "NU_NOTA_COMP1",
+      "NU_NOTA_COMP2",
+      "NU_NOTA_COMP3",
+      "NU_NOTA_COMP4",
+      "NU_NOTA_COMP5",
+      "CO_MUNICIPIO_PROVA",
+      "NO_MUNICIPIO_PROVA",
+      "CO_UF_PROVA",
+      "SG_UF_PROVA"
+    ],
+    "divergencias": 0,
+    "sha256_anterior": "0732b7821e08e23601c7c9f309a7b9e088ad66fdd5c3e3fa5b3da744eb66a240",
+    "esquema_anterior": [
+      [
+        "NU_SEQUENCIAL",
+        "VARCHAR"
+      ],
+      [
+        "NU_ANO",
+        "INTEGER"
+      ],
+      [
+        "TP_PRESENCA_CN",
+        "TINYINT"
+      ],
+      [
+        "TP_PRESENCA_CH",
+        "TINYINT"
+      ],
+      [
+        "TP_PRESENCA_LC",
+        "TINYINT"
+      ],
+      [
+        "TP_PRESENCA_MT",
+        "TINYINT"
+      ],
+      [
+        "NU_NOTA_CN",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_CH",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_LC",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_MT",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "TP_STATUS_REDACAO",
+        "TINYINT"
+      ],
+      [
+        "NU_NOTA_REDACAO",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_COMP1",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_COMP2",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_COMP3",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_COMP4",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "NU_NOTA_COMP5",
+        "DECIMAL(10,1)"
+      ],
+      [
+        "CO_MUNICIPIO_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "NO_MUNICIPIO_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "CO_UF_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "SG_UF_PROVA",
+        "VARCHAR"
+      ]
+    ]
+  },
+  "rollback": "work/rollback_resultados_0732b7821e08e23601c7c9f309a7b9e088ad66fdd5c3e3fa5b3da744eb66a240.parquet",
+  "backup_manifesto": "work\\pre_rede_escolar_2025\\hashes.json",
+  "backup_integro": true,
+  "arquivos_anteriores": {
+    "analitica/desempenho_2025.csv": {
+      "sha256_anterior": "afd713081ab322f8e9f27fc810316a9ef496e01bb64f5c6d68f28e9e4f16e027",
+      "sha256_atual": "afd713081ab322f8e9f27fc810316a9ef496e01bb64f5c6d68f28e9e4f16e027",
+      "identico": true
+    },
+    "analitica/local_prova_2025_desempenho.csv": {
+      "sha256_anterior": "d6226d3ab6ab946bd207f56e7213fd2578729cb36affcdabdf201c5dbf73d9e0",
+      "sha256_atual": "d6226d3ab6ab946bd207f56e7213fd2578729cb36affcdabdf201c5dbf73d9e0",
+      "identico": true
+    },
+    "analitica/local_prova_2025_participacao.csv": {
+      "sha256_anterior": "5ee4dec529fa6e1d2e4dc6ef32ffdf0c61e07ff409e458ec4cc75bf120d341f0",
+      "sha256_atual": "5ee4dec529fa6e1d2e4dc6ef32ffdf0c61e07ff409e458ec4cc75bf120d341f0",
+      "identico": true
+    },
+    "analitica/local_prova_2025_top3_ufs.csv": {
+      "sha256_anterior": "4da8001086b4fee947018616fe4cd75fe5a2a11ddcc4e8c8d7bc7df1f4dc8aaf",
+      "sha256_atual": "4da8001086b4fee947018616fe4cd75fe5a2a11ddcc4e8c8d7bc7df1f4dc8aaf",
+      "identico": true
+    },
+    "analitica/local_prova_2025_transicoes.csv": {
+      "sha256_anterior": "38111ffa7b33ad5034d8c587b28b7a29beb3eb066a537c45569d038030b79202",
+      "sha256_atual": "38111ffa7b33ad5034d8c587b28b7a29beb3eb066a537c45569d038030b79202",
+      "identico": true
+    },
+    "analitica/participacao_2025_combinacoes_conjuntas.csv": {
+      "sha256_anterior": "599d35fcbb869484b12cbcdf5b71f93eca269cc483f1d6a4c58a91c482c87ace",
+      "sha256_atual": "599d35fcbb869484b12cbcdf5b71f93eca269cc483f1d6a4c58a91c482c87ace",
+      "identico": true
+    },
+    "analitica/participacao_2025_dias.csv": {
+      "sha256_anterior": "c6b73db28905daa37d9c118fa3913bdaaade7bf9b8b441f0672e948dfa08f287",
+      "sha256_atual": "c6b73db28905daa37d9c118fa3913bdaaade7bf9b8b441f0672e948dfa08f287",
+      "identico": true
+    },
+    "analitica/participacao_2025_pares.csv": {
+      "sha256_anterior": "580d3aa49b464b50953252cb9a63bf6561f83e7424e6954ff8f997cc3cad2a43",
+      "sha256_atual": "580d3aa49b464b50953252cb9a63bf6561f83e7424e6954ff8f997cc3cad2a43",
+      "identico": true
+    },
+    "analitica/participacao_2025_resumo.csv": {
+      "sha256_anterior": "ef4c026b141ce48d2ff6155f7ee6b62deccf0440a85cb8c8d961227e04949a68",
+      "sha256_atual": "ef4c026b141ce48d2ff6155f7ee6b62deccf0440a85cb8c8d961227e04949a68",
+      "identico": true
+    },
+    "analitica/participacao_2025_transicoes.csv": {
+      "sha256_anterior": "c72046ebefe23dab4f6685d65227dbe631eace61d2a15ebe3911568a1055891b",
+      "sha256_atual": "c72046ebefe23dab4f6685d65227dbe631eace61d2a15ebe3911568a1055891b",
+      "identico": true
+    },
+    "analitica/redacao_2025_competencias.csv": {
+      "sha256_anterior": "f70ce8a8d11d830d5d16e5d1d3436730e8ea5b02e7ea1adf6ff7571e6f703a73",
+      "sha256_atual": "f70ce8a8d11d830d5d16e5d1d3436730e8ea5b02e7ea1adf6ff7571e6f703a73",
+      "identico": true
+    },
+    "analitica/redacao_2025_distribuicao.csv": {
+      "sha256_anterior": "ece4fab3267645ef2854cdb2af1bff3a1e38bd34aa6aac66f5ecc4069cf4ee8c",
+      "sha256_atual": "ece4fab3267645ef2854cdb2af1bff3a1e38bd34aa6aac66f5ecc4069cf4ee8c",
+      "identico": true
+    },
+    "analitica/redacao_2025_final.csv": {
+      "sha256_anterior": "f68f8909de1348304d22a322634ba9a0a849b051175e3be4bbe9c2dbe18fa3c6",
+      "sha256_atual": "f68f8909de1348304d22a322634ba9a0a849b051175e3be4bbe9c2dbe18fa3c6",
+      "identico": true
+    },
+    "analitica/redacao_2025_presencas.csv": {
+      "sha256_anterior": "6f35caa400e0c6fd8fd8350b7e6b2d1951f54d643c0ac6655c40b8092675bd38",
+      "sha256_atual": "6f35caa400e0c6fd8fd8350b7e6b2d1951f54d643c0ac6655c40b8092675bd38",
+      "identico": true
+    },
+    "analitica/redacao_2025_status.csv": {
+      "sha256_anterior": "b7d4002d65b650f523eca312969d6472d2ebd2b6cbfa66315a044e3ebe86a26f",
+      "sha256_atual": "b7d4002d65b650f523eca312969d6472d2ebd2b6cbfa66315a044e3ebe86a26f",
+      "identico": true
+    },
+    "apresentacao/graficos/local_prova_notas_regioes_2025.png": {
+      "sha256_anterior": "2c1a180e238c9ca59e95cd6069b74632bf6e607813affe8ec28468e7f2c9fbfb",
+      "sha256_atual": "2c1a180e238c9ca59e95cd6069b74632bf6e607813affe8ec28468e7f2c9fbfb",
+      "identico": true
+    },
+    "apresentacao/graficos/local_prova_presenca_regioes_2025.png": {
+      "sha256_anterior": "9d65541f596ae59bc050e4a0d66b9088f85645b5217f0c3e70fefd7684c71c33",
+      "sha256_atual": "9d65541f596ae59bc050e4a0d66b9088f85645b5217f0c3e70fefd7684c71c33",
+      "identico": true
+    },
+    "apresentacao/graficos/participacao_por_area_2025.png": {
+      "sha256_anterior": "11895b81b454478c8d3f00e84b1e09d00a41710165372aaae069bdaa109fee95",
+      "sha256_atual": "11895b81b454478c8d3f00e84b1e09d00a41710165372aaae069bdaa109fee95",
+      "identico": true
+    },
+    "apresentacao/graficos/participacao_por_dia_2025.png": {
+      "sha256_anterior": "51e704a413280d7d8fb64c5ffc84a0a95a239b5d1d2b68e88cb69190638c551f",
+      "sha256_atual": "51e704a413280d7d8fb64c5ffc84a0a95a239b5d1d2b68e88cb69190638c551f",
+      "identico": true
+    },
+    "apresentacao/graficos/quartis_por_area_2025.png": {
+      "sha256_anterior": "b78797b044c7ec51073339dac54664e37ad02a31bf2580026e33ede5ac4cf95f",
+      "sha256_atual": "b78797b044c7ec51073339dac54664e37ad02a31bf2580026e33ede5ac4cf95f",
+      "identico": true
+    },
+    "apresentacao/graficos/redacao_competencias_2025.png": {
+      "sha256_anterior": "e2a6101ad34e4a5b4944c9539bf9621239c4339cd55cb6622d6a58f9c2db0b17",
+      "sha256_atual": "e2a6101ad34e4a5b4944c9539bf9621239c4339cd55cb6622d6a58f9c2db0b17",
+      "identico": true
+    },
+    "apresentacao/graficos/redacao_distribuicao_2025.png": {
+      "sha256_anterior": "af4e8c10f73baa698136131fce319d44db16d33de7a375d57fab554b57100d49",
+      "sha256_atual": "af4e8c10f73baa698136131fce319d44db16d33de7a375d57fab554b57100d49",
+      "identico": true
+    },
+    "apresentacao/graficos/transicoes_entre_dias_2025.png": {
+      "sha256_anterior": "b9897a89c97e10c1d0bae5bda5bd06155c715cde88d28a909f821aaa48f21382",
+      "sha256_atual": "b9897a89c97e10c1d0bae5bda5bd06155c715cde88d28a909f821aaa48f21382",
+      "identico": true
+    }
+  },
+  "csv_anteriores_identicos": 15,
+  "png_anteriores_identicos": 8,
+  "celulas_narrativas_anteriores_preservadas": true,
+  "notebooks_executados_em_kernel_novo": [
+    "notebooks/01_resultados_trusted.ipynb",
+    "notebooks/02_desempenho_por_area.ipynb",
+    "notebooks/03_participacao_entre_dias.ipynb",
+    "notebooks/04_redacao.ipynb",
+    "notebooks/05_local_prova.ipynb",
+    "notebooks/06_rede_escolar.ipynb",
+    "apresentacao/visao_geral_2025.ipynb"
+  ],
+  "testes": {
+    "anteriores": 31,
+    "novos": 3,
+    "aprovados": 34
+  },
+  "png_inspecionado": "apresentacao/graficos/rede_escolar_notas_2025.png",
+  "limites": [
+    "Rede válida em 36,15% da base: subpopulação selecionada de possíveis concluintes via Censo Escolar.",
+    "Base municipal pequena; comparação descritiva, sem efeito causal, qualidade ou proxy de renda.",
+    "Nenhum join com PARTICIPANTES, commit, push ou nova dependência."
+  ]
+}

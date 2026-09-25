@@ -10,7 +10,7 @@ Para ler os resultados, abra [a apresentação](apresentacao/visao_geral_2025.ip
 | Diretório | Responsabilidade |
 | --- | --- |
 | `src/` | Funções reutilizáveis: transformação, cálculo, I/O e gráficos em módulos separados. |
-| `notebooks/` | Acompanhamento do processamento; 01 gera trusted, 02 calcula agregados. |
+| `notebooks/` | Acompanhamento do processamento; 01 gera trusted; 02–05 calculam e auditam agregados. |
 | `apresentacao/` | Narrativa para leitura e PNG separados em `graficos/`. |
 | `docs/` | Contratos e roadmap. |
 | `reports/` | Auditorias e relatos de validação. |
@@ -33,7 +33,7 @@ Materiais em `raw/microdados_enem_2025/microdados_enem_2025/`: `DADOS`, `DICION�
 
 - `RESULTADOS_2025.csv`: 70 colunas, aproximadamente 2,12 GB; base das cinco perguntas iniciais.
 - `PARTICIPANTES_2025.csv`: aproximadamente 513 MB; contém informações dos participantes e o questionário socioeconômico; base da sexta pergunta, sobre o perfil dos inscritos divulgados, sem pressupor comparecimento.
-- A inspeção inicial cobriu 10 mil linhas; agora os 17 campos do contrato v2 (dez legados e sete de redação) foram validados em todos os 4.810.772 registros de RESULTADOS. Essa validação de qualidade não substitui as análises finais.
+- A inspeção inicial cobriu 10 mil linhas; agora os 21 campos do contrato v3 (17 anteriores e quatro de local de prova) foram validados em todos os 4.810.772 registros de RESULTADOS. Essa validação de qualidade não substitui as análises finais.
 
 Conforme o leia-me (página 7), PARTICIPANTES e RESULTADOS não possuem chave comum. O dicionário distingue `NU_SEQUENCIAL` de `NU_INSCRICAO`. A renda familiar (`Q007`) está somente em PARTICIPANTES: não é possível prometer seu cruzamento individual com notas, nem associar registros pela posição. A pergunta renda × desempenho permanece no escopo futuro, a investigar em edição compatível, sem mudar o ano da POC agora.
 
@@ -173,3 +173,16 @@ Funções em `src/participacao.py`, I/O em `src/participacao_execucao.py` e grá
 Execute `notebooks/04_redacao.ipynb` para a auditoria independente de inscritos e os agregados de redação. A trusted compartilhada tem 17 campos; `01` reconstrói a base com validação exata, `02` e `03` renovam indicadores/auditorias existentes. A apresentação lê essas saídas e verifica integridade, sem executar pipelines. Consulte [o contrato de redação](docs/contrato_analitico_redacao_2025.md) e [os resultados, testes e limites](reports/resumo_redacao_2025.md).
 
 O total oficial confirmado e os universos divulgados aparecem separadamente. Nota final inclui zeros; status usa toda a base; competências usam um recorte comum explicitado. Não houve join PARTICIPANTES–RESULTADOS, análise de avaliadores, região, rede ou renda neste incremento.
+
+
+## Local de prova — primeira visão de 24/09/2026
+
+A [apresentação](apresentacao/visao_geral_2025.ipynb) inclui presença, permanência e desempenho nas quatro áreas por região/UF de aplicação. O [notebook 05](notebooks/05_local_prova.ipynb) processa a trusted v3, com quatro campos territoriais adicionais e todos os 17 anteriores preservados por chave. Dois PNGs regionais e tabelas completas de UFs; top 3 pela taxa de presença do dia 2, com denominadores.
+
+Fonte regional IBGE congelada em `docs/uf_regiao_ibge.json`; [contrato territorial](docs/contrato_analitico_local_prova_2025.md) e [resumo validado](reports/resumo_local_prova_2025.md). Aplicação não é residência ou rede escolar. Desempenho municipal e redação por local ficam para próximo incremento; renda continua sem join com RESULTADOS. Ordem de reconstrução: 01 → 02 → 03 → 04 → 05 → apresentação. O histórico acima registra os incrementos anteriores.
+
+## Rede escolar — 24/09/2026
+
+A apresentação agora segue local de prova → rede escolar, começando pela cobertura: **36,15% da base tem rede informada**. Compara Federal, Estadual, Municipal e Privada nas quatro áreas, com quartis, medianas e n; zeros mantidos. Subpopulação de possíveis concluintes via Censo Escolar, com bases muito diferentes; sem interpretação causal ou de qualidade.
+
+[Notebook 06](notebooks/06_rede_escolar.ipynb) · [Contrato](docs/contrato_analitico_rede_escolar_2025.md) · [Resumo e validação](reports/resumo_rede_escolar_2025.md). Trusted atual v4, 22 campos; todos os 21 anteriores preservados. Um PNG novo, dois CSVs, 34 testes aprovados e artefatos anteriores idênticos. Reconstrução: 01 → 02 → 03 → 04 → 05 → 06 → apresentação. Próximo passo: renda em PARTICIPANTES, independente das notas. Histórico acima preservado.

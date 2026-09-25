@@ -2,7 +2,7 @@
 
 17/09/2026 · versão 2 (extremos observados) · pergunta: como se distribui o desempenho por área?
 
-Fonte única: `trusted/resultados_2025_base.parquet`, dez campos já validados. Unidade: registro identificado por `NU_SEQUENCIAL`, ano 2025. O processamento não modifica a trusted, não reabre raw e não associa PARTICIPANTES. A auditoria registra hash antes/depois e esquema. As notas DECIMAL(10,1) são lidas em sua escala original: não dividir por dez para compensar exibição de extensões.
+Fonte única: `trusted/resultados_2025_base.parquet`, campos necessários já validados; leitor aceita versões completas v1/v2/v3 conforme contrato técnico, mantendo a mesma seleção analítica. Unidade: registro identificado por `NU_SEQUENCIAL`, ano 2025. O processamento não modifica a trusted, não reabre raw e não associa PARTICIPANTES. A auditoria registra hash antes/depois e esquema. As notas DECIMAL(10,1) são lidas em sua escala original: não dividir por dez para compensar exibição de extensões.
 
 ## População e denominadores
 

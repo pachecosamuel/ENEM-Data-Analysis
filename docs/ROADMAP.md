@@ -1,6 +1,6 @@
 # Roadmap — ENEM 2025
 
-Atualizado em 22/09/2026. Plano de trabalho incremental; caixas abertas representam trabalho futuro.
+Atualizado em 24/09/2026. Plano de trabalho incremental; caixas abertas representam trabalho futuro.
 
 ## Onde estamos e como retomar
 
@@ -13,7 +13,7 @@ Atualizado em 22/09/2026. Plano de trabalho incremental; caixas abertas represen
 - [x] Indicadores de desempenho por área, tabela e dois gráficos validados a partir da trusted.
 - [ ] Demais requisitos e perfil dos demais campos ainda pendentes.
 
-**Ponto de retomada:** revisar a primeira POC de redação e a abertura sobre inscritos na apresentação. Perguntas 1 e 2 concluídas; pergunta 5 tem primeira POC validada no notebook 04. Após revisão, definir próximo incremento sem antecipar região, rede ou perfil econômico.
+**Ponto de retomada:** revisar a primeira visão de local de prova (regiões e UFs) na apresentação e no notebook 05. Perguntas 1 e 2 concluídas; redação e local de prova têm primeiras POCs validadas. Depois da revisão, decidir entre rede escolar, perfil econômico independente ou aprofundamento territorial; não ampliar automaticamente.
 
 ## Decisões tomadas
 
@@ -72,7 +72,7 @@ Atualizado em 22/09/2026. Plano de trabalho incremental; caixas abertas represen
 ### 5. Desenvolver os demais requisitos gradualmente
 
 - [x] Participação entre dias: contrato, pares, matriz, retenção e saldo validados; eliminações e divergências separadas.
-- [ ] Local de prova: analisar presença e desempenho; documentar mapeamento UF–região, sem confundir aplicação com residência.
+- [x] Local de prova: primeira visão de regiões/UFs, presença, permanência e desempenho por área com mapeamento IBGE; aplicação distinta de residência. Municípios e redação territorial permanecem pendentes.
 - [ ] Rede escolar: explicitar cobertura e não informados; públicas = federal, estadual e municipal; evitar inferência causal.
 - [x] Redação: primeira POC com contrato de elegibilidade, status, nota final e competências; revisão do usuário antes de ampliar.
 - [ ] Perfil econômico independente: quantidades e percentuais por `Q007`, complemento com/sem renda em `Q006`; preservar “nenhuma renda”, separar ausentes/inválidos e explicitar base total e, se usado, denominador de respostas válidas. Não estimar renda pessoal ou renda per capita exata de faixas.
@@ -134,3 +134,20 @@ Trusted v2: sete campos de redação adicionados aos dez legados, sem excluir re
 Redação: 3.457.555 notas registradas, inclusive 211.859 zeros; média 580,80, mediana 600, Q1–Q3 480–720, observados 0–1000. Sem nota: 1.353.217. Competências: recorte comum de 3.245.696 redações Sem problemas com notas completas, mantendo zeros; todas as medianas 120. Soma das competências coincide com a final em todos os registros comparáveis.
 
 [Contrato](contrato_analitico_redacao_2025.md), [notebook 04](../notebooks/04_redacao.ipynb), [resumo e limites](../reports/resumo_redacao_2025.md). Dois gráficos novos; apresentação consome agregados auditados. 25 testes passaram; notebooks necessários executados em kernels novos; PNGs inspecionados. Os registros anteriores deste roadmap são históricos.
+
+
+## Local de prova — 24/09/2026
+
+Primeira visão implementada: cobertura 100% dos 4.810.772 registros, 27 UFs/5 regiões e 1.805 códigos municipais. Referência IBGE oficial obtida via API e congelada com data/hash. Trusted v3 com 21 campos; todos os 17 anteriores comparados exatamente por chave antes da publicação. Backup v2 e os backups anteriores preservados.
+
+Presença e permanência reutilizam a classificação dos pares LC/CH e CN/MT. Médias e quantis regionais/UF calculados diretamente dos registros por área, com presença=1 e nota disponível, zeros mantidos. Top 3 UFs por taxa do dia 2: CE, SE e RN; menores AM, RR e MT, com bases próprias. Nordeste teve a maior taxa regional de presença no dia 2 (70,52%); Sudeste, as maiores medianas nas quatro áreas. São descrições, sem inferência de causas/qualidade.
+
+[Contrato](contrato_analitico_local_prova_2025.md), [notebook 05](../notebooks/05_local_prova.ipynb) e [resumo](../reports/resumo_local_prova_2025.md). Dois PNGs locais; quatro CSVs com regiões/UFs/nacional e transições. 31 testes passaram, notebooks relevantes executados em kernels novos e figuras inspecionadas. Nenhuma análise de rede/renda/outros anos; municípios detalhados e redação territorial ficam no backlog. Entradas anteriores deste roadmap são históricas.
+
+## Rede escolar — 24/09/2026
+
+Implementada a comparação das quatro áreas por Federal, Estadual, Municipal e Privada, após o capítulo territorial. Cobertura primeiro: 1.739.028 com rede válida (36,15%), 3.071.744 sem informação, zero inválidos. Leia_Me descreve seleção de possíveis concluintes via Censo; não generalizar para toda a base. Municipal tem base menor. Rede não é renda, qualidade ou efeito causal.
+
+Trusted v4 adiciona somente TP_DEPENDENCIA_ADM_ESC; os 21 campos v3 foram preservados por chave, com backup. Quinze CSVs e oito PNGs anteriores idênticos. [Notebook 06](../notebooks/06_rede_escolar.ipynb), [contrato](contrato_analitico_rede_escolar_2025.md) e [resumo](../reports/resumo_rede_escolar_2025.md); um PNG e dois CSVs novos. Trinta e quatro testes aprovados (três novos essenciais); notebooks e apresentação executados em kernels novos, gráfico inspecionado.
+
+**Próxima etapa: perfil de renda em PARTICIPANTES, independente das notas de RESULTADOS.** Sem join individual. Redação por rede, municípios e expansão temporal ficam no backlog. Entradas anteriores registram o histórico.

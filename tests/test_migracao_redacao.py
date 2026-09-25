@@ -21,7 +21,7 @@ class MigracaoTest(unittest.TestCase):
                 con.execute('COPY t TO ? (FORMAT PARQUET)',[str(p)])
             antes=sha256(p)
             raw=raiz/FONTE; raw.parent.mkdir(parents=True)
-            linha=['001','2025',*(['1']*4),*(['500']*4),'1','500',*(['100']*5)]
+            linha=['001','2025',*(['1']*4),*(['500']*4),'1','500',*(['100']*5),'3550308','São Paulo','35','SP','2']
             def gravar():
                 with raw.open('w',encoding='latin-1',newline='') as f:
                     w=csv.writer(f,delimiter=';'); w.writerow(CAMPOS); w.writerow(linha)
@@ -42,7 +42,7 @@ class MigracaoTest(unittest.TestCase):
     def test_esquema_nao_aceita_extensao_parcial_ou_tipo_trocado(self):
         completo=[list(x) for x in TIPOS.items()]
         conferir_esquema(completo,exigir_redacao=True)
-        for esquema in (completo[:-1], [*completo[:-1],['NU_NOTA_COMP5','DOUBLE']]):
+        for esquema in (completo[:-2], [*completo[:-1],['NU_NOTA_COMP5','DOUBLE']]):
             with self.assertRaises(ValueError):conferir_esquema(esquema)
 
     def test_status_e_precisao_redacao_invalidos_bloqueiam(self):
@@ -50,7 +50,7 @@ class MigracaoTest(unittest.TestCase):
         for campo,valor in [('TP_STATUS_REDACAO','5'),('NU_NOTA_COMP1','10.33'),('NU_NOTA_REDACAO','abc')]:
             with duckdb.connect() as con:
                 con.execute('CREATE TABLE entrada('+','.join(f'{c} VARCHAR' for c in CAMPOS)+')')
-                linha=['001','2025',*(['1']*4),*(['500']*4),'1','500',*(['100']*5)]
+                linha=['001','2025',*(['1']*4),*(['500']*4),'1','500',*(['100']*5),'3550308','São Paulo','35','SP','2']
                 linha[CAMPOS.index(campo)]=valor
                 con.executemany('INSERT INTO entrada VALUES ('+','.join('?' for c in CAMPOS)+')',[linha])
                 with self.assertRaises(ErroContrato):padronizar(con)

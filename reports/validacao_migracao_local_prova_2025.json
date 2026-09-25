@@ -1,0 +1,84 @@
+{
+  "data": "2026-09-24",
+  "migracao": "v2 -> v3",
+  "registros": 4810772,
+  "campos_anteriores": [
+    "NU_SEQUENCIAL",
+    "NU_ANO",
+    "TP_PRESENCA_CN",
+    "TP_PRESENCA_CH",
+    "TP_PRESENCA_LC",
+    "TP_PRESENCA_MT",
+    "NU_NOTA_CN",
+    "NU_NOTA_CH",
+    "NU_NOTA_LC",
+    "NU_NOTA_MT",
+    "TP_STATUS_REDACAO",
+    "NU_NOTA_REDACAO",
+    "NU_NOTA_COMP1",
+    "NU_NOTA_COMP2",
+    "NU_NOTA_COMP3",
+    "NU_NOTA_COMP4",
+    "NU_NOTA_COMP5"
+  ],
+  "divergencias_por_chave": 0,
+  "sha256_trusted_anterior": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
+  "sha256_trusted_atual": "0732b7821e08e23601c7c9f309a7b9e088ad66fdd5c3e3fa5b3da744eb66a240",
+  "backup_completo": "work/pre_local_prova_2025/",
+  "rollback_parquet": "work/rollback_resultados_c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d.parquet",
+  "raw_resultados_inalterado": true,
+  "raw_participantes_inalterado": true,
+  "sha256_raw_resultados": "5df5ebed6395a3e69e3dc3b3c9731930312597318ff4dfc178b136514796803d",
+  "hashes_artefatos_anteriores_inalterados": {
+    "analitica/desempenho_2025.csv": "afd713081ab322f8e9f27fc810316a9ef496e01bb64f5c6d68f28e9e4f16e027",
+    "analitica/participacao_2025_combinacoes_conjuntas.csv": "599d35fcbb869484b12cbcdf5b71f93eca269cc483f1d6a4c58a91c482c87ace",
+    "analitica/participacao_2025_dias.csv": "c6b73db28905daa37d9c118fa3913bdaaade7bf9b8b441f0672e948dfa08f287",
+    "analitica/participacao_2025_pares.csv": "580d3aa49b464b50953252cb9a63bf6561f83e7424e6954ff8f997cc3cad2a43",
+    "analitica/participacao_2025_resumo.csv": "ef4c026b141ce48d2ff6155f7ee6b62deccf0440a85cb8c8d961227e04949a68",
+    "analitica/participacao_2025_transicoes.csv": "c72046ebefe23dab4f6685d65227dbe631eace61d2a15ebe3911568a1055891b",
+    "analitica/redacao_2025_competencias.csv": "f70ce8a8d11d830d5d16e5d1d3436730e8ea5b02e7ea1adf6ff7571e6f703a73",
+    "analitica/redacao_2025_distribuicao.csv": "ece4fab3267645ef2854cdb2af1bff3a1e38bd34aa6aac66f5ecc4069cf4ee8c",
+    "analitica/redacao_2025_final.csv": "f68f8909de1348304d22a322634ba9a0a849b051175e3be4bbe9c2dbe18fa3c6",
+    "analitica/redacao_2025_presencas.csv": "6f35caa400e0c6fd8fd8350b7e6b2d1951f54d643c0ac6655c40b8092675bd38",
+    "analitica/redacao_2025_status.csv": "b7d4002d65b650f523eca312969d6472d2ebd2b6cbfa66315a044e3ebe86a26f",
+    "apresentacao/graficos/participacao_por_area_2025.png": "11895b81b454478c8d3f00e84b1e09d00a41710165372aaae069bdaa109fee95",
+    "apresentacao/graficos/participacao_por_dia_2025.png": "51e704a413280d7d8fb64c5ffc84a0a95a239b5d1d2b68e88cb69190638c551f",
+    "apresentacao/graficos/quartis_por_area_2025.png": "b78797b044c7ec51073339dac54664e37ad02a31bf2580026e33ede5ac4cf95f",
+    "apresentacao/graficos/redacao_competencias_2025.png": "e2a6101ad34e4a5b4944c9539bf9621239c4339cd55cb6622d6a58f9c2db0b17",
+    "apresentacao/graficos/redacao_distribuicao_2025.png": "af4e8c10f73baa698136131fce319d44db16d33de7a375d57fab554b57100d49",
+    "apresentacao/graficos/transicoes_entre_dias_2025.png": "b9897a89c97e10c1d0bae5bda5bd06155c715cde88d28a909f821aaa48f21382"
+  },
+  "indicadores_nacionais_iguais": true,
+  "narrativa_anterior_preservada": true,
+  "notebooks": {
+    "notebooks/01_resultados_trusted.ipynb": {
+      "celulas_executadas": 4,
+      "erros": 0
+    },
+    "notebooks/02_desempenho_por_area.ipynb": {
+      "celulas_executadas": 3,
+      "erros": 0
+    },
+    "notebooks/03_participacao_entre_dias.ipynb": {
+      "celulas_executadas": 4,
+      "erros": 0
+    },
+    "notebooks/04_redacao.ipynb": {
+      "celulas_executadas": 4,
+      "erros": 0
+    },
+    "notebooks/05_local_prova.ipynb": {
+      "celulas_executadas": 5,
+      "erros": 0
+    },
+    "apresentacao/visao_geral_2025.ipynb": {
+      "celulas_executadas": 16,
+      "erros": 0
+    }
+  },
+  "testes_aprovados": 31,
+  "graficos_novos_inspecionados": [
+    "local_prova_presenca_regioes_2025.png",
+    "local_prova_notas_regioes_2025.png"
+  ]
+}

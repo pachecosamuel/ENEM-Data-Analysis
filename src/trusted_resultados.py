@@ -1,4 +1,4 @@
-"""Contrato v2 de RESULTADOS 2025: 17 campos, nenhuma exclusão de linhas."""
+"""Contrato v4 de RESULTADOS 2025: 22 campos, nenhuma exclusão de linhas."""
 from __future__ import annotations
 
 import argparse
@@ -13,15 +13,20 @@ import time
 
 import duckdb
 import psutil
+from src.local_prova_referencia import CAMPOS_LOCAL, preparar_local, auditar_local
 
 AREAS = ('CN', 'CH', 'LC', 'MT')
 PRESENCAS = tuple(f'TP_PRESENCA_{a}' for a in AREAS)
 NOTAS = tuple(f'NU_NOTA_{a}' for a in AREAS)
 CAMPOS_LEGADOS = ('NU_SEQUENCIAL', 'NU_ANO', *PRESENCAS, *NOTAS)
 NOTAS_REDACAO = ('NU_NOTA_REDACAO', *(f'NU_NOTA_COMP{i}' for i in range(1, 6)))
-CAMPOS = (*CAMPOS_LEGADOS, 'TP_STATUS_REDACAO', *NOTAS_REDACAO)
+CAMPOS_V2 = (*CAMPOS_LEGADOS, 'TP_STATUS_REDACAO', *NOTAS_REDACAO)
+CAMPOS_V3 = (*CAMPOS_V2, *CAMPOS_LOCAL)
+CAMPOS = (*CAMPOS_V3, 'TP_DEPENDENCIA_ADM_ESC')
 TIPOS_LEGADOS = dict(zip(CAMPOS_LEGADOS, ('VARCHAR', 'INTEGER', *(['TINYINT'] * 4), *(['DECIMAL(10,1)'] * 4))))
-TIPOS = {**TIPOS_LEGADOS, 'TP_STATUS_REDACAO': 'TINYINT', **dict.fromkeys(NOTAS_REDACAO, 'DECIMAL(10,1)')}
+TIPOS_V2 = {**TIPOS_LEGADOS, 'TP_STATUS_REDACAO': 'TINYINT', **dict.fromkeys(NOTAS_REDACAO, 'DECIMAL(10,1)')}
+TIPOS_V3 = {**TIPOS_V2, **dict.fromkeys(CAMPOS_LOCAL, 'VARCHAR')}
+TIPOS = {**TIPOS_V3, 'TP_DEPENDENCIA_ADM_ESC': 'TINYINT'}
 FONTE = Path('raw/microdados_enem_2025/microdados_enem_2025/DADOS/RESULTADOS_2025.csv')
 
 
@@ -83,12 +88,16 @@ def padronizar(con):
     falhas = {}
     inesperadas = {}
     for campo in CAMPOS[1:]:
+        if campo in CAMPOS_LOCAL:
+            continue  # Texto preservado; categorias/formatos territoriais são achados, não descartes.
         padrao = r'[+-]?[0-9]+(\.[0-9])?' if campo in (*NOTAS, *NOTAS_REDACAO) else r'[0-9]+'
         condicao = (f'{campo} IS NOT NULL AND (NOT regexp_full_match({campo}, {literal(padrao)}) '
                     f'OR TRY_CAST({campo} AS {TIPOS[campo]}) IS NULL)')
         falhas[campo] = con.execute(f'SELECT count(*) FROM textos WHERE {condicao}').fetchone()[0]
-    for campo in (*PRESENCAS, 'TP_STATUS_REDACAO'):
+    for campo in (*PRESENCAS, 'TP_STATUS_REDACAO', 'TP_DEPENDENCIA_ADM_ESC'):
         codigos = "'1','2','3','4','6','7','8','9'" if campo == 'TP_STATUS_REDACAO' else "'0','1','2'"
+        if campo == 'TP_DEPENDENCIA_ADM_ESC':
+            codigos = "'1','2','3','4'"
         inesperadas[campo] = [dict(valor=v, quantidade=n) for v, n in con.execute(
             f"SELECT {campo}, count(*) FROM textos WHERE {campo} NOT IN ({codigos}) "
             f'GROUP BY {campo} ORDER BY {campo}').fetchall()]
@@ -136,10 +145,12 @@ def validar(con, tabela='padronizados'):
         'competencias_fora_escala': ' OR '.join(f'{c}<0 OR {c}>200' for c in NOTAS_REDACAO[1:])}
     redacao = dict(zip(condicoes_redacao, con.execute('SELECT '+','.join(
         f'count(*) FILTER(WHERE {c})' for c in condicoes_redacao.values())+f' FROM {tabela}').fetchone()))
+    preparar_local(con, tabela)
+    local = auditar_local(con)
     esquema = [list(r[:2]) for r in con.execute(f'DESCRIBE {tabela}').fetchall()]
     return {'registros': total, 'nulos': nulos, 'chaves_duplicadas': duplicados[0],
             'linhas_excedentes_chave': int(duplicados[1]), 'anos': anos,
-            'por_area': areas, 'redacao': redacao, 'esquema': esquema}
+            'por_area': areas, 'redacao': redacao, 'local_prova': local, 'esquema': esquema}
 
 
 def reconciliar(con, esperado, relatorio):
@@ -156,13 +167,17 @@ def reconciliar(con, esperado, relatorio):
     return obtido
 
 
-def conferir_esquema(esquema, exigir_redacao=False):
-    """Aceita somente as duas versões completas conhecidas, sem ignorar colunas/tipos."""
+def conferir_esquema(esquema, exigir_redacao=False, exigir_local=False, exigir_rede=False):
+    """Aceita somente versões completas conhecidas, sem ignorar colunas/tipos."""
     versoes = [[list(x) for x in TIPOS.items()]]
-    if not exigir_redacao:
+    if not exigir_rede:
+        versoes.append([list(x) for x in TIPOS_V3.items()])
+    if not exigir_local and not exigir_rede:
+        versoes.append([list(x) for x in TIPOS_V2.items()])
+    if not exigir_redacao and not exigir_local and not exigir_rede:
         versoes.append([list(x) for x in TIPOS_LEGADOS.items()])
     if esquema not in versoes:
-        raise ValueError('Esquema incompatível com os contratos v1/v2 de RESULTADOS.')
+        raise ValueError('Esquema incompatível com os contratos v1/v2/v3/v4 de RESULTADOS.')
 
 
 def conferir_legado(con, destino, relatorio):
@@ -174,13 +189,14 @@ def conferir_legado(con, destino, relatorio):
         count(*) FILTER(WHERE NU_SEQUENCIAL IS NULL) FROM anterior''').fetchone()
     if any(chave_ruim):
         raise ErroContrato('Chave inválida na trusted anterior.', relatorio)
-    diferencas = ' OR '.join(f'a.{c} IS DISTINCT FROM n.{c}' for c in CAMPOS_LEGADOS[1:])
+    campos_anteriores = [x[0] for x in esquema]
+    diferencas = ' OR '.join(f'a.{c} IS DISTINCT FROM n.{c}' for c in campos_anteriores[1:])
     n = con.execute(f'''SELECT count(*) FROM anterior a FULL OUTER JOIN padronizados n
         ON a.NU_SEQUENCIAL=n.NU_SEQUENCIAL WHERE a.NU_SEQUENCIAL IS NULL
         OR n.NU_SEQUENCIAL IS NULL OR {diferencas}''').fetchone()[0]
     if n:
-        raise ErroContrato(f'{n} divergências nos dez campos legados; publicação bloqueada.', relatorio)
-    return {'campos': list(CAMPOS_LEGADOS), 'divergencias': n,
+        raise ErroContrato(f'{n} divergências nos campos legados; publicação bloqueada.', relatorio)
+    return {'campos': campos_anteriores, 'divergencias': n,
             'sha256_anterior': sha256(destino), 'esquema_anterior': esquema}
 
 
@@ -232,8 +248,8 @@ def executar(raiz=None, limite=None, memoria='256MB', threads=1):
                     relatorio['releitura'] = reconciliar(con, validacao, relatorio)
                     if destino.exists():
                         relatorio['regressao_legado'] = conferir_legado(con, destino, relatorio)
-                        # Cópia para rollback apenas na migração v1 -> v2, fora do staging descartável.
-                        if len(relatorio['regressao_legado']['esquema_anterior']) == 10:
+                        # Guarda qualquer versão anterior durante ampliação do contrato.
+                        if len(relatorio['regressao_legado']['esquema_anterior']) < len(CAMPOS):
                             backup = trabalho / ('rollback_resultados_' + sha256(destino) + '.parquet')
                             if not backup.exists():
                                 shutil.copy2(destino, backup)

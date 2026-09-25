@@ -11,8 +11,10 @@ def percentual(numerador, denominador):
     return 100 * numerador / denominador if denominador else None
 
 
-def calcular_area(conexao, area):
+def calcular_area(conexao, area, tabela='base'):
     """A conexão fornece a view base; somente uma linha agregada sai do DuckDB."""
+    if tabela not in ('base', 'recorte_rede'):
+        raise ValueError('Tabela de cálculo desconhecida.')
     if area not in AREAS:
         raise ValueError('Área desconhecida.')
     presenca, nota = f'TP_PRESENCA_{area}', f'NU_NOTA_{area}'
@@ -33,7 +35,7 @@ def calcular_area(conexao, area):
         min(CAST({nota} AS DOUBLE)) FILTER (WHERE {elegivel}) minimo_observado,
         max(CAST({nota} AS DOUBLE)) FILTER (WHERE {elegivel}) maximo_observado,
         quantile_cont(CAST({nota} AS DOUBLE), [0.25,0.5,0.75]) FILTER (WHERE {elegivel}) quantis
-        FROM base'''
+        FROM {tabela}'''
     cursor = conexao.execute(sql)
     resultado = dict(zip([d[0] for d in cursor.description], cursor.fetchone()))
     quantis = resultado.pop('quantis') or [None, None, None]
@@ -45,8 +47,10 @@ def calcular_area(conexao, area):
     return resultado
 
 
-def validar_indicadores(conexao, resultados):
+def validar_indicadores(conexao, resultados, tabela='base'):
     """Confere identidades e reconta elegíveis em consulta separada por área."""
+    if tabela not in ('base', 'recorte_rede'):
+        raise ValueError('Tabela de cálculo desconhecida.')
     if [r['area'] for r in resultados] != list(AREAS):
         raise ValueError('Esperadas exatamente CN, CH, LC e MT.')
     controles = []
@@ -54,7 +58,7 @@ def validar_indicadores(conexao, resultados):
         if r['presenca_invalida']:
             raise ValueError(f"Categoria de presença inválida em {r['area']}.")
         soma = sum(r[c] for c in ('presentes', 'ausentes', 'eliminados', 'presenca_nula', 'presenca_invalida'))
-        contagem = conexao.execute('SELECT count(*) FROM base WHERE ' + FILTRO.format(area=r['area'])).fetchone()[0]
+        contagem = conexao.execute(f'SELECT count(*) FROM {tabela} WHERE ' + FILTRO.format(area=r['area'])).fetchone()[0]
         verificacoes = {
             'categorias_total': soma == r['total_base'],
             'notas_total': r['notas_disponiveis'] + r['notas_nulas'] == r['total_base'],
@@ -76,6 +80,6 @@ def validar_indicadores(conexao, resultados):
     return controles
 
 
-def calcular_desempenho(conexao):
-    resultados = [calcular_area(conexao, area) for area in AREAS]
-    return resultados, validar_indicadores(conexao, resultados)
+def calcular_desempenho(conexao, tabela='base'):
+    resultados = [calcular_area(conexao, area, tabela) for area in AREAS]
+    return resultados, validar_indicadores(conexao, resultados, tabela)

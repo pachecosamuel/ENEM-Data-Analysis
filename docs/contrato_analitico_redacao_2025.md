@@ -1,6 +1,6 @@
 # Contrato analítico — primeira POC de redação 2025
 
-22/09/2026. Unidade: registro divulgado de RESULTADOS. Fonte: trusted v2, sem exclusão na preparação.
+22/09/2026. Unidade: registro divulgado de RESULTADOS. Fonte: trusted v2 ou v3, sem exclusão na preparação.
 
 ## Fontes e significado
 
@@ -20,7 +20,7 @@ Final e competências: n, zeros, média, mediana, Q1, Q3, mínimo e máximo obse
 
 ## Controles
 
-- Fonte sem mutação (SHA-256 antes/depois), esquema v2 exato, chave única/não nula e ano 2025.
+- Fonte sem mutação (SHA-256 antes/depois), esquema v2 ou v3 completo e exato, chave única/não nula e ano 2025.
 - Nulos e categorias; cobertura de final e competências; soma dos status, notas, zeros e distribuição reconciliada. Mesmo denominador nas cinco competências.
 - Comparar soma das cinco notas publicadas à final quando todas existem, separando o recorte status=1; comparação decimal exata, sem imputar nem ajustar. Diferenças são achados reportados, não correção automática.
 - Relatar fora de escala, nota sem status, status sem nota e positivas em status problemáticos. Cruzar cobertura com presenças LC/CH apenas como controle dentro de RESULTADOS, sem inferir presença na redação a partir dessas áreas.

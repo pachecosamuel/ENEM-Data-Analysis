@@ -1,8 +1,8 @@
 {
-  "data_utc": "2026-09-22T21:52:36.944806+00:00",
+  "data_utc": "2026-09-24T21:47:38.549659+00:00",
   "fonte": "trusted/resultados_2025_base.parquet",
-  "sha256_antes": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
-  "sha256_depois": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
+  "sha256_antes": "2c5bb5f9993c5b64e69bda00075427a21a7f5a5d15d106f4ce3ab2d7d119c5f3",
+  "sha256_depois": "2c5bb5f9993c5b64e69bda00075427a21a7f5a5d15d106f4ce3ab2d7d119c5f3",
   "esquema": [
     [
       "NU_SEQUENCIAL",
@@ -71,6 +71,26 @@
     [
       "NU_NOTA_COMP5",
       "DECIMAL(10,1)"
+    ],
+    [
+      "CO_MUNICIPIO_PROVA",
+      "VARCHAR"
+    ],
+    [
+      "NO_MUNICIPIO_PROVA",
+      "VARCHAR"
+    ],
+    [
+      "CO_UF_PROVA",
+      "VARCHAR"
+    ],
+    [
+      "SG_UF_PROVA",
+      "VARCHAR"
+    ],
+    [
+      "TP_DEPENDENCIA_ADM_ESC",
+      "TINYINT"
     ]
   ],
   "duckdb": "1.5.5",

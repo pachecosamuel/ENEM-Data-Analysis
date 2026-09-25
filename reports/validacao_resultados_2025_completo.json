@@ -4,8 +4,8 @@
   "fonte": "raw/microdados_enem_2025/microdados_enem_2025/DADOS/RESULTADOS_2025.csv",
   "recursos_inicio": {
     "ram_total_bytes": 8445833216,
-    "ram_disponivel_bytes": 1447411712,
-    "disco_livre_bytes": 150211993600
+    "ram_disponivel_bytes": 2961133568,
+    "disco_livre_bytes": 184828416000
   },
   "duckdb": "1.5.5",
   "configuracao": {
@@ -32,14 +32,16 @@
     "NU_NOTA_COMP2": 0,
     "NU_NOTA_COMP3": 0,
     "NU_NOTA_COMP4": 0,
-    "NU_NOTA_COMP5": 0
+    "NU_NOTA_COMP5": 0,
+    "TP_DEPENDENCIA_ADM_ESC": 0
   },
   "categorias_inesperadas": {
     "TP_PRESENCA_CN": [],
     "TP_PRESENCA_CH": [],
     "TP_PRESENCA_LC": [],
     "TP_PRESENCA_MT": [],
-    "TP_STATUS_REDACAO": []
+    "TP_STATUS_REDACAO": [],
+    "TP_DEPENDENCIA_ADM_ESC": []
   },
   "validacao": {
     "registros": 4810772,
@@ -60,7 +62,12 @@
       "NU_NOTA_COMP2": 1353217,
       "NU_NOTA_COMP3": 1353217,
       "NU_NOTA_COMP4": 1353217,
-      "NU_NOTA_COMP5": 1353217
+      "NU_NOTA_COMP5": 1353217,
+      "CO_MUNICIPIO_PROVA": 0,
+      "NO_MUNICIPIO_PROVA": 0,
+      "CO_UF_PROVA": 0,
+      "SG_UF_PROVA": 0,
+      "TP_DEPENDENCIA_ADM_ESC": 3071744
     },
     "chaves_duplicadas": 0,
     "linhas_excedentes_chave": 0,
@@ -169,6 +176,190 @@
       "final_fora_escala": 0,
       "competencias_fora_escala": 0
     },
+    "local_prova": {
+      "total": 4810772,
+      "status_uf": {
+        "valida": 4810772
+      },
+      "pares_uf_observados": [
+        {
+          "codigo": "11",
+          "sigla": "RO",
+          "status": "valida",
+          "quantidade": 46798
+        },
+        {
+          "codigo": "12",
+          "sigla": "AC",
+          "status": "valida",
+          "quantidade": 28957
+        },
+        {
+          "codigo": "13",
+          "sigla": "AM",
+          "status": "valida",
+          "quantidade": 110831
+        },
+        {
+          "codigo": "14",
+          "sigla": "RR",
+          "status": "valida",
+          "quantidade": 14158
+        },
+        {
+          "codigo": "15",
+          "sigla": "PA",
+          "status": "valida",
+          "quantidade": 289328
+        },
+        {
+          "codigo": "16",
+          "sigla": "AP",
+          "status": "valida",
+          "quantidade": 33190
+        },
+        {
+          "codigo": "17",
+          "sigla": "TO",
+          "status": "valida",
+          "quantidade": 37650
+        },
+        {
+          "codigo": "21",
+          "sigla": "MA",
+          "status": "valida",
+          "quantidade": 211370
+        },
+        {
+          "codigo": "22",
+          "sigla": "PI",
+          "status": "valida",
+          "quantidade": 120032
+        },
+        {
+          "codigo": "23",
+          "sigla": "CE",
+          "status": "valida",
+          "quantidade": 275902
+        },
+        {
+          "codigo": "24",
+          "sigla": "RN",
+          "status": "valida",
+          "quantidade": 113208
+        },
+        {
+          "codigo": "25",
+          "sigla": "PB",
+          "status": "valida",
+          "quantidade": 142035
+        },
+        {
+          "codigo": "26",
+          "sigla": "PE",
+          "status": "valida",
+          "quantidade": 272279
+        },
+        {
+          "codigo": "27",
+          "sigla": "AL",
+          "status": "valida",
+          "quantidade": 96480
+        },
+        {
+          "codigo": "28",
+          "sigla": "SE",
+          "status": "valida",
+          "quantidade": 78341
+        },
+        {
+          "codigo": "29",
+          "sigla": "BA",
+          "status": "valida",
+          "quantidade": 427983
+        },
+        {
+          "codigo": "31",
+          "sigla": "MG",
+          "status": "valida",
+          "quantidade": 464937
+        },
+        {
+          "codigo": "32",
+          "sigla": "ES",
+          "status": "valida",
+          "quantidade": 85910
+        },
+        {
+          "codigo": "33",
+          "sigla": "RJ",
+          "status": "valida",
+          "quantidade": 328943
+        },
+        {
+          "codigo": "35",
+          "sigla": "SP",
+          "status": "valida",
+          "quantidade": 751612
+        },
+        {
+          "codigo": "41",
+          "sigla": "PR",
+          "status": "valida",
+          "quantidade": 195836
+        },
+        {
+          "codigo": "42",
+          "sigla": "SC",
+          "status": "valida",
+          "quantidade": 110459
+        },
+        {
+          "codigo": "43",
+          "sigla": "RS",
+          "status": "valida",
+          "quantidade": 186503
+        },
+        {
+          "codigo": "50",
+          "sigla": "MS",
+          "status": "valida",
+          "quantidade": 57932
+        },
+        {
+          "codigo": "51",
+          "sigla": "MT",
+          "status": "valida",
+          "quantidade": 80396
+        },
+        {
+          "codigo": "52",
+          "sigla": "GO",
+          "status": "valida",
+          "quantidade": 166747
+        },
+        {
+          "codigo": "53",
+          "sigla": "DF",
+          "status": "valida",
+          "quantidade": 82955
+        }
+      ],
+      "achados": {
+        "municipio_codigo_nulo": 0,
+        "municipio_nome_nulo": 0,
+        "municipio_codigo_formato_invalido": 0,
+        "municipio_prefixo_uf_discordante": 0,
+        "uf_codigo_nulo": 0,
+        "uf_sigla_nula": 0,
+        "uf_codigo_desconhecido": 0,
+        "uf_sigla_desconhecida": 0,
+        "codigos_municipio_com_nomes_divergentes": 0
+      },
+      "municipios_distintos": 1805,
+      "registros_uf_regiao_valida": 4810772,
+      "registros_nao_classificados": 0
+    },
     "esquema": [
       [
         "NU_SEQUENCIAL",
@@ -237,6 +428,26 @@
       [
         "NU_NOTA_COMP5",
         "DECIMAL(10,1)"
+      ],
+      [
+        "CO_MUNICIPIO_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "NO_MUNICIPIO_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "CO_UF_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "SG_UF_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "TP_DEPENDENCIA_ADM_ESC",
+        "TINYINT"
       ]
     ]
   },
@@ -259,7 +470,12 @@
       "NU_NOTA_COMP2": 1353217,
       "NU_NOTA_COMP3": 1353217,
       "NU_NOTA_COMP4": 1353217,
-      "NU_NOTA_COMP5": 1353217
+      "NU_NOTA_COMP5": 1353217,
+      "CO_MUNICIPIO_PROVA": 0,
+      "NO_MUNICIPIO_PROVA": 0,
+      "CO_UF_PROVA": 0,
+      "SG_UF_PROVA": 0,
+      "TP_DEPENDENCIA_ADM_ESC": 3071744
     },
     "chaves_duplicadas": 0,
     "linhas_excedentes_chave": 0,
@@ -368,6 +584,190 @@
       "final_fora_escala": 0,
       "competencias_fora_escala": 0
     },
+    "local_prova": {
+      "total": 4810772,
+      "status_uf": {
+        "valida": 4810772
+      },
+      "pares_uf_observados": [
+        {
+          "codigo": "11",
+          "sigla": "RO",
+          "status": "valida",
+          "quantidade": 46798
+        },
+        {
+          "codigo": "12",
+          "sigla": "AC",
+          "status": "valida",
+          "quantidade": 28957
+        },
+        {
+          "codigo": "13",
+          "sigla": "AM",
+          "status": "valida",
+          "quantidade": 110831
+        },
+        {
+          "codigo": "14",
+          "sigla": "RR",
+          "status": "valida",
+          "quantidade": 14158
+        },
+        {
+          "codigo": "15",
+          "sigla": "PA",
+          "status": "valida",
+          "quantidade": 289328
+        },
+        {
+          "codigo": "16",
+          "sigla": "AP",
+          "status": "valida",
+          "quantidade": 33190
+        },
+        {
+          "codigo": "17",
+          "sigla": "TO",
+          "status": "valida",
+          "quantidade": 37650
+        },
+        {
+          "codigo": "21",
+          "sigla": "MA",
+          "status": "valida",
+          "quantidade": 211370
+        },
+        {
+          "codigo": "22",
+          "sigla": "PI",
+          "status": "valida",
+          "quantidade": 120032
+        },
+        {
+          "codigo": "23",
+          "sigla": "CE",
+          "status": "valida",
+          "quantidade": 275902
+        },
+        {
+          "codigo": "24",
+          "sigla": "RN",
+          "status": "valida",
+          "quantidade": 113208
+        },
+        {
+          "codigo": "25",
+          "sigla": "PB",
+          "status": "valida",
+          "quantidade": 142035
+        },
+        {
+          "codigo": "26",
+          "sigla": "PE",
+          "status": "valida",
+          "quantidade": 272279
+        },
+        {
+          "codigo": "27",
+          "sigla": "AL",
+          "status": "valida",
+          "quantidade": 96480
+        },
+        {
+          "codigo": "28",
+          "sigla": "SE",
+          "status": "valida",
+          "quantidade": 78341
+        },
+        {
+          "codigo": "29",
+          "sigla": "BA",
+          "status": "valida",
+          "quantidade": 427983
+        },
+        {
+          "codigo": "31",
+          "sigla": "MG",
+          "status": "valida",
+          "quantidade": 464937
+        },
+        {
+          "codigo": "32",
+          "sigla": "ES",
+          "status": "valida",
+          "quantidade": 85910
+        },
+        {
+          "codigo": "33",
+          "sigla": "RJ",
+          "status": "valida",
+          "quantidade": 328943
+        },
+        {
+          "codigo": "35",
+          "sigla": "SP",
+          "status": "valida",
+          "quantidade": 751612
+        },
+        {
+          "codigo": "41",
+          "sigla": "PR",
+          "status": "valida",
+          "quantidade": 195836
+        },
+        {
+          "codigo": "42",
+          "sigla": "SC",
+          "status": "valida",
+          "quantidade": 110459
+        },
+        {
+          "codigo": "43",
+          "sigla": "RS",
+          "status": "valida",
+          "quantidade": 186503
+        },
+        {
+          "codigo": "50",
+          "sigla": "MS",
+          "status": "valida",
+          "quantidade": 57932
+        },
+        {
+          "codigo": "51",
+          "sigla": "MT",
+          "status": "valida",
+          "quantidade": 80396
+        },
+        {
+          "codigo": "52",
+          "sigla": "GO",
+          "status": "valida",
+          "quantidade": 166747
+        },
+        {
+          "codigo": "53",
+          "sigla": "DF",
+          "status": "valida",
+          "quantidade": 82955
+        }
+      ],
+      "achados": {
+        "municipio_codigo_nulo": 0,
+        "municipio_nome_nulo": 0,
+        "municipio_codigo_formato_invalido": 0,
+        "municipio_prefixo_uf_discordante": 0,
+        "uf_codigo_nulo": 0,
+        "uf_sigla_nula": 0,
+        "uf_codigo_desconhecido": 0,
+        "uf_sigla_desconhecida": 0,
+        "codigos_municipio_com_nomes_divergentes": 0
+      },
+      "municipios_distintos": 1805,
+      "registros_uf_regiao_valida": 4810772,
+      "registros_nao_classificados": 0
+    },
     "esquema": [
       [
         "NU_SEQUENCIAL",
@@ -436,6 +836,26 @@
       [
         "NU_NOTA_COMP5",
         "DECIMAL(10,1)"
+      ],
+      [
+        "CO_MUNICIPIO_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "NO_MUNICIPIO_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "CO_UF_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "SG_UF_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "TP_DEPENDENCIA_ADM_ESC",
+        "TINYINT"
       ]
     ]
   },
@@ -450,10 +870,21 @@
       "NU_NOTA_CN",
       "NU_NOTA_CH",
       "NU_NOTA_LC",
-      "NU_NOTA_MT"
+      "NU_NOTA_MT",
+      "TP_STATUS_REDACAO",
+      "NU_NOTA_REDACAO",
+      "NU_NOTA_COMP1",
+      "NU_NOTA_COMP2",
+      "NU_NOTA_COMP3",
+      "NU_NOTA_COMP4",
+      "NU_NOTA_COMP5",
+      "CO_MUNICIPIO_PROVA",
+      "NO_MUNICIPIO_PROVA",
+      "CO_UF_PROVA",
+      "SG_UF_PROVA"
     ],
     "divergencias": 0,
-    "sha256_anterior": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
+    "sha256_anterior": "0732b7821e08e23601c7c9f309a7b9e088ad66fdd5c3e3fa5b3da744eb66a240",
     "esquema_anterior": [
       [
         "NU_SEQUENCIAL",
@@ -522,17 +953,34 @@
       [
         "NU_NOTA_COMP5",
         "DECIMAL(10,1)"
+      ],
+      [
+        "CO_MUNICIPIO_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "NO_MUNICIPIO_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "CO_UF_PROVA",
+        "VARCHAR"
+      ],
+      [
+        "SG_UF_PROVA",
+        "VARCHAR"
       ]
     ]
   },
+  "rollback_parquet": "work/rollback_resultados_0732b7821e08e23601c7c9f309a7b9e088ad66fdd5c3e3fa5b3da744eb66a240.parquet",
   "sha256_raw_depois": "5df5ebed6395a3e69e3dc3b3c9731930312597318ff4dfc178b136514796803d",
   "parquet": "trusted/resultados_2025_base.parquet",
-  "parquet_bytes": 69145333,
-  "sha256_parquet": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
-  "segundos": 60.354,
+  "parquet_bytes": 92729273,
+  "sha256_parquet": "2c5bb5f9993c5b64e69bda00075427a21a7f5a5d15d106f4ce3ab2d7d119c5f3",
+  "segundos": 70.43,
   "recursos_fim": {
     "ram_total_bytes": 8445833216,
-    "ram_disponivel_bytes": 1589952512,
-    "disco_livre_bytes": 150215946240
+    "ram_disponivel_bytes": 2957045760,
+    "disco_livre_bytes": 183561003008
   }
 }

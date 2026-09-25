@@ -1,12 +1,12 @@
 {
-  "data_utc": "2026-09-22T21:47:34.208978+00:00",
+  "data_utc": "2026-09-24T21:47:18.756049+00:00",
   "fonte": "trusted\\resultados_2025_base.parquet",
-  "sha256_fonte_antes": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
-  "fonte_bytes": 69145333,
+  "sha256_fonte_antes": "2c5bb5f9993c5b64e69bda00075427a21a7f5a5d15d106f4ce3ab2d7d119c5f3",
+  "fonte_bytes": 92729273,
   "duckdb": "1.5.5",
   "memory_limit": "256MB",
   "threads": 1,
-  "ram_disponivel_inicio_bytes": 345710592,
+  "ram_disponivel_inicio_bytes": 3053084672,
   "filtros": {
     "CN": "TP_PRESENCA_CN = 1 AND NU_NOTA_CN IS NOT NULL",
     "CH": "TP_PRESENCA_CH = 1 AND NU_NOTA_CH IS NOT NULL",
@@ -82,6 +82,26 @@
     [
       "NU_NOTA_COMP5",
       "DECIMAL(10,1)"
+    ],
+    [
+      "CO_MUNICIPIO_PROVA",
+      "VARCHAR"
+    ],
+    [
+      "NO_MUNICIPIO_PROVA",
+      "VARCHAR"
+    ],
+    [
+      "CO_UF_PROVA",
+      "VARCHAR"
+    ],
+    [
+      "SG_UF_PROVA",
+      "VARCHAR"
+    ],
+    [
+      "TP_DEPENDENCIA_ADM_ESC",
+      "TINYINT"
     ]
   ],
   "controles": [
@@ -260,9 +280,9 @@
       "pct_completude_presentes": 100.0
     }
   ],
-  "sha256_fonte_depois": "c63608b2a3019d31430454e4c325d6f1fcf623eb4fe79ab8ad2f977521978c2d",
-  "segundos": 4.209,
-  "ram_disponivel_fim_bytes": 331546624,
+  "sha256_fonte_depois": "2c5bb5f9993c5b64e69bda00075427a21a7f5a5d15d106f4ce3ab2d7d119c5f3",
+  "segundos": 3.244,
+  "ram_disponivel_fim_bytes": 3055886336,
   "validacao": "aprovada",
   "total_base": 4810772,
   "sha256_indicadores_csv": "afd713081ab322f8e9f27fc810316a9ef496e01bb64f5c6d68f28e9e4f16e027"
