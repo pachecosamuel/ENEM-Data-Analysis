@@ -1,0 +1,130 @@
+﻿ano,codigo_original,rotulo_original,aba,linha,dicionario
+2010,B,Entregou a redação em branco,MICRODADOS_ENEM_2010,138,raw/microdados_enem_2010/DICIONÁRIO/Dicionário_Microdados_Enem_2010.xlsx
+2010,D,Desconsiderada,MICRODADOS_ENEM_2010,139,raw/microdados_enem_2010/DICIONÁRIO/Dicionário_Microdados_Enem_2010.xlsx
+2010,F,Faltou à prova,MICRODADOS_ENEM_2010,140,raw/microdados_enem_2010/DICIONÁRIO/Dicionário_Microdados_Enem_2010.xlsx
+2010,N,Redação anulada,MICRODADOS_ENEM_2010,141,raw/microdados_enem_2010/DICIONÁRIO/Dicionário_Microdados_Enem_2010.xlsx
+2010,P,Presente à prova,MICRODADOS_ENEM_2010,142,raw/microdados_enem_2010/DICIONÁRIO/Dicionário_Microdados_Enem_2010.xlsx
+2011,B,Em Branco,MICRODADOS_ENEM_2011,139,raw/microdados_enem_2011/DICIONÁRIO/Dicionário_Microdados_Enem_2011.xlsx
+2011,F,Faltoso,MICRODADOS_ENEM_2011,140,raw/microdados_enem_2011/DICIONÁRIO/Dicionário_Microdados_Enem_2011.xlsx
+2011,N,Anulada,MICRODADOS_ENEM_2011,141,raw/microdados_enem_2011/DICIONÁRIO/Dicionário_Microdados_Enem_2011.xlsx
+2011,P,Presente,MICRODADOS_ENEM_2011,142,raw/microdados_enem_2011/DICIONÁRIO/Dicionário_Microdados_Enem_2011.xlsx
+2012,P,Presente,MICRODADOS_ENEM_2012,133,raw/microdados_enem_2012/DICIONÁRIO/Dicionário_Microdados_Enem_2012.xlsx
+2012,B,Em Branco,MICRODADOS_ENEM_2012,134,raw/microdados_enem_2012/DICIONÁRIO/Dicionário_Microdados_Enem_2012.xlsx
+2012,T,Fuga ao Tema,MICRODADOS_ENEM_2012,135,raw/microdados_enem_2012/DICIONÁRIO/Dicionário_Microdados_Enem_2012.xlsx
+2012,N,Anulada,MICRODADOS_ENEM_2012,136,raw/microdados_enem_2012/DICIONÁRIO/Dicionário_Microdados_Enem_2012.xlsx
+2012,I,Texto Insuficiente,MICRODADOS_ENEM_2012,137,raw/microdados_enem_2012/DICIONÁRIO/Dicionário_Microdados_Enem_2012.xlsx
+2012,A,Não atende ao tipo textual,MICRODADOS_ENEM_2012,138,raw/microdados_enem_2012/DICIONÁRIO/Dicionário_Microdados_Enem_2012.xlsx
+2012,H,Anulada – Fere Direitos Humanos,MICRODADOS_ENEM_2012,139,raw/microdados_enem_2012/DICIONÁRIO/Dicionário_Microdados_Enem_2012.xlsx
+2012,C,Cópia de texto motivador,MICRODADOS_ENEM_2012,140,raw/microdados_enem_2012/DICIONÁRIO/Dicionário_Microdados_Enem_2012.xlsx
+2012,F,Ausente,MICRODADOS_ENEM_2012,141,raw/microdados_enem_2012/DICIONÁRIO/Dicionário_Microdados_Enem_2012.xlsx
+2013,1,Em Branco,MICRODADOS_ENEM_2013,136,raw/microdados_enem_2013/DICIONÁRIO/Dicionário_Microdados_Enem_2013.xlsx
+2013,2,Anulada,MICRODADOS_ENEM_2013,137,raw/microdados_enem_2013/DICIONÁRIO/Dicionário_Microdados_Enem_2013.xlsx
+2013,3,Fuga ao Tema,MICRODADOS_ENEM_2013,138,raw/microdados_enem_2013/DICIONÁRIO/Dicionário_Microdados_Enem_2013.xlsx
+2013,4,Não atende ao tipo textual,MICRODADOS_ENEM_2013,139,raw/microdados_enem_2013/DICIONÁRIO/Dicionário_Microdados_Enem_2013.xlsx
+2013,5,Texto Insuficiente,MICRODADOS_ENEM_2013,140,raw/microdados_enem_2013/DICIONÁRIO/Dicionário_Microdados_Enem_2013.xlsx
+2013,6,Ausente,MICRODADOS_ENEM_2013,141,raw/microdados_enem_2013/DICIONÁRIO/Dicionário_Microdados_Enem_2013.xlsx
+2013,7,Presente e texto conforme os requisitos,MICRODADOS_ENEM_2013,142,raw/microdados_enem_2013/DICIONÁRIO/Dicionário_Microdados_Enem_2013.xlsx
+2013,9,Anulada – Fere Direitos Humanos,MICRODADOS_ENEM_2013,143,raw/microdados_enem_2013/DICIONÁRIO/Dicionário_Microdados_Enem_2013.xlsx
+2013,10,Cópia de texto motivador,MICRODADOS_ENEM_2013,144,raw/microdados_enem_2013/DICIONÁRIO/Dicionário_Microdados_Enem_2013.xlsx
+2013,11,Parte do texto desconectada com o tema proposto,MICRODADOS_ENEM_2013,145,raw/microdados_enem_2013/DICIONÁRIO/Dicionário_Microdados_Enem_2013.xlsx
+2014,1,Em Branco,MICRODADOS_ENEM_2014,138,raw/microdados_enem_2014/DICIONÁRIO/Dicionário_Microdados_Enem_2014.xlsx
+2014,2,Anulada,MICRODADOS_ENEM_2014,139,raw/microdados_enem_2014/DICIONÁRIO/Dicionário_Microdados_Enem_2014.xlsx
+2014,3,Fuga ao Tema,MICRODADOS_ENEM_2014,140,raw/microdados_enem_2014/DICIONÁRIO/Dicionário_Microdados_Enem_2014.xlsx
+2014,4,Não atende ao tipo textual,MICRODADOS_ENEM_2014,141,raw/microdados_enem_2014/DICIONÁRIO/Dicionário_Microdados_Enem_2014.xlsx
+2014,5,Texto Insuficiente,MICRODADOS_ENEM_2014,142,raw/microdados_enem_2014/DICIONÁRIO/Dicionário_Microdados_Enem_2014.xlsx
+2014,6,Ausente,MICRODADOS_ENEM_2014,143,raw/microdados_enem_2014/DICIONÁRIO/Dicionário_Microdados_Enem_2014.xlsx
+2014,7,Presente e texto conforme os requisitos,MICRODADOS_ENEM_2014,144,raw/microdados_enem_2014/DICIONÁRIO/Dicionário_Microdados_Enem_2014.xlsx
+2014,9,Anulada – Fere Direitos Humanos,MICRODADOS_ENEM_2014,145,raw/microdados_enem_2014/DICIONÁRIO/Dicionário_Microdados_Enem_2014.xlsx
+2014,10,Cópia de texto motivador,MICRODADOS_ENEM_2014,146,raw/microdados_enem_2014/DICIONÁRIO/Dicionário_Microdados_Enem_2014.xlsx
+2014,11,Parte do texto desconectada com o tema proposto,MICRODADOS_ENEM_2014,147,raw/microdados_enem_2014/DICIONÁRIO/Dicionário_Microdados_Enem_2014.xlsx
+2015,1,Sem problemas,MICRODADOS_ENEM_2015,168,raw/microdados_enem_2015/DICIONÁRIO/Dicionário_Microdados_Enem_2015.xlsx
+2015,2,Anulada,MICRODADOS_ENEM_2015,169,raw/microdados_enem_2015/DICIONÁRIO/Dicionário_Microdados_Enem_2015.xlsx
+2015,3,Cópia Texto Motivador,MICRODADOS_ENEM_2015,170,raw/microdados_enem_2015/DICIONÁRIO/Dicionário_Microdados_Enem_2015.xlsx
+2015,4,Em Branco,MICRODADOS_ENEM_2015,171,raw/microdados_enem_2015/DICIONÁRIO/Dicionário_Microdados_Enem_2015.xlsx
+2015,5,Fere Direitos Humanos,MICRODADOS_ENEM_2015,172,raw/microdados_enem_2015/DICIONÁRIO/Dicionário_Microdados_Enem_2015.xlsx
+2015,6,Fuga ao tema,MICRODADOS_ENEM_2015,173,raw/microdados_enem_2015/DICIONÁRIO/Dicionário_Microdados_Enem_2015.xlsx
+2015,7,Não atendimento ao tipo,MICRODADOS_ENEM_2015,174,raw/microdados_enem_2015/DICIONÁRIO/Dicionário_Microdados_Enem_2015.xlsx
+2015,8,Texto insuficiente,MICRODADOS_ENEM_2015,175,raw/microdados_enem_2015/DICIONÁRIO/Dicionário_Microdados_Enem_2015.xlsx
+2015,9,Parte desconectada,MICRODADOS_ENEM_2015,176,raw/microdados_enem_2015/DICIONÁRIO/Dicionário_Microdados_Enem_2015.xlsx
+2015,98,Não atendimento ao item 2.2.5 do edital do exame.,MICRODADOS_ENEM_2015,177,raw/microdados_enem_2015/DICIONÁRIO/Dicionário_Microdados_Enem_2015.xlsx
+2016,1,Sem problemas,MICRODADOS_ENEM_2016,188,raw/microdados_enem_2016/DICIONÁRIO/Dicionário_Microdados_Enem_2016.xlsx
+2016,2,Anulada,MICRODADOS_ENEM_2016,189,raw/microdados_enem_2016/DICIONÁRIO/Dicionário_Microdados_Enem_2016.xlsx
+2016,3,Cópia Texto Motivador,MICRODADOS_ENEM_2016,190,raw/microdados_enem_2016/DICIONÁRIO/Dicionário_Microdados_Enem_2016.xlsx
+2016,4,Em Branco,MICRODADOS_ENEM_2016,191,raw/microdados_enem_2016/DICIONÁRIO/Dicionário_Microdados_Enem_2016.xlsx
+2016,5,Fere Direitos Humanos,MICRODADOS_ENEM_2016,192,raw/microdados_enem_2016/DICIONÁRIO/Dicionário_Microdados_Enem_2016.xlsx
+2016,6,Fuga ao tema,MICRODADOS_ENEM_2016,193,raw/microdados_enem_2016/DICIONÁRIO/Dicionário_Microdados_Enem_2016.xlsx
+2016,7,Não atendimento ao tipo,MICRODADOS_ENEM_2016,194,raw/microdados_enem_2016/DICIONÁRIO/Dicionário_Microdados_Enem_2016.xlsx
+2016,8,Texto insuficiente,MICRODADOS_ENEM_2016,195,raw/microdados_enem_2016/DICIONÁRIO/Dicionário_Microdados_Enem_2016.xlsx
+2016,9,Parte desconectada,MICRODADOS_ENEM_2016,196,raw/microdados_enem_2016/DICIONÁRIO/Dicionário_Microdados_Enem_2016.xlsx
+2017,1,Sem problemas,MICRODADOS_ENEM_2017,166,raw/microdados_enem_2017/DICIONÁRIO/Dicionário_Microdados_Enem_2017.xlsx
+2017,2,Anulada,MICRODADOS_ENEM_2017,167,raw/microdados_enem_2017/DICIONÁRIO/Dicionário_Microdados_Enem_2017.xlsx
+2017,3,Cópia Texto Motivador,MICRODADOS_ENEM_2017,168,raw/microdados_enem_2017/DICIONÁRIO/Dicionário_Microdados_Enem_2017.xlsx
+2017,4,Em Branco,MICRODADOS_ENEM_2017,169,raw/microdados_enem_2017/DICIONÁRIO/Dicionário_Microdados_Enem_2017.xlsx
+2017,6,Fuga ao tema,MICRODADOS_ENEM_2017,170,raw/microdados_enem_2017/DICIONÁRIO/Dicionário_Microdados_Enem_2017.xlsx
+2017,7,Não atendimento ao tipo textual,MICRODADOS_ENEM_2017,171,raw/microdados_enem_2017/DICIONÁRIO/Dicionário_Microdados_Enem_2017.xlsx
+2017,8,Texto insuficiente,MICRODADOS_ENEM_2017,172,raw/microdados_enem_2017/DICIONÁRIO/Dicionário_Microdados_Enem_2017.xlsx
+2017,9,Parte desconectada,MICRODADOS_ENEM_2017,173,raw/microdados_enem_2017/DICIONÁRIO/Dicionário_Microdados_Enem_2017.xlsx
+2018,1,Sem problemas,MICRODADOS_ENEM_2018,167,raw/microdados_enem_2018/DICIONÁRIO/Dicionário_Microdados_Enem_2018.xlsx
+2018,2,Anulada,MICRODADOS_ENEM_2018,168,raw/microdados_enem_2018/DICIONÁRIO/Dicionário_Microdados_Enem_2018.xlsx
+2018,3,Cópia Texto Motivador,MICRODADOS_ENEM_2018,169,raw/microdados_enem_2018/DICIONÁRIO/Dicionário_Microdados_Enem_2018.xlsx
+2018,4,Em Branco,MICRODADOS_ENEM_2018,170,raw/microdados_enem_2018/DICIONÁRIO/Dicionário_Microdados_Enem_2018.xlsx
+2018,6,Fuga ao tema,MICRODADOS_ENEM_2018,171,raw/microdados_enem_2018/DICIONÁRIO/Dicionário_Microdados_Enem_2018.xlsx
+2018,7,Não atendimento ao tipo textual,MICRODADOS_ENEM_2018,172,raw/microdados_enem_2018/DICIONÁRIO/Dicionário_Microdados_Enem_2018.xlsx
+2018,8,Texto insuficiente,MICRODADOS_ENEM_2018,173,raw/microdados_enem_2018/DICIONÁRIO/Dicionário_Microdados_Enem_2018.xlsx
+2018,9,Parte desconectada,MICRODADOS_ENEM_2018,174,raw/microdados_enem_2018/DICIONÁRIO/Dicionário_Microdados_Enem_2018.xlsx
+2019,1,Sem problemas,MICRODADOS_ENEM_2019,171,raw/microdados_enem_2019/DICIONÁRIO/Dicionário_Microdados_Enem_2019.xlsx
+2019,2,Anulada,MICRODADOS_ENEM_2019,172,raw/microdados_enem_2019/DICIONÁRIO/Dicionário_Microdados_Enem_2019.xlsx
+2019,3,Cópia Texto Motivador,MICRODADOS_ENEM_2019,173,raw/microdados_enem_2019/DICIONÁRIO/Dicionário_Microdados_Enem_2019.xlsx
+2019,4,Em Branco,MICRODADOS_ENEM_2019,174,raw/microdados_enem_2019/DICIONÁRIO/Dicionário_Microdados_Enem_2019.xlsx
+2019,6,Fuga ao tema,MICRODADOS_ENEM_2019,175,raw/microdados_enem_2019/DICIONÁRIO/Dicionário_Microdados_Enem_2019.xlsx
+2019,7,Não atendimento ao tipo textual,MICRODADOS_ENEM_2019,176,raw/microdados_enem_2019/DICIONÁRIO/Dicionário_Microdados_Enem_2019.xlsx
+2019,8,Texto insuficiente,MICRODADOS_ENEM_2019,177,raw/microdados_enem_2019/DICIONÁRIO/Dicionário_Microdados_Enem_2019.xlsx
+2019,9,Parte desconectada,MICRODADOS_ENEM_2019,178,raw/microdados_enem_2019/DICIONÁRIO/Dicionário_Microdados_Enem_2019.xlsx
+2020,1,Sem problemas,MICRODADOS_ENEM_2020,198,raw/microdados_enem_2020/DICIONÁRIO/Dicionário_Microdados_Enem_2020.xlsx
+2020,2,Anulada,MICRODADOS_ENEM_2020,199,raw/microdados_enem_2020/DICIONÁRIO/Dicionário_Microdados_Enem_2020.xlsx
+2020,3,Cópia Texto Motivador,MICRODADOS_ENEM_2020,200,raw/microdados_enem_2020/DICIONÁRIO/Dicionário_Microdados_Enem_2020.xlsx
+2020,4,Em Branco,MICRODADOS_ENEM_2020,201,raw/microdados_enem_2020/DICIONÁRIO/Dicionário_Microdados_Enem_2020.xlsx
+2020,6,Fuga ao tema,MICRODADOS_ENEM_2020,202,raw/microdados_enem_2020/DICIONÁRIO/Dicionário_Microdados_Enem_2020.xlsx
+2020,7,Não atendimento ao tipo textual,MICRODADOS_ENEM_2020,203,raw/microdados_enem_2020/DICIONÁRIO/Dicionário_Microdados_Enem_2020.xlsx
+2020,8,Texto insuficiente,MICRODADOS_ENEM_2020,204,raw/microdados_enem_2020/DICIONÁRIO/Dicionário_Microdados_Enem_2020.xlsx
+2020,9,Parte desconectada,MICRODADOS_ENEM_2020,205,raw/microdados_enem_2020/DICIONÁRIO/Dicionário_Microdados_Enem_2020.xlsx
+2021,1,Sem problemas,MICRODADOS_ENEM_2021,214,raw/microdados_enem_2021/DICIONÁRIO/Dicionário_Microdados_Enem_2021.xlsx
+2021,2,Anulada,MICRODADOS_ENEM_2021,215,raw/microdados_enem_2021/DICIONÁRIO/Dicionário_Microdados_Enem_2021.xlsx
+2021,3,Cópia Texto Motivador,MICRODADOS_ENEM_2021,216,raw/microdados_enem_2021/DICIONÁRIO/Dicionário_Microdados_Enem_2021.xlsx
+2021,4,Em Branco,MICRODADOS_ENEM_2021,217,raw/microdados_enem_2021/DICIONÁRIO/Dicionário_Microdados_Enem_2021.xlsx
+2021,6,Fuga ao tema,MICRODADOS_ENEM_2021,218,raw/microdados_enem_2021/DICIONÁRIO/Dicionário_Microdados_Enem_2021.xlsx
+2021,7,Não atendimento ao tipo textual,MICRODADOS_ENEM_2021,219,raw/microdados_enem_2021/DICIONÁRIO/Dicionário_Microdados_Enem_2021.xlsx
+2021,8,Texto insuficiente,MICRODADOS_ENEM_2021,220,raw/microdados_enem_2021/DICIONÁRIO/Dicionário_Microdados_Enem_2021.xlsx
+2021,9,Parte desconectada,MICRODADOS_ENEM_2021,221,raw/microdados_enem_2021/DICIONÁRIO/Dicionário_Microdados_Enem_2021.xlsx
+2022,1,Sem problemas,MICRODADOS_ENEM_2022,187,raw/microdados_enem_2022/DICIONÁRIO/Dicionário_Microdados_Enem_2022.xlsx
+2022,2,Anulada,MICRODADOS_ENEM_2022,188,raw/microdados_enem_2022/DICIONÁRIO/Dicionário_Microdados_Enem_2022.xlsx
+2022,3,Cópia Texto Motivador,MICRODADOS_ENEM_2022,189,raw/microdados_enem_2022/DICIONÁRIO/Dicionário_Microdados_Enem_2022.xlsx
+2022,4,Em Branco,MICRODADOS_ENEM_2022,190,raw/microdados_enem_2022/DICIONÁRIO/Dicionário_Microdados_Enem_2022.xlsx
+2022,6,Fuga ao tema,MICRODADOS_ENEM_2022,191,raw/microdados_enem_2022/DICIONÁRIO/Dicionário_Microdados_Enem_2022.xlsx
+2022,7,Não atendimento ao tipo textual,MICRODADOS_ENEM_2022,192,raw/microdados_enem_2022/DICIONÁRIO/Dicionário_Microdados_Enem_2022.xlsx
+2022,8,Texto insuficiente,MICRODADOS_ENEM_2022,193,raw/microdados_enem_2022/DICIONÁRIO/Dicionário_Microdados_Enem_2022.xlsx
+2022,9,Parte desconectada,MICRODADOS_ENEM_2022,194,raw/microdados_enem_2022/DICIONÁRIO/Dicionário_Microdados_Enem_2022.xlsx
+2023,1,Sem problemas,MICRODADOS_ENEM_2023,184,raw/microdados_enem_2023/microdados_enem_2023/DICIONÁRIO/Dicionário_Microdados_Enem_2023.xlsx
+2023,2,Anulada,MICRODADOS_ENEM_2023,185,raw/microdados_enem_2023/microdados_enem_2023/DICIONÁRIO/Dicionário_Microdados_Enem_2023.xlsx
+2023,3,Cópia Texto Motivador,MICRODADOS_ENEM_2023,186,raw/microdados_enem_2023/microdados_enem_2023/DICIONÁRIO/Dicionário_Microdados_Enem_2023.xlsx
+2023,4,Em Branco,MICRODADOS_ENEM_2023,187,raw/microdados_enem_2023/microdados_enem_2023/DICIONÁRIO/Dicionário_Microdados_Enem_2023.xlsx
+2023,6,Fuga ao tema,MICRODADOS_ENEM_2023,188,raw/microdados_enem_2023/microdados_enem_2023/DICIONÁRIO/Dicionário_Microdados_Enem_2023.xlsx
+2023,7,Não atendimento ao tipo textual,MICRODADOS_ENEM_2023,189,raw/microdados_enem_2023/microdados_enem_2023/DICIONÁRIO/Dicionário_Microdados_Enem_2023.xlsx
+2023,8,Texto insuficiente,MICRODADOS_ENEM_2023,190,raw/microdados_enem_2023/microdados_enem_2023/DICIONÁRIO/Dicionário_Microdados_Enem_2023.xlsx
+2023,9,Parte desconectada,MICRODADOS_ENEM_2023,191,raw/microdados_enem_2023/microdados_enem_2023/DICIONÁRIO/Dicionário_Microdados_Enem_2023.xlsx
+2024,1,Sem problemas,RESULTADOS_2024,131,raw/microdados_enem_2024/microdados_enem_2024/DICIONÁRIO/Dicionário_Microdados_Enem_2024.xlsx
+2024,2,Anulada,RESULTADOS_2024,132,raw/microdados_enem_2024/microdados_enem_2024/DICIONÁRIO/Dicionário_Microdados_Enem_2024.xlsx
+2024,3,Cópia Texto Motivador,RESULTADOS_2024,133,raw/microdados_enem_2024/microdados_enem_2024/DICIONÁRIO/Dicionário_Microdados_Enem_2024.xlsx
+2024,4,Em Branco,RESULTADOS_2024,134,raw/microdados_enem_2024/microdados_enem_2024/DICIONÁRIO/Dicionário_Microdados_Enem_2024.xlsx
+2024,6,Fuga ao tema,RESULTADOS_2024,135,raw/microdados_enem_2024/microdados_enem_2024/DICIONÁRIO/Dicionário_Microdados_Enem_2024.xlsx
+2024,7,Não atendimento ao tipo textual,RESULTADOS_2024,136,raw/microdados_enem_2024/microdados_enem_2024/DICIONÁRIO/Dicionário_Microdados_Enem_2024.xlsx
+2024,8,Texto insuficiente,RESULTADOS_2024,137,raw/microdados_enem_2024/microdados_enem_2024/DICIONÁRIO/Dicionário_Microdados_Enem_2024.xlsx
+2024,9,Parte desconectada,RESULTADOS_2024,138,raw/microdados_enem_2024/microdados_enem_2024/DICIONÁRIO/Dicionário_Microdados_Enem_2024.xlsx
+2025,1,Sem problemas,RESULTADOS_2025,243,raw/microdados_enem_2025/microdados_enem_2025/DICIONÁRIO/Dicionário_Microdados_Enem_2025.xlsx
+2025,2,Anulada,RESULTADOS_2025,244,raw/microdados_enem_2025/microdados_enem_2025/DICIONÁRIO/Dicionário_Microdados_Enem_2025.xlsx
+2025,3,Cópia Texto Motivador,RESULTADOS_2025,245,raw/microdados_enem_2025/microdados_enem_2025/DICIONÁRIO/Dicionário_Microdados_Enem_2025.xlsx
+2025,4,Em Branco,RESULTADOS_2025,246,raw/microdados_enem_2025/microdados_enem_2025/DICIONÁRIO/Dicionário_Microdados_Enem_2025.xlsx
+2025,6,Fuga ao tema,RESULTADOS_2025,247,raw/microdados_enem_2025/microdados_enem_2025/DICIONÁRIO/Dicionário_Microdados_Enem_2025.xlsx
+2025,7,Não atendimento ao tipo textual,RESULTADOS_2025,248,raw/microdados_enem_2025/microdados_enem_2025/DICIONÁRIO/Dicionário_Microdados_Enem_2025.xlsx
+2025,8,Texto insuficiente,RESULTADOS_2025,249,raw/microdados_enem_2025/microdados_enem_2025/DICIONÁRIO/Dicionário_Microdados_Enem_2025.xlsx
+2025,9,Parte desconectada,RESULTADOS_2025,250,raw/microdados_enem_2025/microdados_enem_2025/DICIONÁRIO/Dicionário_Microdados_Enem_2025.xlsx
