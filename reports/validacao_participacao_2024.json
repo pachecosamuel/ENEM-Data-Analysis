@@ -1,0 +1,744 @@
+{
+  "data_utc": "2026-10-01T18:38:12.019083+00:00",
+  "fonte": "trusted/participacao_2024_base.parquet",
+  "sha256_antes": "609adbb172a010fa90941650a52ca2216fc64c063a5c78a836579eb71192ac14",
+  "sha256_depois": "609adbb172a010fa90941650a52ca2216fc64c063a5c78a836579eb71192ac14",
+  "esquema": [
+    [
+      "NU_SEQUENCIAL",
+      "VARCHAR"
+    ],
+    [
+      "NU_ANO",
+      "INTEGER"
+    ],
+    [
+      "TP_PRESENCA_CN",
+      "INTEGER"
+    ],
+    [
+      "TP_PRESENCA_CH",
+      "INTEGER"
+    ],
+    [
+      "TP_PRESENCA_LC",
+      "INTEGER"
+    ],
+    [
+      "TP_PRESENCA_MT",
+      "INTEGER"
+    ]
+  ],
+  "total_base": 4332944,
+  "chaves_nulas": 0,
+  "chaves_duplicadas": 0,
+  "anos_invalidos": 0,
+  "duckdb": "1.5.5",
+  "memory_limit": "256MB",
+  "threads": 1,
+  "contrato": "docs/contrato_participacao_2024_2025.md",
+  "validacao": "aprovada",
+  "alertas_pares": [],
+  "controles": {
+    "matriz_total": true,
+    "grupos_total": true,
+    "diferenca_liquida": true,
+    "total_dia1": true,
+    "pares_dia1": true,
+    "marginal_1_presente": true,
+    "marginal_1_ausente": true,
+    "marginal_1_eliminado": true,
+    "marginal_1_misto": true,
+    "marginal_1_dados_ausentes": true,
+    "marginal_1_codigo_invalido": true,
+    "percentuais_dia1": true,
+    "total_dia2": true,
+    "pares_dia2": true,
+    "marginal_2_presente": true,
+    "marginal_2_ausente": true,
+    "marginal_2_eliminado": true,
+    "marginal_2_misto": true,
+    "marginal_2_dados_ausentes": true,
+    "marginal_2_codigo_invalido": true,
+    "percentuais_dia2": true,
+    "retencao": true,
+    "percentuais_intervalo": true,
+    "percentuais_denominador_base": true,
+    "percentuais_origem_presente": true,
+    "percentuais_origem_ausente": true,
+    "percentuais_origem_eliminado": true,
+    "percentuais_origem_misto": true,
+    "percentuais_origem_dados_ausentes": true,
+    "percentuais_origem_codigo_invalido": true,
+    "pares_recontados_dia1": true,
+    "pares_recontados_dia2": true
+  },
+  "resultado": {
+    "dias": [
+      {
+        "dia": 1,
+        "status": "presente",
+        "quantidade": 3167955,
+        "percentual_base": 73.11322278801664
+      },
+      {
+        "dia": 1,
+        "status": "ausente",
+        "quantidade": 1159331,
+        "percentual_base": 26.756196249016835
+      },
+      {
+        "dia": 1,
+        "status": "eliminado",
+        "quantidade": 5658,
+        "percentual_base": 0.13058096296651883
+      },
+      {
+        "dia": 1,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 1,
+        "status": "dados_ausentes",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 1,
+        "status": "codigo_invalido",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 2,
+        "status": "presente",
+        "quantidade": 3004981,
+        "percentual_base": 69.3519463902603
+      },
+      {
+        "dia": 2,
+        "status": "ausente",
+        "quantidade": 1325660,
+        "percentual_base": 30.594902680486985
+      },
+      {
+        "dia": 2,
+        "status": "eliminado",
+        "quantidade": 2303,
+        "percentual_base": 0.05315092925272055
+      },
+      {
+        "dia": 2,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 2,
+        "status": "dados_ausentes",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 2,
+        "status": "codigo_invalido",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      }
+    ],
+    "pares": [
+      {
+        "dia": 1,
+        "area_a": "LC",
+        "area_b": "CH",
+        "codigo_a": 0,
+        "codigo_b": 0,
+        "status": "ausente",
+        "quantidade": 1159331,
+        "percentual_base": 26.756196249016835
+      },
+      {
+        "dia": 1,
+        "area_a": "LC",
+        "area_b": "CH",
+        "codigo_a": 0,
+        "codigo_b": 1,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 1,
+        "area_a": "LC",
+        "area_b": "CH",
+        "codigo_a": 0,
+        "codigo_b": 2,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 1,
+        "area_a": "LC",
+        "area_b": "CH",
+        "codigo_a": 1,
+        "codigo_b": 0,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 1,
+        "area_a": "LC",
+        "area_b": "CH",
+        "codigo_a": 1,
+        "codigo_b": 1,
+        "status": "presente",
+        "quantidade": 3167955,
+        "percentual_base": 73.11322278801664
+      },
+      {
+        "dia": 1,
+        "area_a": "LC",
+        "area_b": "CH",
+        "codigo_a": 1,
+        "codigo_b": 2,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 1,
+        "area_a": "LC",
+        "area_b": "CH",
+        "codigo_a": 2,
+        "codigo_b": 0,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 1,
+        "area_a": "LC",
+        "area_b": "CH",
+        "codigo_a": 2,
+        "codigo_b": 1,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 1,
+        "area_a": "LC",
+        "area_b": "CH",
+        "codigo_a": 2,
+        "codigo_b": 2,
+        "status": "eliminado",
+        "quantidade": 5658,
+        "percentual_base": 0.13058096296651883
+      },
+      {
+        "dia": 2,
+        "area_a": "CN",
+        "area_b": "MT",
+        "codigo_a": 0,
+        "codigo_b": 0,
+        "status": "ausente",
+        "quantidade": 1325660,
+        "percentual_base": 30.594902680486985
+      },
+      {
+        "dia": 2,
+        "area_a": "CN",
+        "area_b": "MT",
+        "codigo_a": 0,
+        "codigo_b": 1,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 2,
+        "area_a": "CN",
+        "area_b": "MT",
+        "codigo_a": 0,
+        "codigo_b": 2,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 2,
+        "area_a": "CN",
+        "area_b": "MT",
+        "codigo_a": 1,
+        "codigo_b": 0,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 2,
+        "area_a": "CN",
+        "area_b": "MT",
+        "codigo_a": 1,
+        "codigo_b": 1,
+        "status": "presente",
+        "quantidade": 3004981,
+        "percentual_base": 69.3519463902603
+      },
+      {
+        "dia": 2,
+        "area_a": "CN",
+        "area_b": "MT",
+        "codigo_a": 1,
+        "codigo_b": 2,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 2,
+        "area_a": "CN",
+        "area_b": "MT",
+        "codigo_a": 2,
+        "codigo_b": 0,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 2,
+        "area_a": "CN",
+        "area_b": "MT",
+        "codigo_a": 2,
+        "codigo_b": 1,
+        "status": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0
+      },
+      {
+        "dia": 2,
+        "area_a": "CN",
+        "area_b": "MT",
+        "codigo_a": 2,
+        "codigo_b": 2,
+        "status": "eliminado",
+        "quantidade": 2303,
+        "percentual_base": 0.05315092925272055
+      }
+    ],
+    "transicoes": [
+      {
+        "dia1": "presente",
+        "dia2": "presente",
+        "quantidade": 2990093,
+        "percentual_base": 69.00834628834345,
+        "denominador_origem": 3167955,
+        "percentual_origem": 94.38558944176921
+      },
+      {
+        "dia1": "presente",
+        "dia2": "ausente",
+        "quantidade": 175619,
+        "percentual_base": 4.053110310218641,
+        "denominador_origem": 3167955,
+        "percentual_origem": 5.543607784832802
+      },
+      {
+        "dia1": "presente",
+        "dia2": "eliminado",
+        "quantidade": 2243,
+        "percentual_base": 0.05176618945456023,
+        "denominador_origem": 3167955,
+        "percentual_origem": 0.07080277339798072
+      },
+      {
+        "dia1": "presente",
+        "dia2": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 3167955,
+        "percentual_origem": 0.0
+      },
+      {
+        "dia1": "presente",
+        "dia2": "dados_ausentes",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 3167955,
+        "percentual_origem": 0.0
+      },
+      {
+        "dia1": "presente",
+        "dia2": "codigo_invalido",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 3167955,
+        "percentual_origem": 0.0
+      },
+      {
+        "dia1": "ausente",
+        "dia2": "presente",
+        "quantidade": 14004,
+        "percentual_base": 0.3231982688906203,
+        "denominador_origem": 1159331,
+        "percentual_origem": 1.2079380263272526
+      },
+      {
+        "dia1": "ausente",
+        "dia2": "ausente",
+        "quantidade": 1145272,
+        "percentual_base": 26.431728635311234,
+        "denominador_origem": 1159331,
+        "percentual_origem": 98.78731785831657
+      },
+      {
+        "dia1": "ausente",
+        "dia2": "eliminado",
+        "quantidade": 55,
+        "percentual_base": 0.0012693448149802998,
+        "denominador_origem": 1159331,
+        "percentual_origem": 0.004744115356183868
+      },
+      {
+        "dia1": "ausente",
+        "dia2": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 1159331,
+        "percentual_origem": 0.0
+      },
+      {
+        "dia1": "ausente",
+        "dia2": "dados_ausentes",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 1159331,
+        "percentual_origem": 0.0
+      },
+      {
+        "dia1": "ausente",
+        "dia2": "codigo_invalido",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 1159331,
+        "percentual_origem": 0.0
+      },
+      {
+        "dia1": "eliminado",
+        "dia2": "presente",
+        "quantidade": 884,
+        "percentual_base": 0.02040183302622882,
+        "denominador_origem": 5658,
+        "percentual_origem": 15.623895369388476
+      },
+      {
+        "dia1": "eliminado",
+        "dia2": "ausente",
+        "quantidade": 4769,
+        "percentual_base": 0.11006373495711,
+        "denominador_origem": 5658,
+        "percentual_origem": 84.28773418168964
+      },
+      {
+        "dia1": "eliminado",
+        "dia2": "eliminado",
+        "quantidade": 5,
+        "percentual_base": 0.00011539498318002725,
+        "denominador_origem": 5658,
+        "percentual_origem": 0.08837044892188052
+      },
+      {
+        "dia1": "eliminado",
+        "dia2": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 5658,
+        "percentual_origem": 0.0
+      },
+      {
+        "dia1": "eliminado",
+        "dia2": "dados_ausentes",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 5658,
+        "percentual_origem": 0.0
+      },
+      {
+        "dia1": "eliminado",
+        "dia2": "codigo_invalido",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 5658,
+        "percentual_origem": 0.0
+      },
+      {
+        "dia1": "misto",
+        "dia2": "presente",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "misto",
+        "dia2": "ausente",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "misto",
+        "dia2": "eliminado",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "misto",
+        "dia2": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "misto",
+        "dia2": "dados_ausentes",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "misto",
+        "dia2": "codigo_invalido",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "dados_ausentes",
+        "dia2": "presente",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "dados_ausentes",
+        "dia2": "ausente",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "dados_ausentes",
+        "dia2": "eliminado",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "dados_ausentes",
+        "dia2": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "dados_ausentes",
+        "dia2": "dados_ausentes",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "dados_ausentes",
+        "dia2": "codigo_invalido",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "codigo_invalido",
+        "dia2": "presente",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "codigo_invalido",
+        "dia2": "ausente",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "codigo_invalido",
+        "dia2": "eliminado",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "codigo_invalido",
+        "dia2": "misto",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "codigo_invalido",
+        "dia2": "dados_ausentes",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      },
+      {
+        "dia1": "codigo_invalido",
+        "dia2": "codigo_invalido",
+        "quantidade": 0,
+        "percentual_base": 0.0,
+        "denominador_origem": 0,
+        "percentual_origem": null
+      }
+    ],
+    "resumo": {
+      "total_base": 4332944,
+      "presentes_dia1": 3167955,
+      "presentes_dia2": 3004981,
+      "presentes_ambos": 2990093,
+      "somente_primeiro_ausente_segundo": 175619,
+      "somente_segundo_ausente_primeiro": 14004,
+      "ausentes_ambos": 1145272,
+      "demais_situacoes": 7956,
+      "retencao_percentual": 94.38558944176921,
+      "retencao_denominador": 3167955,
+      "diferenca_liquida_dia2_menos_dia1": -162974,
+      "presente_dia1_sem_presenca_completa_dia2": 177862,
+      "presente_dia2_sem_presenca_completa_dia1": 14888,
+      "pct_presentes_ambos_base": 69.00834628834345,
+      "pct_somente_primeiro_ausente_segundo_base": 4.053110310218641,
+      "pct_somente_segundo_ausente_primeiro_base": 0.3231982688906203,
+      "pct_ausentes_ambos_base": 26.431728635311234,
+      "pct_demais_situacoes_base": 0.18361649723605936
+    },
+    "combinacoes_conjuntas": [
+      {
+        "LC": 0,
+        "CH": 0,
+        "CN": 0,
+        "MT": 0,
+        "quantidade": 1145272
+      },
+      {
+        "LC": 0,
+        "CH": 0,
+        "CN": 1,
+        "MT": 1,
+        "quantidade": 14004
+      },
+      {
+        "LC": 0,
+        "CH": 0,
+        "CN": 2,
+        "MT": 2,
+        "quantidade": 55
+      },
+      {
+        "LC": 1,
+        "CH": 1,
+        "CN": 0,
+        "MT": 0,
+        "quantidade": 175619
+      },
+      {
+        "LC": 1,
+        "CH": 1,
+        "CN": 1,
+        "MT": 1,
+        "quantidade": 2990093
+      },
+      {
+        "LC": 1,
+        "CH": 1,
+        "CN": 2,
+        "MT": 2,
+        "quantidade": 2243
+      },
+      {
+        "LC": 2,
+        "CH": 2,
+        "CN": 0,
+        "MT": 0,
+        "quantidade": 4769
+      },
+      {
+        "LC": 2,
+        "CH": 2,
+        "CN": 1,
+        "MT": 1,
+        "quantidade": 884
+      },
+      {
+        "LC": 2,
+        "CH": 2,
+        "CN": 2,
+        "MT": 2,
+        "quantidade": 5
+      }
+    ]
+  },
+  "hashes_csv": {
+    "participacao_2024_dias.csv": "fd3ffc9191edfee9348725823bb099077060c0269a7edc835edce8b3378be2a7",
+    "participacao_2024_pares.csv": "0a58322f3961dde283fae2ee4fbcaa6237ccdfb3226ae10359075f7814c9d4ad",
+    "participacao_2024_transicoes.csv": "326613540f9b485ed4ac1a13fd6e74ec63209639f7c56bd5668de8ecc57ac687",
+    "participacao_2024_combinacoes_conjuntas.csv": "089fb46905601e6f804fa4aed43d0087f56a1fbe53a269c172355be087004149",
+    "participacao_2024_resumo.csv": "8b594e57ce9546038a2e5a968239e4e769b5f65d38283d5818186dca4c9f7cab"
+  },
+  "segundos": 1.138,
+  "preparo": {
+    "edicao": 2024,
+    "total_entrada": 4332944,
+    "total_saida": 4332944,
+    "nulos": {
+      "NU_SEQUENCIAL": 0,
+      "NU_ANO": 0,
+      "TP_PRESENCA_CN": 0,
+      "TP_PRESENCA_CH": 0,
+      "TP_PRESENCA_LC": 0,
+      "TP_PRESENCA_MT": 0
+    },
+    "codigos_invalidos": {
+      "TP_PRESENCA_CN": 0,
+      "TP_PRESENCA_CH": 0,
+      "TP_PRESENCA_LC": 0,
+      "TP_PRESENCA_MT": 0
+    },
+    "chaves_nulas": 0,
+    "duplicadas": 0,
+    "anos_invalidos": 0,
+    "divergencias_releitura": 0,
+    "sha256_raw_antes": "6fc3469bb7b67b02840f0d073021ce58358cb68ef896feb017fd5730cb97b49d",
+    "sha256_raw_depois": "6fc3469bb7b67b02840f0d073021ce58358cb68ef896feb017fd5730cb97b49d",
+    "parquet": "trusted/participacao_2024_base.parquet",
+    "sha256_parquet": "609adbb172a010fa90941650a52ca2216fc64c063a5c78a836579eb71192ac14"
+  }
+}

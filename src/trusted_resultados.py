@@ -61,11 +61,11 @@ def literal(valor):
     return "'" + str(valor).replace("'", "''") + "'"
 
 
-def ler_selecionados(con, fonte, limite=None):
+def ler_selecionados(con, fonte, limite=None, campos=CAMPOS):
     """Lê em modo estrito; todos os campos entram como texto antes da conversão."""
     with Path(fonte).open(encoding='latin-1', newline='') as stream:
         nomes = next(csv.reader(stream, delimiter=';'))
-    if len(nomes) != len(set(nomes)) or not set(CAMPOS).issubset(nomes):
+    if len(nomes) != len(set(nomes)) or not set(campos).issubset(nomes):
         raise ValueError('Cabeçalho duplicado ou ausência de campos do contrato.')
     if limite is not None and (not isinstance(limite, int) or limite <= 0):
         raise ValueError('Limite amostral deve ser inteiro positivo.')
@@ -75,7 +75,7 @@ def ler_selecionados(con, fonte, limite=None):
                "encoding='latin-1', quote='\"', escape='\"', nullstr='', "
                'strict_mode=true, ignore_errors=false, null_padding=false, parallel=false)')
     sufixo = f' LIMIT {limite}' if limite else ''
-    con.execute('CREATE TABLE entrada AS SELECT ' + ','.join(CAMPOS) + ' FROM ' + leitura + sufixo)
+    con.execute('CREATE TABLE entrada AS SELECT ' + ','.join(campos) + ' FROM ' + leitura + sufixo)
     # Contagem independente da projeção e da transformação, pelo mesmo parser estrito.
     total = con.execute(f'SELECT count(*) FROM (SELECT * FROM {leitura}{sufixo})').fetchone()[0]
     return total

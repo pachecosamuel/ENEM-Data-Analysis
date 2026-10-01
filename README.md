@@ -3,7 +3,7 @@
 Documento de trabalho · fechamento atualizado em 30/09/2026
 
 
-**Fase 1 concluída no escopo atual:** POC 2025 com seis análises e apresentação. Leia o [resumo dos resultados](apresentacao/RESUMO_FASE_1_2025.md) e veja o [fluxograma do processo](apresentacao/graficos/fluxograma_fase_1_2025.svg). A [fase 2 está planejada](docs/ROADMAP_FASE_2.md), começando por 2024; nenhuma nova edição foi implementada neste fechamento.
+**Fase 1 concluída no escopo atual:** POC 2025 com seis análises e apresentação. Leia o [resumo dos resultados](apresentacao/RESUMO_FASE_1_2025.md) e veja o [fluxograma do processo](apresentacao/graficos/fluxograma_fase_1_2025.svg). A [fase 2 está em andamento](docs/ROADMAP_FASE_2.md): participação entre dias de 2024 e comparação com 2025 concluídas; os demais cinco temas de 2024 não foram iniciados.
 
 ## Por onde começar
 
@@ -84,6 +84,12 @@ Histórico da fase 1 e stack: [ROADMAP.md](docs/ROADMAP.md). Próximos increment
 7. Expandir a série temporal até 2010 somente após avaliar compatibilidade de questionários, cobertura e disponibilidade de renda e notas associáveis.
 
 Camadas lógicas propostas: `raw` → padronizados → analíticos → apresentação. Os originais serão preservados; a stack inicial e as camadas propostas estão detalhadas no ROADMAP.
+
+## Participação entre dias — 2024 e 2025
+
+Leia a [apresentação comparativa](apresentacao/participacao_2024_2025.ipynb) ou o [resumo da entrega](apresentacao/RESUMO_PARTICIPACAO_2024_2025.md). O [notebook 08](notebooks/08_participacao_2024.ipynb) prepara seis campos de 2024, reutiliza o cálculo de participação e consolida indicadores com edição explícita. Não junta pessoas entre anos nem altera a apresentação de 2025. Regras e verificações no [contrato](docs/contrato_participacao_2024_2025.md).
+
+Execute o notebook 08 e depois a apresentação comparativa com `scripts/executar_notebook.py`, usando o ambiente existente. Para mudanças apenas visuais, execute somente a apresentação. O restante do fluxo de 2025 permanece independente.
 
 ## Ambiente de desenvolvimento
 

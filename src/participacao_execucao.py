@@ -13,9 +13,12 @@ from src.trusted_resultados import conferir_esquema
 from src.participacao import calcular_participacao
 
 
-def executar_participacao(raiz=None):
+def executar_participacao(raiz=None, ano=2025):
     raiz = raiz_projeto(raiz)
-    fonte = raiz/'trusted/resultados_2025_base.parquet'
+    if ano not in (2024, 2025):
+        raise ValueError('Pares de dias documentados somente para 2024 e 2025 neste incremento.')
+    fonte = raiz / ('trusted/resultados_2025_base.parquet' if ano == 2025
+                    else 'trusted/participacao_2024_base.parquet')
     inicio = time.monotonic()
     hash_antes = hash_arquivo(fonte)
     trabalho = raiz/'work'
@@ -28,10 +31,15 @@ def executar_participacao(raiz=None):
                                     'max_temp_directory_size':'2GB'}) as con:
             con.read_parquet(str(fonte)).create_view('base')
             esquema = [list(x[:2]) for x in con.execute('DESCRIBE base').fetchall()]
-            conferir_esquema(esquema)
-            total, nulos, ano_invalido = con.execute('''SELECT count(*),
+            if ano == 2025:
+                conferir_esquema(esquema)
+            else:
+                from src.participacao_entrada import TIPOS_PARTICIPACAO
+                if esquema != [list(x) for x in TIPOS_PARTICIPACAO.items()]:
+                    raise ValueError('Esquema incompatível com participação 2024.')
+            total, nulos, ano_invalido = con.execute(f'''SELECT count(*),
                 count(*) FILTER(WHERE NU_SEQUENCIAL IS NULL OR trim(NU_SEQUENCIAL)=''),
-                count(*) FILTER(WHERE NU_ANO IS DISTINCT FROM 2025) FROM base''').fetchone()
+                count(*) FILTER(WHERE NU_ANO IS DISTINCT FROM {ano}) FROM base''').fetchone()
             duplicadas = con.execute('''SELECT count(*) FROM (SELECT NU_SEQUENCIAL FROM base
                 GROUP BY NU_SEQUENCIAL HAVING count(*)>1)''').fetchone()[0]
             if nulos or duplicadas or ano_invalido:
@@ -47,7 +55,8 @@ def executar_participacao(raiz=None):
                   'sha256_antes':hash_antes,'sha256_depois':hash_depois,'esquema':esquema,
                   'total_base':total,'chaves_nulas':nulos,'chaves_duplicadas':duplicadas,'anos_invalidos':ano_invalido,
                   'duckdb':duckdb.__version__,'memory_limit':'256MB','threads':1,
-                  'contrato':'docs/contrato_analitico_participacao_2025.md',
+                  'contrato':('docs/contrato_analitico_participacao_2025.md' if ano == 2025
+                              else 'docs/contrato_participacao_2024_2025.md'),
                   'validacao':'aprovada_com_alertas' if alertas else 'aprovada', 'alertas_pares':alertas,
                   'controles':controles, 'resultado':resultado,'hashes_csv':{}}
         (raiz/'analitica').mkdir(exist_ok=True)
@@ -57,13 +66,13 @@ def executar_participacao(raiz=None):
             linhas = [resultado[nome]] if nome=='resumo' else resultado[nome]
             # Matriz e pares incluem zeros explícitos; cabeçalho de conjuntos vazios é definido.
             campos = list(linhas[0]) if linhas else ['LC','CH','CN','MT','quantidade']
-            arquivo=pasta/f'participacao_2025_{nome}.csv'
+            arquivo=pasta/f'participacao_{ano}_{nome}.csv'
             with arquivo.open('w',encoding='utf-8',newline='') as f:
                 writer=csv.DictWriter(f,fieldnames=campos); writer.writeheader(); writer.writerows(linhas)
             report['hashes_csv'][arquivo.name]=hash_arquivo(arquivo)
             saidas.append(arquivo)
         report['segundos']=round(time.monotonic()-inicio,3)
-        auditoria=pasta/'validacao_participacao_2025.json'
+        auditoria=pasta/f'validacao_participacao_{ano}.json'
         auditoria.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
         for arquivo in saidas:
             os.replace(arquivo,raiz/'analitica'/arquivo.name)
