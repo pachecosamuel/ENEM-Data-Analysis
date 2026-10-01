@@ -1,6 +1,6 @@
 # Roadmap — ENEM 2025
 
-Atualizado em 24/09/2026. Plano de trabalho incremental; caixas abertas representam trabalho futuro.
+Fechamento atualizado em 30/09/2026. **Fase 1 concluída no escopo atual (POC 2025).** A [fase 2 está planejada](ROADMAP_FASE_2.md), com 2024 como próximo incremento. As seções datadas abaixo preservam o histórico; suas pendências devem ser lidas no contexto de cada entrega.
 
 ## Onde estamos e como retomar
 
@@ -11,9 +11,10 @@ Atualizado em 24/09/2026. Plano de trabalho incremental; caixas abertas represen
 - [x] Contrato inicial de dez campos, funções reutilizáveis, testes e notebook raw → trusted executados em amostra e volume completo.
 - [x] Parquet publicado com 4.810.772 registros, sem exclusões, após reconciliação exata e confirmação da integridade do raw.
 - [x] Indicadores de desempenho por área, tabela e dois gráficos validados a partir da trusted.
-- [ ] Demais requisitos e perfil dos demais campos ainda pendentes.
+- [x] Primeira visão dos seis requisitos concluída, com perfil econômico independente e apresentação.
+- [x] [Resumo de fechamento](../apresentacao/RESUMO_FASE_1_2025.md), fluxograma e planejamento da fase 2 disponíveis.
 
-**Ponto de retomada:** revisar a primeira visão de local de prova (regiões e UFs) na apresentação e no notebook 05. Perguntas 1 e 2 concluídas; redação e local de prova têm primeiras POCs validadas. Depois da revisão, decidir entre rede escolar, perfil econômico independente ou aprofundamento territorial; não ampliar automaticamente.
+**Ponto de retomada:** seguir o [roadmap da fase 2](ROADMAP_FASE_2.md), começando pela validação e incorporação de 2024. Este fechamento não implementa outra edição. Municípios detalhados e redação por local/rede permanecem fora da POC concluída.
 
 ## Decisões tomadas
 
@@ -73,22 +74,22 @@ Atualizado em 24/09/2026. Plano de trabalho incremental; caixas abertas represen
 
 - [x] Participação entre dias: contrato, pares, matriz, retenção e saldo validados; eliminações e divergências separadas.
 - [x] Local de prova: primeira visão de regiões/UFs, presença, permanência e desempenho por área com mapeamento IBGE; aplicação distinta de residência. Municípios e redação territorial permanecem pendentes.
-- [ ] Rede escolar: explicitar cobertura e não informados; públicas = federal, estadual e municipal; evitar inferência causal.
+- [x] Rede escolar: explicitar cobertura e não informados; públicas = federal, estadual e municipal; evitar inferência causal.
 - [x] Redação: primeira POC com contrato de elegibilidade, status, nota final e competências; revisão do usuário antes de ampliar.
-- [ ] Perfil econômico independente: quantidades e percentuais por `Q007`, complemento com/sem renda em `Q006`; preservar “nenhuma renda”, separar ausentes/inválidos e explicitar base total e, se usado, denominador de respostas válidas. Não estimar renda pessoal ou renda per capita exata de faixas.
+- [x] Perfil econômico independente: quantidades e percentuais por `Q007`, complemento com/sem renda em `Q006`; preservar “nenhuma renda”, separar ausentes/inválidos e explicitar base total e, se usado, denominador de respostas válidas. Não estimar renda pessoal ou renda per capita exata de faixas.
 
 **Entregável/saída por requisito:** contrato, tabela, visualização e controles de qualidade revisados antes de avançar; ao final, apresentação das seis análises com filtros, cobertura e limitações.
 
 ### 6. Avaliar expansão temporal até 2010
 
-- [ ] Comparar esquemas, questionários, categorias, cobertura e regras das edições.
+- [x] Auditar documentalmente esquemas, questionários, categorias, cobertura e regras de 2010–2025; limites registrados na [auditoria temporal](viabilidade_temporal_2010_2025.md).
 - [ ] Investigar edição compatível para associação renda–nota e comparabilidade monetária antes de retomar essa pergunta.
 
 **Entregável/saída:** matriz de compatibilidade e recorte temporal justificado antes de integrar novos anos.
 
-## Decisões ainda pendentes
+## Continuidade após o fechamento
 
-Filtros e denominadores dos próximos requisitos; revisão da primeira POC de redação; campos adicionais para os demais requisitos; revisar parâmetros de recursos se o escopo crescer. Resolver cada ponto na fase correspondente e atualizar este arquivo com o último passo validado e a próxima ação.
+Os seis requisitos foram concluídos na primeira visão de 2025. A próxima decisão operacional pertence à fase 2: validar as diferenças de 2024 antes de reutilizar os componentes. A relação renda–nota fica para 2023, após validação do arquivo integrado. Detalhamento municipal e redação por local/rede não bloqueiam este fechamento.
 
 ## Entrega validada em 16/09/2026
 
@@ -163,3 +164,8 @@ Nenhuma renda familiar ou até R$ 1.518: 2.124.525 (44,16%). Não possuem renda 
 ## Revisão visual e narrativa — 25/09/2026
 
 Apresentação reorganizada em inscrições → dias/Sankey → áreas → redação/competências → notas regionais → rede/cobertura → economia independente. Removido o visual de presença regional e seu bloco gerador, mantendo cálculo, agregados e tabelas no notebook 05. Gráficos de notas regionais e redes sem n nos rótulos; denominadores nas tabelas. Renda familiar destaca o acumulado A–D: 3.424.548 de 4.810.772 inscritos (71,18%) até R$ 3.036 mensais, incluindo nenhuma renda. Sem mudança das regras ou dos dados; sem novos testes/reports. Mapa técnico e sequência de execução atualizados no README. As entregas descritas anteriormente são históricas.
+
+
+## Fechamento da fase 1 — 30/09/2026
+
+POC 2025 concluída no escopo atual. Resumo informacional dos seis temas e fluxograma SVG/PNG publicados em `apresentacao/`. Números conferidos nos agregados existentes; sem recalcular microdados ou alterar regras. Planejamento da fase 2 registrado, com sequência 2024 → 2023 → renda × desempenho em 2023 → comparações e expansão histórica por regimes. Nenhuma nova edição implementada neste fechamento.

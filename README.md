@@ -1,7 +1,9 @@
 # ENEM — Análise de dados
 
-Documento de trabalho · 16/09/2026
+Documento de trabalho · fechamento atualizado em 30/09/2026
 
+
+**Fase 1 concluída no escopo atual:** POC 2025 com seis análises e apresentação. Leia o [resumo dos resultados](apresentacao/RESUMO_FASE_1_2025.md) e veja o [fluxograma do processo](apresentacao/graficos/fluxograma_fase_1_2025.svg). A [fase 2 está planejada](docs/ROADMAP_FASE_2.md), começando por 2024; nenhuma nova edição foi implementada neste fechamento.
 
 ## Por onde começar
 
@@ -31,9 +33,9 @@ Leia [a apresentação](apresentacao/visao_geral_2025.ipynb). Para alterar um c�
 
 ## Objetivo e escopo
 
-Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. A trusted e os indicadores de desempenho por área de 2025 estão implementados e validados. A participação entre os dois dias foi concluída; a primeira POC de redação e a abertura sobre inscritos estão disponíveis para revisão antes de ampliar o escopo.
+Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. As seis análises da primeira visão de 2025 estão concluídas, incluindo redação, local de aplicação, rede escolar e perfil econômico independente. Os limites e aprofundamentos fora do escopo permanecem documentados.
 
-O desafio original contempla análise temporal retrocedendo até 2010 e a relação entre renda familiar e desempenho. A prova de conceito (POC) fica limitada à edição de 2025, começando por presença e desempenho por área e contemplando seis perguntas. A leitura econômica será independente das notas. As métricas abaixo são propostas, não resultados calculados.
+O desafio original contempla análise temporal retrocedendo até 2010 e a relação entre renda familiar e desempenho. A prova de conceito (POC) fica limitada à edição de 2025, começando por presença e desempenho por área e contemplando seis perguntas. A leitura econômica será independente das notas. A tabela abaixo registra as perguntas e métricas que orientaram a POC; os resultados entregues estão no resumo e na apresentação, com os recortes efetivamente implementados.
 
 ## Dados disponíveis
 
@@ -71,7 +73,7 @@ Toda proporção deve informar numerador, denominador e recorte. Para notas, apr
 
 ## Roadmap
 
-Plano detalhado, stack escolhida e ponto de retomada: [ROADMAP.md](docs/ROADMAP.md).
+Histórico da fase 1 e stack: [ROADMAP.md](docs/ROADMAP.md). Próximos incrementos: [ROADMAP_FASE_2.md](docs/ROADMAP_FASE_2.md). A sequência abaixo registra a abordagem original da POC.
 
 1. Consolidar visão de negócio e as seis perguntas.
 2. Definir o contrato analítico: população, unidade de análise, elegibilidade, regras por dia, métricas e denominadores.
