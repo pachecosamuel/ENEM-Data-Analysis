@@ -1,212 +1,171 @@
-# ENEM — Análise de dados
+# ENEM — participação, desempenho e perfil socioeconômico
 
-Documento de trabalho · fechamento atualizado em 30/09/2026
+Projeto de análise dos microdados públicos do ENEM, com desenvolvimento incremental e resultados reproduzíveis. Atualizado em **02/10/2026**.
 
+## Visão de negócio
 
-**Fase 1 concluída no escopo atual:** POC 2025 com seis análises e apresentação. Leia o [resumo dos resultados](apresentacao/RESUMO_FASE_1_2025.md) e veja o [fluxograma do processo](apresentacao/graficos/fluxograma_fase_1_2025.svg). A [fase 2 está em andamento](docs/ROADMAP_FASE_2.md): participação entre dias de 2024 e comparação com 2025 concluídas; os demais cinco temas de 2024 não foram iniciados.
+O projeto transforma arquivos extensos do ENEM em informações compreensíveis sobre comparecimento às provas, distribuição das notas e diferenças entre os grupos disponíveis nos dados. A proposta é apoiar a discussão educacional com evidências, explicitar os limites de cada comparação e levantar perguntas para aprofundamento.
+
+O trabalho começa pelas perguntas de análise: qual população estamos descrevendo, o que cada indicador mede e quais decisões de interpretação os dados permitem? A partir disso, são definidos os campos, critérios de inclusão, denominadores e verificações. A tecnologia sustenta esse processo; a entrega principal são análises que possam ser explicadas, conferidas e reproduzidas.
+
+As conclusões são descritivas. Diferenças entre regiões, redes ou edições não demonstram, por si só, causas ou efeitos de políticas educacionais.
+
+## Objetivos e perguntas
+
+| Tema | Pergunta de análise | Entrega |
+| --- | --- | --- |
+| Desempenho por área | Como as notas se distribuem em Natureza, Humanas, Linguagens e Matemática? | Quantidade de notas elegíveis, médias, medianas, quartis e distribuição. |
+| Participação entre dias | Quantos comparecem a cada dia e quantos permanecem nos dois? | Contagens, taxas, transições, retenção e situações de eliminação ou inconsistência. |
+| Local de aplicação | Como presença e desempenho variam por região e UF da prova? | Indicadores territoriais com denominadores próprios e referência geográfica explícita. |
+| Rede escolar | Como as notas variam entre redes, considerando a cobertura dessa informação? | Distribuições por rede e identificação dos registros sem informação escolar. |
+| Redação | Qual é o panorama da nota final e das cinco competências? | Situações da redação, distribuição da nota e análise das competências com elegibilidade definida. |
+| Perfil econômico | Como os inscritos divulgados se distribuem por renda familiar e declaração de renda própria? | Contagens e percentuais por categoria do questionário, independentes das notas em 2024–2025. |
+
+O objetivo de longo prazo inclui comparações temporais até 2010 e a investigação de renda × desempenho em uma edição que permita associação individual validada. A expansão depende da compatibilidade de campos, conceitos, populações e faixas de renda.
+
+## Estado atual
+
+- **Fase 1 concluída:** primeira visão dos seis temas para 2025, com indicadores, gráficos e apresentação.
+- **Fase 2 em andamento:** participação entre dias de 2024 implementada e comparada com 2025. Os outros cinco temas de 2024 ainda não foram iniciados.
+- **Auditoria documental concluída:** esquemas e limitações das 16 edições de 2010–2025 examinados. Isso não significa que todas tenham sido processadas ou integradas.
+- **Planejado:** completar 2024 incrementalmente, incorporar 2023, investigar renda × desempenho em 2023 e expandir a série histórica por grupos de edições compatíveis.
+
+Detalhamento municipal e redação por local ou rede não fazem parte da primeira visão concluída de 2025.
 
 ## Por onde começar
 
-Leia [a apresentação](apresentacao/visao_geral_2025.ipynb). Para alterar um cálculo, localize o assunto em `src/` e seu notebook numerado. O mapa abaixo descreve a estrutura atual, sem exigir uma nova camada de execução.
-
-| Pasta / arquivo-chave | Responsabilidade |
+| Material | Conteúdo |
 | --- | --- |
-| `raw/microdados_enem_2025/microdados_enem_2025/` | CSVs originais, dicionário e Leia_Me; fontes preservadas. |
-| `src/trusted_resultados.py` → `trusted/resultados_2025_base.parquet` | Carga de RESULTADOS e contrato v4 de 22 campos, sem filtros analíticos. |
-| `src/desempenho.py`, `participacao.py`, `redacao.py`, `local_prova.py`, `rede_escolar.py`, `perfil_economico.py` | Regras e cálculos por assunto. Perfil econômico lê PARTICIPANTES independentemente. |
-| `src/*_execucao.py` | Leitura e publicação de agregados; `inscritos_execucao.py` confere o universo divulgado. |
-| `src/*_graficos.py` | Renderização dos agregados em PNG, sem recalcular microdados. |
-| `analitica/` | CSVs compactos consumidos na apresentação. |
-| `notebooks/01` a `07` | 01 trusted; 02 áreas; 03 dias; 04 redação/inscritos; 05 local; 06 rede; 07 economia. |
-| `apresentacao/visao_geral_2025.ipynb` e `apresentacao/graficos/` | Narrativa executada e imagens; a apresentação consome saídas existentes. |
-| `docs/` e `reports/` | Contratos, referência IBGE e roadmap; auditorias históricas dos cálculos. Economia tem regras no notebook 07. |
-| `scripts/executar_notebook.py` | Executa o notebook indicado em kernel novo e salva suas saídas. |
-| `.venv/`, `requirements.txt`, `tests/`, `work/` | Ambiente/dependências existentes, testes existentes e temporários/backups. |
+| [Resumo de 2025](apresentacao/RESUMO_FASE_1_2025.md) | Visão informacional dos seis temas, resultados e limites. |
+| [Apresentação de 2025](apresentacao/visao_geral_2025.ipynb) | Narrativa completa com tabelas e gráficos. |
+| [Comparação de participação 2024–2025](apresentacao/participacao_2024_2025.ipynb) | Presença por dia, permanência e transições nas duas edições. |
+| [Resumo do incremento 2024](apresentacao/RESUMO_PARTICIPACAO_2024_2025.md) | Resultados, arquivos, reprodução e verificações. |
+| [Fluxograma do processo](apresentacao/graficos/fluxograma_fase_1_2025.svg) | Da descoberta e das perguntas aos indicadores e à apresentação. |
+| [Roadmap da fase 2](docs/ROADMAP_FASE_2.md) | Próximos incrementos e critérios para avançar. |
 
-**Para atualizar apenas a apresentação e os gráficos:**
+Os notebooks executados contêm saídas para leitura. Para reexecutá-los, são necessários o ambiente e os arquivos locais referenciados.
+
+## Dados e arquitetura
+
+As fontes são os pacotes públicos de microdados do Inep, acompanhados de dicionários, LeiaMe e instruções de leitura. Os arquivos originais ficam em `raw/` e são preservados durante o processamento.
+
+**RESULTADOS** contém as presenças por área e informações de provas, notas e escola. **PARTICIPANTES** contém características dos inscritos e respostas ao questionário socioeconômico. O nome PARTICIPANTES não significa que esse seja o arquivo usado para calcular comparecimento aos dias: as quatro presenças vêm de RESULTADOS.
+
+O fluxo das análises de resultados é:
+
+```text
+raw/RESULTADOS → seleção e tratamento → trusted/*.parquet
+                                             ↓
+                                    indicadores em analitica/
+                                             ↓
+                                  tabelas, gráficos e narrativa
+```
+
+| Base tratada | Conteúdo e finalidade |
+| --- | --- |
+| `trusted/resultados_2025_base.parquet` | Base compartilhada de 2025, contrato v4 com 22 campos e 4.810.772 registros. Sustenta participação, notas, redação, local e rede. |
+| `trusted/participacao_2024_base.parquet` | Recorte mínimo de 2024, com identificador, edição e quatro presenças: seis campos e 4.332.944 registros. Sustenta apenas o incremento de participação. |
+
+Ambos os Parquets são derivados dos respectivos arquivos raw de RESULTADOS, sem excluir registros no preparo. Os nomes refletem o alcance de cada entrega. Não foi necessário criar outro Parquet de participação para 2025, pois seus campos já estão na base compartilhada.
+
+Durante o cálculo dos indicadores de participação, **DuckDB consulta a trusted**, e não novamente o raw. Na comparação temporal, são consolidados indicadores com coluna de edição; não há ligação de pessoas entre anos nem exigência de uma tabela física unificada de registros.
+
+O perfil econômico de 2025 segue um caminho independente: `raw/PARTICIPANTES → indicadores econômicos → apresentação`. Não passa pela trusted de resultados. Os notebooks de apresentação consomem agregados existentes; ajustes visuais não exigem refazer a carga ou o cálculo dos microdados.
+
+## Tecnologias e responsabilidades
+
+| Tecnologia | Papel no projeto |
+| --- | --- |
+| **Python** | Implementação das regras, organização da execução e verificações. |
+| **DuckDB** | Leitura de CSV/Parquet, consultas SQL e agregações locais, dentro do processo Python e sem servidor dedicado. |
+| **Parquet** | Armazenamento colunar das bases tratadas, com tipos explícitos. |
+| **Pandas** | Organização de tabelas reduzidas para análise e apresentação. |
+| **Matplotlib** | Geração dos gráficos em PNG a partir dos indicadores. |
+| **Jupyter / IPython** | Exploração, execução dos incrementos e registro de resultados e narrativa. |
+| **VS Code** | Ambiente de edição de código e notebooks. |
+| **venv e pip** | Isolamento do ambiente e instalação das dependências fixadas. |
+| **Git e unittest** | Versionamento e verificações automatizadas das regras e do processamento. |
+
+O ambiente documentado usa Python 3.13 de 64 bits. As versões dos pacotes estão fixadas em [requirements.txt](requirements.txt). O processamento atual é local: Spark, serviços de nuvem e um banco persistente DuckDB não são requisitos desta implementação. Nas rotinas de preparação e participação, DuckDB é configurado com limite de 256 MB e uma thread; isso não representa o consumo total do processo.
+
+## Organização do repositório
+
+| Caminho | Responsabilidade |
+| --- | --- |
+| `raw/` | Microdados originais e documentação por edição. |
+| `trusted/` | Parquets preparados e validados; dados locais, fora do versionamento. |
+| `analitica/` | Indicadores em CSV, com contagens, percentuais e denominadores. |
+| `src/` | Regras de cálculo, entrada/saída e gráficos separados por responsabilidade. |
+| `notebooks/` | Execução e inspeção de cada incremento. |
+| `apresentacao/` | Notebooks narrativos, resumos e gráficos finais. |
+| `docs/` | Contratos, auditoria temporal, referências e roadmaps. |
+| `reports/` | Evidências de validação e registros das entregas. |
+| `tests/` | Testes das regras e dos pontos relevantes de integridade. |
+| `scripts/executar_notebook.py` | Execução de um notebook em kernel novo, com salvamento das saídas. |
+| `work/` | Temporários e backups de trabalho; fora do versionamento. |
+
+O núcleo `src/participacao.py` é compartilhado entre 2024 e 2025. O preparo mínimo de 2024 fica em `participacao_entrada.py`; a leitura/publicação anual em `participacao_execucao.py`; a consolidação em `participacao_comparacao.py`. Os módulos de gráficos trabalham com indicadores, não com milhões de registros individuais.
+
+## Executar o projeto
+
+Os comandos abaixo são para PowerShell, a partir da raiz do repositório. Os pacotes de microdados devem estar extraídos nos caminhos definidos pelos contratos. O repositório não substitui o download e a organização dessas fontes.
+
+### Preparação do ambiente
+
+Se `.venv` já estiver configurada, use-a diretamente. Para criar um ambiente novo com Python 3.13 de 64 bits instalado:
+
+```powershell
+py -3.13 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m ipykernel install --user --name enem-2025 --display-name 'ENEM 2025 (.venv)'
+```
+
+O executor usa o kernel `enem-2025`, também para o incremento de 2024; o nome do kernel identifica o ambiente, não restringe a edição analisada. No VS Code, selecione **ENEM 2025 (.venv)** para os notebooks. Os comandos usam o executável diretamente, dispensando ativação e alterações na política de execução do PowerShell.
+
+### Atualizar somente as apresentações
+
+Com os indicadores já disponíveis:
 
 ```powershell
 .\.venv\Scripts\python.exe -X utf8 scripts\executar_notebook.py apresentacao\visao_geral_2025.ipynb
+.\.venv\Scripts\python.exe -X utf8 scripts\executar_notebook.py apresentacao\participacao_2024_2025.ipynb
 ```
 
-**Para reconstruir tudo:** execute os notebooks **01 → 02 → 03 → 04 → 05 → 06 → 07 → apresentação**, usando o mesmo comando com cada caminho. O 01 só é necessário quando a trusted precisa ser reconstruída; 02–06 dependem dela. O 07 usa PARTICIPANTES e pode rodar independentemente. Uma mudança visual não exige reexecutar cargas ou cálculos.
+### Processar os incrementos
 
-## Objetivo e escopo
+Para reconstruir 2025, execute os notebooks **01 → 02 → 03 → 04 → 05 → 06 → 07**, depois a apresentação de 2025. O 01 prepara a trusted; 02–06 usam essa base. O 07 calcula o perfil econômico a partir de PARTICIPANTES e pode ser executado independentemente. Use `scripts/executar_notebook.py` com o caminho do notebook desejado.
 
-Investigar participação, desempenho e perfil econômico dos inscritos divulgados no ENEM, com perguntas de negócio claras e evolução iterativa, incremental e validativa. As seis análises da primeira visão de 2025 estão concluídas, incluindo redação, local de aplicação, rede escolar e perfil econômico independente. Os limites e aprofundamentos fora do escopo permanecem documentados.
-
-O desafio original contempla análise temporal retrocedendo até 2010 e a relação entre renda familiar e desempenho. A prova de conceito (POC) fica limitada à edição de 2025, começando por presença e desempenho por área e contemplando seis perguntas. A leitura econômica será independente das notas. A tabela abaixo registra as perguntas e métricas que orientaram a POC; os resultados entregues estão no resumo e na apresentação, com os recortes efetivamente implementados.
-
-## Dados disponíveis
-
-Materiais em `raw/microdados_enem_2025/microdados_enem_2025/`: `DADOS`, `DICIONÁRIO`, `INPUTS` e `LEIA-ME E DOCUMENTOS TÉCNICOS`.
-
-- `RESULTADOS_2025.csv`: 70 colunas, aproximadamente 2,12 GB; base das cinco perguntas iniciais.
-- `PARTICIPANTES_2025.csv`: aproximadamente 513 MB; contém informações dos participantes e o questionário socioeconômico; base da sexta pergunta, sobre o perfil dos inscritos divulgados, sem pressupor comparecimento.
-- A inspeção inicial cobriu 10 mil linhas; agora os 22 campos do contrato v4 (incluindo local de prova e rede escolar) foram validados em todos os 4.810.772 registros de RESULTADOS. Essa validação de qualidade não substitui as análises finais.
-
-Conforme o leia-me (página 7), PARTICIPANTES e RESULTADOS não possuem chave comum. O dicionário distingue `NU_SEQUENCIAL` de `NU_INSCRICAO`. A renda familiar (`Q007`) está somente em PARTICIPANTES: não é possível prometer seu cruzamento individual com notas, nem associar registros pela posição. A pergunta renda × desempenho permanece no escopo futuro, a investigar em edição compatível, sem mudar o ano da POC agora.
-
-## Seis perguntas norteadoras
-
-| Pergunta | Campos principais | Métricas iniciais propostas |
-| --- | --- | --- |
-| 1. Como o desempenho se distribui por área? | `NU_NOTA_CN`, `NU_NOTA_CH`, `NU_NOTA_LC`, `NU_NOTA_MT` e respectivas `TP_PRESENCA_*` | Contagem de notas elegíveis, cobertura, média e mediana complementares, quartis e distribuição por área. |
-| 2. Como a participação varia entre os dois dias? | `TP_PRESENCA_LC`, `TP_PRESENCA_CH`, `TP_PRESENCA_CN`, `TP_PRESENCA_MT`; `TP_STATUS_REDACAO` como verificação complementar | Contagens e proporções por situação e dia; participação em ambos, somente no primeiro ou segundo, e em nenhum; inconsistências separadas. |
-| 3. Como desempenho e presença variam por local de aplicação? | `CO_MUNICIPIO_PROVA`, `NO_MUNICIPIO_PROVA`, `SG_UF_PROVA`, notas e presenças por área | Volume e taxas de presença por local; cobertura das notas, média, mediana e quartis por área. Região poderá ser derivada de UF com mapeamento explícito. |
-| 4. Como as notas variam por rede escolar, incluindo pública × privada? | `TP_DEPENDENCIA_ADM_ESC`, notas e presenças por área | Contagens e cobertura da informação escolar; média, mediana e quartis por rede e agrupamento público/privado. |
-| 5. Qual o panorama da redação e de suas competências? | `NU_NOTA_REDACAO`, `NU_NOTA_COMP1` a `NU_NOTA_COMP5`, `TP_STATUS_REDACAO` | Contagens e proporções por status; cobertura, média, mediana, quartis e distribuição da nota total e de cada competência. |
-| 6. Como os inscritos divulgados se distribuem por faixa de renda familiar? | `Q007` (principal), `Q006` (complemento); `Q005` para contexto do número de moradores | Quantidades e percentuais por faixa de renda mensal familiar; complemento com percentuais com/sem renda própria. Denominador principal: todos os registros de PARTICIPANTES; se houver percentual entre respostas válidas, identificá-lo separadamente para cada campo. |
-
-Toda proporção deve informar numerador, denominador e recorte. Para notas, apresentar também quantidade elegível e valores ausentes. Moda não é prioridade inicial.
-
-## Regras de interpretação e validação
-
-- **Áreas:** CN, CH, LC e MT são áreas de conhecimento, não notas isoladas de física, química, história etc. Redação será analisada separadamente; não há proposta de uma nota global oficial.
-- **Presença:** `0` = ausente, `1` = presente e `2` = eliminado. Nota zero não significa ausência. Primeiro dia: LC, CH e redação; segundo: CN e MT. Regra inicial proposta: presença no dia exige código `1` nas duas áreas objetivas correspondentes. Ausência nas duas indica ausência no dia; eliminações e combinações divergentes devem ser discriminadas e verificadas antes de consolidar indicadores. O status da redação exige interpretação própria pelo dicionário.
-- **Elegibilidade:** definir por área e status quais notas entram em cada métrica; manter zeros válidos, distinguir ausências de valores faltantes e publicar exclusões. Na redação, explicitar o tratamento de cada status e validar a relação entre total e competências conforme documentação.
-- **Rede escolar:** `TP_DEPENDENCIA_ADM_ESC`: `1` federal, `2` estadual, `3` municipal e `4` privada. Públicas = `1`, `2` e `3`. A informação escolar é incompleta/selecionada: informar cobertura sobre a base e o recorte elegível, mantendo não informados separados. Diferenças observadas não demonstram causalidade nem permitem inferir renda.
-- **Geografia:** local de prova não equivale à residência. `TP_LOCALIZACAO_ESC` indica escola urbana/rural, não urbanização ou residência do candidato. Expectativas de desempenho regional ou por rede são hipóteses a testar.
-- **Perfil econômico:** `Q007` informa a faixa de renda mensal familiar, incluindo o respondente e os moradores. `Q006` indica apenas se possui renda própria (`A` = não; `B` = sim), sem valor ou faixa de renda pessoal. `Q005` informa o número de moradores; não permite obter renda per capita exata a partir de faixas. A análise descreve os inscritos divulgados em PARTICIPANTES e não deve ser filtrada por presença: não há ligação com RESULTADOS, e o cruzamento individual renda–nota continua inviável em 2025.
-- **Qualidade econômica:** aplicar categorias e limites de `Q007` conforme o dicionário de 2025, preservando “nenhuma renda” como resposta válida. Separar respostas ausentes e códigos inválidos, com contagens e percentuais sobre todos os registros de PARTICIPANTES. Para cada campo, calcular percentual principal como contagem da categoria dividida pelo total da base; se apresentado, o percentual entre respostas válidas usa somente as respostas válidas daquele campo como denominador. Reconciliar categorias válidas, ausentes e inválidas com o total, admitindo diferenças de arredondamento nos percentuais.
-- **Qualidade:** conferir esquema, tipos, códigos e faixas no dicionário; investigar duplicidades, faltantes e incompatibilidades entre presença, nota e status. Reconciliar totais e denominadores. Validar a POC pequena antes de ampliar para a base completa; registrar filtros e limitações para reprodução.
-
-## Roadmap
-
-Histórico da fase 1 e stack: [ROADMAP.md](docs/ROADMAP.md). Próximos incrementos: [ROADMAP_FASE_2.md](docs/ROADMAP_FASE_2.md). A sequência abaixo registra a abordagem original da POC.
-
-1. Consolidar visão de negócio e as seis perguntas.
-2. Definir o contrato analítico: população, unidade de análise, elegibilidade, regras por dia, métricas e denominadores.
-3. Validar uma POC pequena de presença e desempenho por área.
-4. Estruturar tratamento reproduzível após validar as regras.
-5. Desenvolver gradualmente as seis análises, incluindo a leitura econômica independente em PARTICIPANTES, conferindo cobertura e consistência em cada entrega.
-6. Preparar apresentação com resultados, hipóteses e limitações.
-7. Expandir a série temporal até 2010 somente após avaliar compatibilidade de questionários, cobertura e disponibilidade de renda e notas associáveis.
-
-Camadas lógicas propostas: `raw` → padronizados → analíticos → apresentação. Os originais serão preservados; a stack inicial e as camadas propostas estão detalhadas no ROADMAP.
-
-## Participação entre dias — 2024 e 2025
-
-Leia a [apresentação comparativa](apresentacao/participacao_2024_2025.ipynb) ou o [resumo da entrega](apresentacao/RESUMO_PARTICIPACAO_2024_2025.md). O [notebook 08](notebooks/08_participacao_2024.ipynb) prepara seis campos de 2024, reutiliza o cálculo de participação e consolida indicadores com edição explícita. Não junta pessoas entre anos nem altera a apresentação de 2025. Regras e verificações no [contrato](docs/contrato_participacao_2024_2025.md).
-
-Execute o notebook 08 e depois a apresentação comparativa com `scripts/executar_notebook.py`, usando o ambiente existente. Para mudanças apenas visuais, execute somente a apresentação. O restante do fluxo de 2025 permanece independente.
-
-## Ambiente de desenvolvimento
-
-Preparado em 16/09/2026 com **Python 3.13.15 de 64 bits**, `venv` padrão e pip. Pacotes principais: DuckDB 1.5.5, Pandas 3.0.5, Matplotlib 3.11.2 e ipykernel 7.3.0. O [requirements.txt](requirements.txt) fixa também as dependências transitivas desta instalação Windows/Python 3.13.
-
-O Python 3.13 foi instalado para o usuário em `%LOCALAPPDATA%\Programs\Python\Python313`, preservando o Python 3.14 de 32 bits existente, sem adicioná-lo ao PATH. `.venv` já estava ignorada pelo Git. O kernel **ENEM 2025 (.venv)** foi registrado no próprio ambiente e no escopo do usuário, sem configuração de sistema. As extensões Python e Jupyter estão disponíveis no VS Code.
-
-No PowerShell, abra a pasta e ative o ambiente:
+Para preparar a participação de 2024 e compará-la com os indicadores validados de 2025:
 
 ```powershell
-Set-Location 'C:\Users\SamuelCaetanoPacheco\Desktop\ENEM-Data-Analysis'
-.\.venv\Scripts\Activate.ps1
-python --version
+.\.venv\Scripts\python.exe -X utf8 scripts\executar_notebook.py notebooks\08_participacao_2024.ipynb
+.\.venv\Scripts\python.exe -X utf8 scripts\executar_notebook.py apresentacao\participacao_2024_2025.ipynb
 ```
 
-Se a ativação for bloqueada, use diretamente `.\.venv\Scripts\python.exe`, sem alterar a política de execução. Para sair de um ambiente ativado, execute `deactivate`.
+O notebook 08 verifica os agregados e a validação preexistentes de 2025 antes de consolidar a comparação. A sequência não reconstrói os indicadores de 2025.
 
-No VS Code, abra essa pasta. Ao criar ou abrir um notebook, clique em **Select Kernel / Selecionar Kernel → Select Another Kernel / Selecionar Outro Kernel → Jupyter Kernel → ENEM 2025 (.venv)**. Se a lista ainda não atualizar, recarregue a janela; a alternativa é **Python Environments / Ambientes Python** e selecionar `.venv\Scripts\python.exe` deste projeto. Para scripts, use **Python: Select Interpreter** na paleta de comandos e escolha esse mesmo executável.
-
-Para recriar o ambiente, com Python 3.13 de 64 bits disponível e sem um `.venv` existente:
-
-```powershell
-& "$env:LOCALAPPDATA\Programs\Python\Python313\python.exe" -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m ipykernel install --sys-prefix --name python3 --display-name 'ENEM 2025 (.venv)'
-.\.venv\Scripts\python.exe -m ipykernel install --user --name enem-2025 --display-name 'ENEM 2025 (.venv)'
-.\.venv\Scripts\python.exe -m pip check
-```
-
-Validação realizada: imports dos quatro pacotes, versões, dependências sem conflitos, consulta DuckDB trivial e execução no kernel. O teste inicial de ambiente foi executado pelo usuário; a organização atual preserva o estado versionado por ele. A preparação do ambiente não processou CSVs; o incremento raw → trusted descrito abaixo já foi concluído.
-
-## Primeiro incremento raw → trusted
-
-Contrato em [docs/contrato_resultados_2025.md](docs/contrato_resultados_2025.md), funções em [src/trusted_resultados.py](src/trusted_resultados.py) e notebook executado em [notebooks/01_resultados_trusted.ipynb](notebooks/01_resultados_trusted.ipynb). O notebook funciona a partir da raiz ou de `notebooks/`, com kernel reiniciado.
-
-A saída local `trusted/resultados_2025_base.parquet` contém **4.810.772 registros e dez campos**, sem filtro de presença, com 54.733.745 bytes (aproximadamente 54,73 MB). O CSV original permaneceu intacto por SHA-256. Os [relatórios de validação](reports/validacao_resultados_2025_completo.json) registram tipos, contagens, nulos, coerência, hashes e recursos.
-
-| Área | Notas nulas preservadas | Notas zero preservadas |
-| --- | ---: | ---: |
-| CN | 1.550.436 | 775 |
-| CH | 1.353.217 | 9.087 |
-| LC | 1.353.217 | 2.361 |
-| MT | 1.550.436 | 893 |
-
-Identificador, ano e presenças: nenhum nulo. Nenhuma chave duplicada, falha de conversão, categoria inesperada, ano diferente de 2025, nota negativa ou incoerência presença/nota nas regras verificadas. Isso se refere somente aos dez campos e aos controles do contrato; os demais campos ainda não foram perfilados.
-
-Para reproduzir na raiz do projeto:
+Para executar a suíte de testes, quando necessário:
 
 ```powershell
 .\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v
-.\.venv\Scripts\python.exe -X utf8 src\trusted_resultados.py --amostra 10000
-.\.venv\Scripts\python.exe -X utf8 src\trusted_resultados.py
 ```
 
-Alternativamente, execute todas as células do notebook. O fluxo usa DuckDB com 256 MB e uma thread; staging e spill ficam em `work/`. Só publica após conferir o Parquet temporário; uma falha preserva a saída anterior. `trusted/` e `work/` são ignorados pelo Git. Os seis testes cobrem nulos/zero, conversões, categorias, chave/ano, Latin-1/CSV inválido, reconciliação e reexecução/publicação segura. A execução completa observada levou 40,77 segundos, sem promessa para outras execuções ou máquinas.
+## Qualidade e interpretação
 
-O primeiro incremento foi seguido pelos indicadores de desempenho por área abaixo. PARTICIPANTES permanece independente de RESULTADOS.
+- **Denominadores explícitos:** taxas de presença usam a base publicada da edição; retenção usa os presentes no primeiro dia. Diferenças de taxas entre edições são expressas em pontos percentuais.
+- **Presenças e ausências:** em 2024–2025, presença completa no dia exige código 1 nas duas áreas correspondentes. Eliminações, pares mistos, nulos e códigos inválidos são tratados separadamente. Nota zero não é ausência.
+- **Notas elegíveis:** as análises objetivas usam presentes com nota disponível, preservando zeros válidos. Redação final e competências têm recortes próprios. As quatro áreas não compõem um ranking de dificuldade nem uma nota global oficial.
+- **Cobertura escolar:** a rede está informada em apenas parte da base de 2025, com seleção descrita na documentação. Comparações não demonstram qualidade ou efeito causal da escola.
+- **Geografia:** local de prova não equivale a residência. A região é derivada de uma referência explícita de UF.
+- **Renda e notas:** não foi identificado vínculo individual documentado e verificável entre PARTICIPANTES e RESULTADOS públicos de 2024–2025. Não são associados pela posição, contagem ou igualdade aparente de identificadores. Consulte a [nota técnica de vínculo](docs/NOTA_TECNICA_VINCULO_PARTICIPANTES_RESULTADOS_2024_2025.md).
+- **Temporalidade:** identificadores não acompanham pessoas entre anos. Questionários, faixas monetárias, regras e cobertura podem mudar. A auditoria orienta adaptações por edição antes de qualquer comparação.
+- **Integridade:** conforme o contrato de cada incremento, são conferidos tipos, códigos, chaves, nulos, totais, denominadores, releitura de Parquet e hashes. A publicação ocorre após as verificações previstas; gráficos são inspecionados visualmente.
 
-## Desempenho por área — concluído em 17/09/2026
+## Documentação de referência
 
-[Contrato analítico](docs/contrato_analitico_desempenho_por_area_2025.md) · [Notebook 02](notebooks/02_desempenho_por_area.ipynb) · [Resultados e validação](reports/resumo_desempenho_2025.md).
+- [Contrato da trusted de 2025](docs/contrato_resultados_2025.md).
+- [Contrato de participação de 2025](docs/contrato_analitico_participacao_2025.md) e [extensão 2024–2025](docs/contrato_participacao_2024_2025.md).
+- [Auditoria de viabilidade temporal 2010–2025](docs/viabilidade_temporal_2010_2025.md).
+- [Histórico da fase 1](docs/ROADMAP.md) e [planejamento e andamento da fase 2](docs/ROADMAP_FASE_2.md).
 
-| Área | Elegíveis | Média | Q1 | Mediana | Q3 |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| CN | 3.260.336 | 499,97 | 443,5 | 498,2 | 550,9 |
-| CH | 3.457.555 | 511,19 | 446,6 | 513,0 | 574,0 |
-| LC | 3.457.555 | 532,12 | 490,3 | 538,8 | 581,6 |
-| MT | 3.260.336 | 519,98 | 416,5 | 500,0 | 606,8 |
-
-Cada área inclui somente presentes com nota naquela área; zero é válido. Quartis contínuos com interpolação linear descrevem os 50% centrais. Populações diferentes e escalas por área impedem interpretar a tabela como ranking de dificuldade. Não calculamos nota global nem inferimos causalidade.
-
-Código separado por responsabilidade: `src/desempenho.py` contém definições/cálculo/validação; `src/desempenho_execucao.py`, leitura/gravação; `src/desempenho_graficos.py`, apresentação. Sem classes ou framework adicional. CSV compacto em `analitica/`, auditoria em `reports/` e PNG em `apresentacao/graficos/`. A trusted não foi modificada; raw não foi reprocessado.
-
-Na raiz, rode `.\.venv\Scripts\python.exe -X utf8 -m src.desempenho_execucao` para atualizar os indicadores ou execute o notebook de apresentação para gerar também os gráficos. Testes: `.\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v` (dez aprovados). O notebook foi executado em kernel novo e os gráficos foram verificados visualmente.
-
-Participação entre dias concluída; próximo incremento: contrato de local de aplicação/região. Os demais requisitos continuam no [roadmap](docs/ROADMAP.md).
-
-### Apresentação revisada
-
-O gráfico usa áreas por extenso e escala comum com mínimos/máximos **observados**: Natureza 0–858,7; Humanas 0–856,4; Linguagens 0–794,5; Matemática 0–980,3. A linha fina mostra a amplitude, a faixa colorida os 50% centrais e o ponto a mediana. Contagens e detalhes ficam na tabela do notebook narrativo. Esses extremos não são limites teóricos da TRI.
-
-Reexecutar somente a apresentação: `.\.venv\Scripts\python.exe -X utf8 scripts\executar_notebook.py apresentacao\visao_geral_2025.ipynb`. O fluxo consulta trusted; não refaz raw → trusted. [Relato da reorganização](reports/revisao_apresentacao_2025.md).
-
-## Participação entre dias — concluído em 18/09/2026
-
-[Contrato](docs/contrato_analitico_participacao_2025.md) · [Notebook 03](notebooks/03_participacao_entre_dias.ipynb) · [Resumo e auditoria](reports/resumo_participacao_2025.md).
-
-Os pares LC/CH e CN/MT foram conferidos em todos os registros: sem mistos, nulos ou códigos inesperados. Houve 3.457.555 presenças completas no primeiro dia e 3.260.336 no segundo. **3.244.348 registros estiveram presentes nos dois: retenção de 93,83% entre os presentes do primeiro.**
-
-Presença no primeiro e ausência no segundo somam 211.292; o caminho inverso soma 15.146. Eliminações ficam separadas. A diferença líquida de −197.219 não é número de faltas após o primeiro dia. Veja as nove transições observadas na apresentação e as 36 células possíveis no CSV.
-
-Funções em `src/participacao.py`, I/O em `src/participacao_execucao.py` e gráficos em `src/participacao_graficos.py`. Execute `.\.venv\Scripts\python.exe -X utf8 -m src.participacao_execucao` ou o notebook 03 para atualizar agregados; a apresentação gera também os dois PNG novos. Dezesseis testes aprovados. Trusted preservada; nenhum raw foi reprocessado.
-
-
-## Primeira POC de redação e inscritos — 22/09/2026
-
-Execute `notebooks/04_redacao.ipynb` para a auditoria independente de inscritos e os agregados de redação. A trusted compartilhada tem 17 campos; `01` reconstrói a base com validação exata, `02` e `03` renovam indicadores/auditorias existentes. A apresentação lê essas saídas e verifica integridade, sem executar pipelines. Consulte [o contrato de redação](docs/contrato_analitico_redacao_2025.md) e [os resultados, testes e limites](reports/resumo_redacao_2025.md).
-
-O total oficial confirmado e os universos divulgados aparecem separadamente. Nota final inclui zeros; status usa toda a base; competências usam um recorte comum explicitado. Não houve join PARTICIPANTES–RESULTADOS, análise de avaliadores, região, rede ou renda neste incremento.
-
-
-## Local de prova — primeira visão de 24/09/2026
-
-A [apresentação](apresentacao/visao_geral_2025.ipynb) mostra notas por região; o notebook 05 mantém também presença, permanência e tabelas de UFs. O [notebook 05](notebooks/05_local_prova.ipynb) processa a trusted v3, com quatro campos territoriais adicionais e todos os 17 anteriores preservados por chave. Um PNG de notas regionais e tabelas completas de UFs no notebook 05; top 3 pela taxa de presença do dia 2, com denominadores.
-
-Fonte regional IBGE congelada em `docs/uf_regiao_ibge.json`; [contrato territorial](docs/contrato_analitico_local_prova_2025.md) e [resumo validado](reports/resumo_local_prova_2025.md). Aplicação não é residência ou rede escolar. Desempenho municipal e redação por local ficam para próximo incremento; renda continua sem join com RESULTADOS. Ordem de reconstrução: 01 → 02 → 03 → 04 → 05 → apresentação. O histórico acima registra os incrementos anteriores.
-
-## Rede escolar — 24/09/2026
-
-A apresentação agora segue local de prova → rede escolar, começando pela cobertura: **36,15% da base tem rede informada**. Compara Federal, Estadual, Municipal e Privada nas quatro áreas, com quartis, medianas e n; zeros mantidos. Subpopulação de possíveis concluintes via Censo Escolar, com bases muito diferentes; sem interpretação causal ou de qualidade.
-
-[Notebook 06](notebooks/06_rede_escolar.ipynb) · [Contrato](docs/contrato_analitico_rede_escolar_2025.md) · [Resumo e validação](reports/resumo_rede_escolar_2025.md). Trusted atual v4, 22 campos; todos os 21 anteriores preservados. Um PNG novo, dois CSVs, 34 testes aprovados e artefatos anteriores idênticos. Reconstrução: 01 → 02 → 03 → 04 → 05 → 06 → apresentação. Próximo passo: renda em PARTICIPANTES, independente das notas. Histórico acima preservado.
-
-## Perfil econômico — concluído em 25/09/2026
-
-O último capítulo da [apresentação](apresentacao/visao_geral_2025.ipynb) usa exclusivamente os **4.810.772 registros divulgados de PARTICIPANTES**, distintos do total oficial confirmado. **44,16%** informaram nenhuma renda familiar ou até R$ 1.518 mensais; **71,81%** declararam não possuir renda própria. Q007 é renda familiar; Q006 apenas declara possuir renda, sem valor individual ou situação de emprego. Nenhum join com notas e nenhuma generalização para a população brasileira.
-
-[Notebook 07 e regras](notebooks/07_perfil_economico.ipynb) · [CSV completo](analitica/perfil_economico_2025.csv). Categorias ordenadas conforme dicionário, quantidades e percentuais com base explícita, ausências separadas (zero nesta edição). Cálculo, I/O e gráficos em `src/perfil_economico*.py`; dois PNGs. Execute o notebook 07 e depois a apresentação; os pipelines de RESULTADOS não precisam ser reexecutados.
-
-Processamento e notebooks executados, totais reconciliados e figuras conferidas visualmente. Sem novos testes, reports, dependências ou mudança de trusted. Os requisitos desta primeira visão estão concluídos; aprofundamentos do backlog permanecem opcionais.
+O histórico detalhado de versões, validações e entregas permanece nesses documentos. Este README descreve o estado atual e os caminhos para entender e executar o projeto.
