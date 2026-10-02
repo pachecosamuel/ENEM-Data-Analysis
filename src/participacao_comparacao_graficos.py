@@ -20,10 +20,7 @@ def gerar_comparacao(dias, comparacao, pasta):
                 ax.text(i, valor+2, porcentagem(valor), ha='center', weight='bold', fontsize=14)
                 ax.text(i, 4, numero(int(linha[f'contagem_{ano}'])), ha='center', color='white', fontsize=11)
             ax.set_ylim(0, 108); ax.set_xticks([0, 1], ['2024', '2025'])
-            ax.set_yticks([0, 25, 50, 75, 100]); ax.set_title(titulo, pad=32)
-            delta = linha['diferenca_pp_2025_menos_2024']
-            ax.text(.5, 1.02, f'{delta:+.2f}'.replace('.', ',') + ' p.p. em 2025',
-                    transform=ax.transAxes, ha='center', fontsize=11)
+            ax.set_yticks([0, 25, 50, 75, 100]); ax.set_title(titulo, pad=16)
             ax.set_axisbelow(True); ax.grid(axis='y', alpha=.15)
         axes[0].set_ylabel('Percentual (%)')
         fig.suptitle('ENEM: mais presenças em 2025, mas taxas menores', fontsize=17, y=.97)
@@ -32,7 +29,7 @@ def gerar_comparacao(dias, comparacao, pasta):
                  f"2024: {numero(int(primeiro.denominador_2024))}; 2025: {numero(int(primeiro.denominador_2025))}.\n"
                  'Permanência: presentes nos dois dias / presentes no primeiro — '
                  f"2024: {numero(int(ret.denominador_2024))}; 2025: {numero(int(ret.denominador_2025))}.\n"
-                 'Números nas barras = contagens. Diferenças = taxa de 2025 − taxa de 2024. Comparação descritiva, sem vínculo entre pessoas.', fontsize=10)
+                 'Números nas barras = contagens. Comparação descritiva, sem vínculo entre pessoas.', fontsize=10)
         fig.subplots_adjust(left=.06, right=.98, bottom=.27, top=.78, wspace=.27)
         p1 = pasta/'participacao_comparacao_2024_2025.png'
         fig.savefig(p1, dpi=180); plt.close(fig)
@@ -52,7 +49,6 @@ def gerar_comparacao(dias, comparacao, pasta):
                         va='center', fontsize=11, color='white' if dentro else '#222222')
             ax.set_yticks(range(len(estados)), [nomes[s] for s in estados]); ax.invert_yaxis()
             ax.set_xlim(0, 105); ax.set_title(f'{dia}º dia · ' + ('LC + CH' if dia == 1 else 'CN + MT'))
-            ax.set_xlabel('% da base publicada')
         fig.suptitle('ENEM 2024: presença, ausência e eliminação permanecem distintas', fontsize=16, y=.97)
         vazios = [nomes[s] for s in nomes if s not in estados]
         fig.text(.03, .06, f'Base: {numero(int(primeiro.denominador_2024))} registros. Presença completa exige código 1 nas duas áreas.\n'
